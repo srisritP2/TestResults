@@ -13,6 +13,107 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
+// Import validation utilities (Node.js compatible versions)
+class CucumberJsonValidator {
+  constructor(options = {}) {
+    this.options = {
+      strictMode: options.strictMode || false,
+      generatePlaceholders: options.generatePlaceholders !== false,
+      maxErrors: options.maxErrors || 100,
+      logLevel: options.logLevel || 'warn'
+    };
+    this.validationErrors = [];
+    this.validationWarnings = [];
+  }
+
+  validateAndSanitize(json, filename) {
+    this.validationErrors = [];
+    this.validationWarnings = [];
+
+    if (!Array.isArray(json)) {
+      this.validationErrors.push({ message: 'Root must be array', file: filename });
+      return { isValid: false, sanitizedData: json };
+    }
+
+    const sanitized = json.map((feature, idx) => {
+      if (!feature.name || feature.name.trim() === '') {
+        this.validationWarnings.push({ 
+          message: `Feature ${idx} has empty name`, 
+          file: filename 
+        });
+        feature.name = `Feature ${idx} (auto-generated)`;
+      }
+
+      if (feature.elements) {
+        feature.elements = feature.elements.map((scenario, sIdx) => {
+          if (!scenario.name || scenario.name.trim() === '') {
+            this.validationWarnings.push({ 
+              message: `Scenario ${sIdx} in feature ${idx} has empty name`, 
+              file: filename 
+            });
+            scenario.name = `Scenario ${sIdx} (auto-generated)`;
+          }
+          return scenario;
+        });
+      }
+
+      return feature;
+    });
+
+    return {
+      isValid: this.validationErrors.length === 0,
+      sanitizedData: sanitized,
+      errors: this.validationErrors,
+      warnings: this.validationWarnings
+    };
+  }
+}
+
+class TestStatusCalculator {
+  calculateScenarioStatus(scenario) {
+    if (!scenario) return 'unknown';
+
+    // Check setup failures (before hooks)
+    if (scenario.before && Array.isArray(scenario.before)) {
+      for (const hook of scenario.before) {
+        if (hook.result && hook.result.status === 'failed') {
+          return 'failed'; // Setup failure = test failure
+        }
+      }
+    }
+
+    // Check step execution
+    if (scenario.steps && Array.isArray(scenario.steps)) {
+      let hasFailedSteps = false;
+      let hasPassedSteps = false;
+      let hasSkippedSteps = false;
+
+      for (const step of scenario.steps) {
+        const status = step.result ? step.result.status : step.status;
+        if (status === 'failed') hasFailedSteps = true;
+        else if (status === 'passed') hasPassedSteps = true;
+        else if (status === 'skipped') hasSkippedSteps = true;
+      }
+
+      if (hasFailedSteps) return 'failed';
+      if (hasPassedSteps && !hasSkippedSteps) return 'passed';
+      if (hasSkippedSteps && !hasPassedSteps) return 'skipped';
+      if (hasPassedSteps && hasSkippedSteps) return 'failed'; // Mixed = failed
+    }
+
+    // Check teardown failures (after hooks)
+    if (scenario.after && Array.isArray(scenario.after)) {
+      for (const hook of scenario.after) {
+        if (hook.result && hook.result.status === 'failed') {
+          return 'failed'; // Teardown failure = test failure
+        }
+      }
+    }
+
+    return 'unknown';
+  }
+}
+
 class CucumberIndexGenerator {
   constructor(options = {}) {
     this.reportsDir = options.reportsDir || process.cwd();
@@ -20,6 +121,13 @@ class CucumberIndexGenerator {
     this.verbose = options.verbose || false;
     this.validateReports = options.validateReports !== false;
     this.generateStats = options.generateStats !== false;
+    
+    // Initialize validation and status calculation utilities
+    this.validator = new CucumberJsonValidator({
+      generatePlaceholders: true,
+      logLevel: this.verbose ? 'info' : 'warn'
+    });
+    this.statusCalculator = new TestStatusCalculator();
   }
 
   log(message) {
@@ -41,7 +149,7 @@ class CucumberIndexGenerator {
   }
 
   /**
-   * Extract comprehensive metadata from Cucumber JSON
+   * Extract comprehensive metadata from Cucumber JSON with enhanced accuracy
    */
   extractMetadata(json, filename) {
     const metadata = {
@@ -55,12 +163,14 @@ class CucumberIndexGenerator {
       passed: 0,
       failed: 0,
       skipped: 0,
+      errors: 0,
       duration: 0,
       tags: new Set(),
       environment: null,
       tool: null,
       version: null,
-      hash: null
+      hash: null,
+      validationIssues: 0
     };
 
     try {
@@ -68,14 +178,24 @@ class CucumberIndexGenerator {
       metadata.size = Buffer.byteLength(fileContent, 'utf8');
       metadata.hash = crypto.createHash('md5').update(fileContent).digest('hex');
 
-      if (!Array.isArray(json)) {
+      // Validate and sanitize the JSON first
+      const validationResult = this.validator.validateAndSanitize(json, filename);
+      if (!validationResult.isValid) {
+        metadata.validationIssues = validationResult.errors.length;
+        this.log(`Validation errors in ${filename}: ${validationResult.errors.length} errors, ${validationResult.warnings.length} warnings`);
+      }
+
+      // Use sanitized data for processing
+      const processedJson = validationResult.sanitizedData;
+
+      if (!Array.isArray(processedJson)) {
         throw new Error('Invalid Cucumber JSON format: root should be an array');
       }
 
-      metadata.features = json.length;
+      metadata.features = processedJson.length;
 
-      // Extract data from each feature
-      json.forEach(feature => {
+      // Extract data from each feature using enhanced status calculation
+      processedJson.forEach(feature => {
         // Feature name (use first feature name as report name)
         if (feature.name && metadata.name === 'Automation Test Results') {
           metadata.name = feature.name;
@@ -89,7 +209,7 @@ class CucumberIndexGenerator {
           });
         }
 
-        // Process scenarios/elements
+        // Process scenarios/elements with accurate status calculation
         const elements = feature.elements || feature.scenarios || [];
         elements.forEach(scenario => {
           if (scenario.type === 'background') return;
@@ -112,18 +232,20 @@ class CucumberIndexGenerator {
             }
           }
 
-          // Process steps
-          if (scenario.steps) {
-            scenario.steps.forEach(step => {
-              metadata.steps++;
-              
-              const status = step.result?.status || step.status || 'unknown';
-              switch (status) {
-                case 'passed': metadata.passed++; break;
-                case 'failed': metadata.failed++; break;
-                case 'skipped': metadata.skipped++; break;
-              }
+          // Use enhanced status calculation for accurate counting
+          const scenarioStatus = this.statusCalculator.calculateScenarioStatus(scenario);
+          switch (scenarioStatus) {
+            case 'passed': metadata.passed++; break;
+            case 'failed': metadata.failed++; break;
+            case 'skipped': metadata.skipped++; break;
+            default: metadata.errors++; break;
+          }
 
+          // Count steps and calculate duration
+          if (scenario.steps) {
+            metadata.steps += scenario.steps.length;
+            
+            scenario.steps.forEach(step => {
               // Add duration
               if (step.result?.duration) {
                 metadata.duration += step.result.duration;
@@ -232,12 +354,15 @@ class CucumberIndexGenerator {
       totalPassed: 0,
       totalFailed: 0,
       totalSkipped: 0,
+      totalErrors: 0,
       totalDuration: 0,
       totalSize: 0,
+      totalValidationIssues: 0,
       averageDuration: 0,
       passRate: 0,
       failRate: 0,
       skipRate: 0,
+      errorRate: 0,
       oldestReport: null,
       newestReport: null,
       allTags: new Set(),
@@ -252,8 +377,10 @@ class CucumberIndexGenerator {
       stats.totalPassed += report.passed || 0;
       stats.totalFailed += report.failed || 0;
       stats.totalSkipped += report.skipped || 0;
+      stats.totalErrors += report.errors || 0;
       stats.totalDuration += report.duration || 0;
       stats.totalSize += report.size || 0;
+      stats.totalValidationIssues += report.validationIssues || 0;
 
       if (report.tags) {
         report.tags.forEach(tag => stats.allTags.add(tag));
@@ -270,10 +397,12 @@ class CucumberIndexGenerator {
       }
     });
 
-    if (stats.totalSteps > 0) {
-      stats.passRate = ((stats.totalPassed / stats.totalSteps) * 100).toFixed(2);
-      stats.failRate = ((stats.totalFailed / stats.totalSteps) * 100).toFixed(2);
-      stats.skipRate = ((stats.totalSkipped / stats.totalSteps) * 100).toFixed(2);
+    // Calculate rates based on scenarios for more accurate representation
+    if (stats.totalScenarios > 0) {
+      stats.passRate = ((stats.totalPassed / stats.totalScenarios) * 100).toFixed(2);
+      stats.failRate = ((stats.totalFailed / stats.totalScenarios) * 100).toFixed(2);
+      stats.skipRate = ((stats.totalSkipped / stats.totalScenarios) * 100).toFixed(2);
+      stats.errorRate = ((stats.totalErrors / stats.totalScenarios) * 100).toFixed(2);
     }
 
     if (reports.length > 0) {
@@ -387,7 +516,13 @@ class CucumberIndexGenerator {
           metadata.status = 'active';
           metadata.isDeleted = false;
           
-          reports.push(metadata);
+          // Add validation info to metadata
+        if (validationResult && !validationResult.isValid) {
+          metadata.validationErrors = validationResult.errors.length;
+          metadata.validationWarnings = validationResult.warnings.length;
+        }
+
+        reports.push(metadata);
 
         } catch (error) {
           errors.push({ file: filename, errors: [error.message] });

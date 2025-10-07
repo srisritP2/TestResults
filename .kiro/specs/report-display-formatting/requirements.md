@@ -145,3 +145,39 @@ This feature focuses on creating a comprehensive, professional, and user-friendl
 3. WHEN reviewing differences THEN the system SHALL show added/removed scenarios and features
 4. WHEN tracking progress THEN the system SHALL display improvement/regression metrics
 5. WHEN comparing versions THEN the system SHALL support baseline comparison against previous releases
+
+### Requirement 13
+
+**User Story:** As a test report viewer, I want failed scenarios to be properly displayed even when they have empty names or malformed data, so that I can identify and debug all test failures.
+
+#### Acceptance Criteria
+
+1. WHEN a scenario has an empty or null name THEN the system SHALL display a placeholder name like "Unnamed Scenario" or generate a name from the scenario ID
+2. WHEN a scenario has malformed data THEN the system SHALL still display the scenario with available information and mark it as having data issues
+3. WHEN displaying failed scenarios THEN the system SHALL ensure all failed scenarios are visible and expandable regardless of data quality
+4. WHEN a scenario fails due to IllegalArgumentException or similar errors THEN the system SHALL display the error information clearly
+5. WHEN scenarios have missing step information THEN the system SHALL display what information is available and indicate missing data
+
+### Requirement 14
+
+**User Story:** As a test report viewer, I want Cucumber execution error features to be properly handled and displayed, so that I can understand when test execution itself failed.
+
+#### Acceptance Criteria
+
+1. WHEN the report contains "classpath:io/cucumber/core/failure.feature" THEN the system SHALL display it as a special execution error section
+2. WHEN displaying execution error features THEN the system SHALL clearly indicate these are framework errors, not test failures
+3. WHEN execution errors occur THEN the system SHALL display the error message "There were errors during the execution" prominently
+4. WHEN showing execution error scenarios THEN the system SHALL display the specific error details like "Test name must not be null or empty"
+5. WHEN execution errors are present THEN the system SHALL provide guidance on how to resolve these framework-level issues
+
+### Requirement 15
+
+**User Story:** As a test report viewer, I want consistent display formatting across all features regardless of their data quality or error state, so that the report maintains a professional appearance.
+
+#### Acceptance Criteria
+
+1. WHEN displaying features with different data quality THEN the system SHALL maintain consistent layout and styling
+2. WHEN some features have errors and others don't THEN the system SHALL apply the same visual formatting rules to all
+3. WHEN displaying mixed content (normal features and error features) THEN the system SHALL clearly distinguish between them while maintaining visual consistency
+4. WHEN features have incomplete data THEN the system SHALL fill in missing information with appropriate placeholders
+5. WHEN rendering the report THEN the system SHALL ensure no features are hidden or collapsed due to data issues

@@ -10,7 +10,7 @@
               <v-icon size="32" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
             </div>
             <div class="brand-text">
-              <h1 class="brand-title">Cucumber Reports</h1>
+              <h1 class="brand-title">GeoCall</h1>
               <p class="brand-subtitle">Test Execution Dashboard</p>
             </div>
           </div>
@@ -72,6 +72,11 @@
               <v-icon size="16" color="#F59E0B">mdi-pause-circle</v-icon>
               <span class="summary-count">{{ summary.skipped }}</span>
               <span class="summary-label">Skipped</span>
+            </div>
+            <div v-if="summary.errors > 0" class="summary-item error">
+              <v-icon size="16" color="#EF4444">mdi-alert-octagon</v-icon>
+              <span class="summary-count">{{ summary.errors }}</span>
+              <span class="summary-label">Errors</span>
             </div>
           </div>
         </div>
@@ -343,11 +348,106 @@
               <v-icon color="warning" size="18">mdi-alert-circle</v-icon>
               {{ summary.skipped }} Skipped
             </span>
+            <span v-if="summary.errors > 0" class="stat errors">
+              <v-icon color="error" size="18">mdi-alert-octagon</v-icon>
+              {{ summary.errors }} Errors
+            </span>
             <span class="stat duration">
               <v-icon color="primary" size="18">mdi-timer</v-icon>
               {{ summary.duration }}
             </span>
           </div>
+        </div>
+
+        <!-- Validation and Integrity Warnings -->
+        <div v-if="summary.hasValidationIssues || summary.hasIntegrityIssues" class="validation-warnings">
+          <v-alert
+            v-if="summary.hasIntegrityIssues"
+            type="error"
+            variant="tonal"
+            density="compact"
+            class="mb-2"
+          >
+            <template #prepend>
+              <v-icon>mdi-alert-octagon</v-icon>
+            </template>
+            <div class="alert-content">
+              <strong>Critical Data Integrity Issues Detected</strong>
+              <p>This report contains significant inconsistencies that may affect result accuracy. Manual verification is recommended.</p>
+            </div>
+          </v-alert>
+
+          <v-alert
+            v-if="summary.hasValidationIssues && !summary.hasIntegrityIssues"
+            type="warning"
+            variant="tonal"
+            density="compact"
+            class="mb-2"
+          >
+            <template #prepend>
+              <v-icon>mdi-alert-triangle</v-icon>
+            </template>
+            <div class="alert-content">
+              <strong>Data Quality Issues Found</strong>
+              <p>
+                {{ summary.validationErrors > 0 ? `${summary.validationErrors} error(s)` : '' }}
+                {{ summary.validationErrors > 0 && summary.validationWarnings > 0 ? ' and ' : '' }}
+                {{ summary.validationWarnings > 0 ? `${summary.validationWarnings} warning(s)` : '' }}
+                detected during report processing. Some results may be incomplete.
+              </p>
+              <v-btn
+                size="small"
+                variant="text"
+                color="warning"
+                @click="showValidationDetails = !showValidationDetails"
+                class="mt-1"
+              >
+                {{ showValidationDetails ? 'Hide' : 'Show' }} Details
+                <v-icon size="16" class="ml-1">
+                  {{ showValidationDetails ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+                </v-icon>
+              </v-btn>
+            </div>
+          </v-alert>
+
+          <!-- Validation Details Expansion -->
+          <v-expand-transition>
+            <div v-if="showValidationDetails && report._validation" class="validation-details">
+              <v-card variant="outlined" class="mb-2">
+                <v-card-text class="pa-3">
+                  <h4 class="text-subtitle-2 mb-2">Validation Details</h4>
+                  
+                  <div v-if="report._validation.errors && report._validation.errors.length > 0" class="mb-3">
+                    <h5 class="text-caption text-error mb-1">Errors ({{ report._validation.errors.length }}):</h5>
+                    <ul class="validation-list">
+                      <li v-for="error in report._validation.errors.slice(0, 5)" :key="error.message" class="text-caption">
+                        <strong>{{ error.location || 'Unknown' }}:</strong> {{ error.message }}
+                      </li>
+                      <li v-if="report._validation.errors.length > 5" class="text-caption text-medium-emphasis">
+                        ... and {{ report._validation.errors.length - 5 }} more errors
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div v-if="report._validation.warnings && report._validation.warnings.length > 0">
+                    <h5 class="text-caption text-warning mb-1">Warnings ({{ report._validation.warnings.length }}):</h5>
+                    <ul class="validation-list">
+                      <li v-for="warning in report._validation.warnings.slice(0, 5)" :key="warning.message" class="text-caption">
+                        <strong>{{ warning.location || 'Unknown' }}:</strong> {{ warning.message }}
+                      </li>
+                      <li v-if="report._validation.warnings.length > 5" class="text-caption text-medium-emphasis">
+                        ... and {{ report._validation.warnings.length - 5 }} more warnings
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div class="mt-2 text-caption text-medium-emphasis">
+                    Processed {{ report._validation.processedEntryCount || 0 }} of {{ report._validation.originalEntryCount || 0 }} entries
+                  </div>
+                </v-card-text>
+              </v-card>
+            </div>
+          </v-expand-transition>
         </div>
 
         <!-- Features list with virtual scrolling for performance -->
@@ -377,16 +477,40 @@
         <!-- Regular expansion panels for smaller reports -->
         <v-expansion-panels v-else multiple class="cucumber-features-list">
           <v-expansion-panel v-for="(feature, idx) in filteredFeatures" :key="feature.id || feature.name">
-            <v-expansion-panel-title class="cucumber-feature-row" :class="[featureStatus(feature)]">
-              <v-icon v-if="featureStatus(feature) === 'passed'" color="success" size="18">mdi-check-circle</v-icon>
+            <v-expansion-panel-title class="cucumber-feature-row" :class="[featureStatus(feature), getFeatureDisplayClass(feature)]">
+              <!-- Execution Error Feature Indicator -->
+              <v-icon v-if="isExecutionErrorFeature(feature)" color="error" size="20">mdi-alert-circle</v-icon>
+              <!-- Regular Feature Status Icons -->
+              <v-icon v-else-if="featureStatus(feature) === 'passed'" color="success" size="18">mdi-check-circle</v-icon>
               <v-icon v-else-if="featureStatus(feature) === 'failed'" color="error" size="18">mdi-close-circle</v-icon>
               <v-icon v-else-if="featureStatus(feature) === 'skipped'" color="warning"
                 size="18">mdi-alert-circle</v-icon>
               <v-icon v-else color="grey" size="18">mdi-help-circle</v-icon>
-              <span class="feature-file">{{ feature.uri || feature.name }}</span>
-              <!-- <span class="feature-title" style="font-weight:700;">{{ feature.name }}</span> -->
+              
+              <!-- Feature Name with Enhanced Display -->
+              <span class="feature-file">{{ getFormattedFeatureName(feature) }}</span>
+              
+              <!-- Execution Error Badge -->
+              <v-chip v-if="isExecutionErrorFeature(feature)" 
+                      color="error" 
+                      size="small" 
+                      variant="outlined" 
+                      class="ml-2">
+                Framework Error
+              </v-chip>
+              
+              <!-- Data Quality Issues Badge -->
+              <v-chip v-else-if="hasDataQualityIssues(feature)" 
+                      color="warning" 
+                      size="small" 
+                      variant="outlined" 
+                      class="ml-2">
+                Data Issues
+              </v-chip>
+              
+              <!-- Feature Tags with Enhanced Formatting -->
               <span v-if="feature.tags && feature.tags.length" class="feature-tags">
-                <span v-for="tag in feature.tags" :key="tag" class="feature-tag">{{ cleanTagText(tag) }}</span>
+                <span v-for="tag in getFormattedTags(feature.tags)" :key="tag.name" class="feature-tag">{{ tag.displayName }}</span>
               </span>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
@@ -398,8 +522,19 @@
                     <v-expansion-panel-title class="scenario-header-row">
                       <div class="scenario-header-content">
                         <div class="scenario-title-row">
-                          <span class="scenario-title">{{ scenario.keyword || 'Scenario' }}: {{ scenario.name ||
-                            scenario.id || (scenario.type ? scenario.type : 'Unnamed Scenario') }}</span>
+                          <!-- Enhanced Scenario Name Display -->
+                          <span class="scenario-title">{{ scenario.keyword || 'Scenario' }}: {{ getFormattedScenarioName(scenario) }}</span>
+                          
+                          <!-- Data Quality Warning Icon -->
+                          <v-icon v-if="hasScenarioDataIssues(scenario)" 
+                                  color="warning" 
+                                  size="16" 
+                                  class="ml-1"
+                                  :title="getScenarioDataIssueTooltip(scenario)">
+                            mdi-alert
+                          </v-icon>
+                          
+                          <!-- Status Icons -->
                           <v-icon v-if="scenarioStatus(scenario) === 'passed'" color="success"
                             size="18">mdi-check-circle</v-icon>
                           <v-icon v-else-if="scenarioStatus(scenario) === 'failed'" color="error"
@@ -410,8 +545,7 @@
                           <span class="scenario-duration">{{ formatDuration(scenario.duration) }}</span>
                         </div>
                         <div v-if="scenario.tags && scenario.tags.length" class="scenario-tags">
-                          <span v-for="tag in scenario.tags" :key="tag" class="scenario-tag">{{ cleanTagText(tag)
-                          }}</span>
+                          <span v-for="tag in getFormattedTags(scenario.tags)" :key="tag.name" class="scenario-tag">{{ tag.displayName }}</span>
                         </div>
                       </div>
                     </v-expansion-panel-title>
@@ -529,6 +663,10 @@ function getScenarioList(feature) {
 
 import ConfirmationDialog from '@/components/ConfirmationDialog.vue';
 import DeletionService from '@/services/DeletionService';
+import FailedScenarioDisplayHandler from '@/utils/FailedScenarioDisplayHandler.js';
+import ExecutionErrorFeatureHandler from '@/utils/ExecutionErrorFeatureHandler.js';
+import ConsistentDisplayFormatter from '@/utils/ConsistentDisplayFormatter.js';
+import DataQualityManager from '@/utils/DataQualityManager.js';
 
 export default {
   name: 'ReportViewer',
@@ -567,6 +705,12 @@ export default {
       filtersExpanded: false,
       deleting: false,
       deletionService: new DeletionService(),
+      showValidationDetails: false,
+      // Display handlers for failed scenarios and execution errors
+      scenarioHandler: new FailedScenarioDisplayHandler(),
+      executionErrorHandler: new ExecutionErrorFeatureHandler(),
+      displayFormatter: new ConsistentDisplayFormatter(),
+      dataQualityManager: new DataQualityManager(),
       // Confirmation dialog state
       confirmationDialog: {
         show: false,
@@ -695,17 +839,47 @@ export default {
       return this.reportFeatures.length;
     },
     summary() {
-      let passed = 0, failed = 0, skipped = 0, total = 0, duration = 0;
-      if (!this.report || !Array.isArray(this.report.features)) return { passed, failed, skipped, total, duration: 0 };
+      let passed = 0, failed = 0, skipped = 0, errors = 0, total = 0, duration = 0;
+      
+      if (!this.report || !Array.isArray(this.report.features)) {
+        return { 
+          passed, 
+          failed, 
+          skipped, 
+          errors, 
+          total, 
+          duration: 0,
+          hasValidationIssues: false,
+          hasIntegrityIssues: false
+        };
+      }
+
+      // Check for validation and integrity issues
+      const hasValidationIssues = this.report._validation && !this.report._validation.isValid;
+      const hasIntegrityIssues = this.report._integrity && this.report._integrity.overallStatus === 'critical';
 
       this.report.features.forEach(feature => {
         const scenarios = Array.isArray(feature.elements) ? feature.elements.filter(el => el.type !== 'background') : [];
         scenarios.forEach(scenario => {
-          const status = this.scenarioStatus(scenario);
-          if (status === 'passed') passed++;
-          else if (status === 'failed') failed++;
-          else skipped++;
+          // Use enhanced status calculation if available
+          let status;
+          if (scenario._calculatedStatus) {
+            status = scenario._calculatedStatus.status;
+          } else {
+            status = this.scenarioStatus(scenario);
+          }
+          
+          // Count scenarios by status
+          switch (status) {
+            case 'passed': passed++; break;
+            case 'failed': failed++; break;
+            case 'skipped': skipped++; break;
+            default: errors++; break;
+          }
+          
           total++;
+          
+          // Calculate duration from all sources
           if (Array.isArray(scenario.steps)) {
             duration += scenario.steps.reduce((acc, st) => acc + (typeof st.result?.duration === 'number' ? st.result.duration : 0), 0);
           }
@@ -721,22 +895,84 @@ export default {
           }
         });
       });
+      
       return {
         passed,
         failed,
         skipped,
+        errors,
         total,
-        duration: this.formatDuration(duration, true)
+        duration: this.formatDuration(duration, true),
+        hasValidationIssues,
+        hasIntegrityIssues,
+        validationErrors: this.report._validation?.errors?.length || 0,
+        validationWarnings: this.report._validation?.warnings?.length || 0
       };
     }
   },
   methods: {
     scenarioStatus(scenario) {
-      // Try to determine scenario status from common Cucumber JSON structures
+      // Use enhanced status calculation if available
+      if (scenario._calculatedStatus) {
+        return scenario._calculatedStatus.status;
+      }
+      
+      // Handle edge cases for malformed scenarios
+      if (!scenario || typeof scenario !== 'object') {
+        return 'unknown';
+      }
+      
+      // Handle scenarios with no name (common issue)
+      if (!scenario.name && !scenario.id) {
+        // If it has failed steps or hooks, it's still a failure
+        if (this.hasAnyFailures(scenario)) {
+          return 'failed';
+        }
+      }
+      
+      // Enhanced fallback logic that considers setup/teardown failures
+      
+      // Check setup failures (before hooks) - these should be treated as failures
+      if (scenario.before && Array.isArray(scenario.before)) {
+        const hasSetupFailure = scenario.before.some(hook => 
+          hook.result && hook.result.status === 'failed'
+        );
+        if (hasSetupFailure) return 'failed';
+      }
+      
+      // Check teardown failures (after hooks) - these should be treated as failures  
+      if (scenario.after && Array.isArray(scenario.after)) {
+        const hasTeardownFailure = scenario.after.some(hook => 
+          hook.result && hook.result.status === 'failed'
+        );
+        if (hasTeardownFailure) return 'failed';
+      }
+      
+      // Check step execution
+      if (scenario.steps && Array.isArray(scenario.steps)) {
+        const hasFailedSteps = scenario.steps.some(s => 
+          (s.result && s.result.status === 'failed') || s.status === 'failed'
+        );
+        const hasPassedSteps = scenario.steps.some(s => 
+          (s.result && s.result.status === 'passed') || s.status === 'passed'
+        );
+        const allSkipped = scenario.steps.every(s => 
+          (s.result && s.result.status === 'skipped') || s.status === 'skipped'
+        );
+        
+        if (hasFailedSteps) return 'failed';
+        if (allSkipped) return 'skipped';
+        if (hasPassedSteps) return 'passed';
+      }
+      
+      // Handle scenarios with no steps but with error information
+      if ((!scenario.steps || scenario.steps.length === 0) && this.hasErrorInformation(scenario)) {
+        return 'failed';
+      }
+      
+      // Fallback to scenario-level status
       if (scenario.status) return scenario.status;
-      if (scenario.steps && scenario.steps.some(s => (s.result && s.result.status === 'failed') || s.status === 'failed')) return 'failed';
-      if (scenario.steps && scenario.steps.every(s => (s.result && s.result.status === 'skipped') || s.status === 'skipped')) return 'skipped';
-      if (scenario.steps && scenario.steps.every(s => (s.result && s.result.status === 'passed') || s.status === 'passed')) return 'passed';
+      
       return 'unknown';
     },
     scenarioStatusStyle(scenario) {
@@ -1359,6 +1595,224 @@ export default {
       }
       
       return totalDuration;
+    },
+
+    // ===== NEW DISPLAY HANDLER INTEGRATION METHODS =====
+
+    /**
+     * Get formatted tags using the display formatter
+     * @param {Array} tags - Array of tag objects
+     * @returns {Array} - Array of formatted tag objects
+     */
+    getFormattedTags(tags) {
+      return this.displayFormatter.formatTags(tags);
+    },
+
+    /**
+     * Get formatted feature display using the consistent display formatter
+     * @param {Object} feature - The feature object
+     * @returns {Object} - Formatted feature display object
+     */
+    getFormattedFeature(feature) {
+      return this.displayFormatter.formatFeatureDisplay(feature);
+    },
+
+    /**
+     * Check if a feature is an execution error feature
+     * @param {Object} feature - The feature object
+     * @returns {boolean} - True if it's an execution error feature
+     */
+    isExecutionErrorFeature(feature) {
+      return this.executionErrorHandler.isExecutionErrorFeature(feature);
+    },
+
+    /**
+     * Get execution error guidance for a feature
+     * @param {Object} feature - The feature object
+     * @returns {Object} - Execution error guidance object
+     */
+    getExecutionErrorGuidance(feature) {
+      return this.executionErrorHandler.getExecutionErrorGuidance(feature);
+    },
+
+    /**
+     * Get display name for a scenario (handles empty names)
+     * @param {Object} scenario - The scenario object
+     * @returns {string} - Display name for the scenario
+     */
+    getScenarioDisplayName(scenario) {
+      return this.scenarioHandler.normalizeScenarioName(scenario);
+    },
+
+    /**
+     * Validate scenario data and get validation result
+     * @param {Object} scenario - The scenario object
+     * @returns {Object} - Validation result object
+     */
+    validateScenarioData(scenario) {
+      return this.scenarioHandler.validateScenarioData(scenario);
+    },
+
+    /**
+     * Get feature display class based on its type and data quality
+     * @param {Object} feature - The feature object
+     * @returns {string} - CSS class string
+     */
+    getFeatureDisplayClass(feature) {
+      const formattedFeature = this.getFormattedFeature(feature);
+      const classes = [];
+
+      if (formattedFeature.metadata.isExecutionError) {
+        classes.push('execution-error-feature');
+      }
+
+      if (formattedFeature.metadata.hasDataIssues) {
+        classes.push('data-issues-feature');
+      }
+
+      return classes.join(' ');
+    },
+
+    /**
+     * Get scenario display class based on validation
+     * @param {Object} scenario - The scenario object
+     * @returns {string} - CSS class string
+     */
+    getScenarioDisplayClass(scenario) {
+      const validation = this.validateScenarioData(scenario);
+      const classes = [];
+
+      if (!validation.isValid) {
+        classes.push('data-issues-scenario');
+        classes.push(`severity-${validation.severity}`);
+      }
+
+      return classes.join(' ');
+    },
+
+    /**
+     * Get feature indicators (icons and labels)
+     * @param {Object} feature - The feature object
+     * @returns {Array} - Array of indicator objects
+     */
+    getFeatureIndicators(feature) {
+      const formattedFeature = this.getFormattedFeature(feature);
+      return formattedFeature.indicators;
+    },
+
+    /**
+     * Enhanced scenario status that uses the display handlers
+     * @param {Object} scenario - The scenario object
+     * @returns {string} - Scenario status
+     */
+    getEnhancedScenarioStatus(scenario) {
+      // First check if we have calculated status from enhanced processing
+      if (scenario._calculatedStatus) {
+        return scenario._calculatedStatus.status;
+      }
+
+      // Use the existing scenarioStatus method which already has enhanced logic
+      return this.scenarioStatus(scenario);
+    },
+
+    /**
+     * Check if a scenario has data quality issues
+     * @param {Object} scenario - The scenario object
+     * @returns {boolean} - True if scenario has data issues
+     */
+    hasScenarioDataIssues(scenario) {
+      const validation = this.validateScenarioData(scenario);
+      return !validation.isValid;
+    },
+
+    /**
+     * Get data quality indicator for a scenario
+     * @param {Object} scenario - The scenario object
+     * @returns {Object|null} - Data quality indicator object or null
+     */
+    getScenarioDataQualityIndicator(scenario) {
+      const validation = this.validateScenarioData(scenario);
+      
+      if (!validation.isValid) {
+        return {
+          severity: validation.severity,
+          issues: validation.issues,
+          tooltip: `Data quality issues: ${validation.issues.join(', ')}`
+        };
+      }
+
+      return null;
+    },
+
+    /**
+     * Process report data with quality management
+     * @param {Object} reportData - The raw report data
+     * @returns {Object} - Processed report data
+     */
+    processReportWithQualityManagement(reportData) {
+      if (!reportData) return reportData;
+
+      // Validate the report
+      const validation = this.dataQualityManager.validateReport(reportData);
+      
+      // Add validation metadata
+      reportData._qualityValidation = validation;
+
+      // Process each feature with the display formatter
+      if (Array.isArray(reportData.features)) {
+        reportData.features = reportData.features.map(feature => {
+          const formattedFeature = this.getFormattedFeature(feature);
+          
+          // Merge formatted data back into the feature
+          return {
+            ...feature,
+            _formatted: formattedFeature,
+            _displayName: formattedFeature.name,
+            _indicators: formattedFeature.indicators
+          };
+        });
+      }
+
+      return reportData;
+    },
+
+    /**
+     * Get formatted feature name (used in template)
+     * @param {Object} feature - The feature object
+     * @returns {string} - Formatted feature name
+     */
+    getFormattedFeatureName(feature) {
+      const formattedFeature = this.getFormattedFeature(feature);
+      return formattedFeature.name;
+    },
+
+    /**
+     * Check if feature has data quality issues (used in template)
+     * @param {Object} feature - The feature object
+     * @returns {boolean} - True if feature has data quality issues
+     */
+    hasDataQualityIssues(feature) {
+      const formattedFeature = this.getFormattedFeature(feature);
+      return formattedFeature.metadata.hasDataIssues;
+    },
+
+    /**
+     * Get formatted scenario name (handles empty names)
+     * @param {Object} scenario - The scenario object
+     * @returns {string} - Formatted scenario name
+     */
+    getFormattedScenarioName(scenario) {
+      return this.getScenarioDisplayName(scenario);
+    },
+
+    /**
+     * Get scenario data issue tooltip text
+     * @param {Object} scenario - The scenario object
+     * @returns {string} - Tooltip text for data issues
+     */
+    getScenarioDataIssueTooltip(scenario) {
+      const indicator = this.getScenarioDataQualityIndicator(scenario);
+      return indicator ? indicator.tooltip : '';
     }
   }
 }
@@ -3310,6 +3764,186 @@ export default {
 <style scoped>
 /* Premium Dark Theme Compatibility for ReportViewer */
 
+/* ===== NEW DISPLAY HANDLER STYLES ===== */
+
+/* Feature Indicators */
+.feature-indicators {
+  display: flex;
+  gap: 8px;
+  margin-right: 12px;
+  align-items: center;
+}
+
+.feature-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.indicator-execution-error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-color: rgba(244, 67, 54, 0.3);
+  color: #f44336;
+}
+
+.indicator-data-issues {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-color: rgba(255, 152, 0, 0.3);
+  color: #ff9800;
+}
+
+.indicator-scenario-count {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-color: rgba(33, 150, 243, 0.3);
+  color: #2196f3;
+}
+
+.indicator-text {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+/* Execution Error Feature Styling */
+.execution-error-feature {
+  border-left: 4px solid #f44336 !important;
+  background-color: rgba(244, 67, 54, 0.05) !important;
+}
+
+.execution-error-feature .v-expansion-panel-title {
+  background-color: rgba(244, 67, 54, 0.08) !important;
+}
+
+/* Data Issues Feature Styling */
+.data-issues-feature {
+  border-left: 4px solid #ff9800 !important;
+  background-color: rgba(255, 152, 0, 0.05) !important;
+}
+
+.data-issues-feature .v-expansion-panel-title {
+  background-color: rgba(255, 152, 0, 0.08) !important;
+}
+
+/* Scenario Data Quality Styling */
+.data-issues-scenario {
+  border-left: 2px solid #ff9800;
+  background-color: rgba(255, 152, 0, 0.05);
+}
+
+.severity-low {
+  border-left-color: #ff9800;
+  background-color: rgba(255, 152, 0, 0.03);
+}
+
+.severity-medium {
+  border-left-color: #ff9800;
+  background-color: rgba(255, 152, 0, 0.05);
+}
+
+.severity-high {
+  border-left-color: #f57c00;
+  background-color: rgba(245, 124, 0, 0.08);
+}
+
+.severity-critical {
+  border-left-color: #f44336;
+  background-color: rgba(244, 67, 54, 0.08);
+}
+
+/* Enhanced Tag Styling */
+.feature-tag, .scenario-tag {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 4px;
+  display: inline-block;
+  border: 1px solid rgba(25, 118, 210, 0.2);
+}
+
+/* Dark theme tag styling */
+.theme--dark .feature-tag,
+.theme--dark .scenario-tag {
+  background-color: rgba(25, 118, 210, 0.2);
+  color: #64b5f6;
+  border-color: rgba(100, 181, 246, 0.3);
+}
+
+/* Scenario Title Enhancement */
+.scenario-title {
+  font-weight: 500;
+  color: inherit;
+}
+
+/* Data quality warning styling */
+.scenario-header-content .mdi-alert {
+  opacity: 0.8;
+}
+
+.scenario-header-content .mdi-alert:hover {
+  opacity: 1;
+}
+
+/* Feature name styling for execution errors */
+.execution-error-feature .feature-file {
+  color: #f44336;
+  font-weight: 600;
+}
+
+.execution-error-feature .feature-file::before {
+  content: "⚠️ ";
+  margin-right: 4px;
+}
+
+/* Responsive adjustments for indicators */
+@media (max-width: 768px) {
+  .feature-indicators {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  
+  .feature-indicator {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+  
+  .indicator-text {
+    display: none;
+  }
+}
+
+/* Animation for data quality indicators */
+.feature-indicator,
+.data-issues-scenario {
+  transition: all 0.2s ease;
+}
+
+.feature-indicator:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Consistent left alignment for all content */
+.cucumber-feature-row,
+.scenario-header-row,
+.cucumber-step-row {
+  text-align: left !important;
+}
+
+.feature-info,
+.scenario-header-content,
+.step-content {
+  text-align: left !important;
+  align-items: flex-start !important;
+}
+
 /* Main Content Area Dark Theme */
 [data-theme="dark"] .cucumber-report-root {
   background: var(--theme-background) !important;
@@ -3919,6 +4553,54 @@ export default {
 
 [data-theme="dark"] .screenshots-header {
   color: var(--theme-info);
+}
+
+/* Validation Warnings Styles */
+.validation-warnings {
+  margin: 16px 0;
+}
+
+.alert-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.alert-content p {
+  margin: 0;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.validation-details {
+  margin-top: 8px;
+}
+
+.validation-list {
+  margin: 0;
+  padding-left: 16px;
+  list-style-type: disc;
+}
+
+.validation-list li {
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.stat.errors {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+/* Dark theme validation warnings */
+[data-theme="dark"] .validation-warnings .v-alert {
+  background: var(--theme-surface-variant);
+  border: 1px solid var(--theme-border);
+}
+
+[data-theme="dark"] .validation-details .v-card {
+  background: var(--theme-surface);
+  border: 1px solid var(--theme-border);
 }
 
 [data-theme="dark"] .screenshots-label {

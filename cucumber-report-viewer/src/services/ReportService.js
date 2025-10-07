@@ -3,12 +3,37 @@
  * Handles report loading, caching, and statistics
  */
 
+import CucumberJsonValidator from '@/utils/CucumberJsonValidator';
+import TestStatusCalculator from '@/utils/TestStatusCalculator';
+import ErrorHandler from '@/utils/ErrorHandler';
+import DataIntegrityValidator from '@/utils/DataIntegrityValidator';
+
 class ReportService {
   constructor() {
     this.cache = new Map();
     this.cacheTimeout = 5 * 60 * 1000; // 5 minutes
     // Fix the base URL to match the actual path structure
     this.baseUrl = process.env.VUE_APP_REPORTS_BASE_URL || '/TestResultsJsons/';
+    
+    // Initialize validation, status calculation, and error handling utilities
+    this.validator = new CucumberJsonValidator({
+      generatePlaceholders: true,
+      logLevel: 'warn'
+    });
+    this.statusCalculator = new TestStatusCalculator({
+      treatSetupFailuresAsFailed: true,
+      treatTeardownFailuresAsFailed: true,
+      logLevel: 'warn'
+    });
+    this.errorHandler = new ErrorHandler({
+      logLevel: 'warn',
+      enableConsoleLogging: true,
+      enableLocalStorage: true
+    });
+    this.integrityValidator = new DataIntegrityValidator({
+      tolerancePercentage: 5,
+      logLevel: 'warn'
+    });
   }
 
   /**
@@ -124,7 +149,7 @@ class ReportService {
   }
 
   /**
-   * Load specific report with caching
+   * Load specific report with caching and validation
    */
   async loadReport(reportId) {
     const cacheKey = `report-${reportId}`;
@@ -140,17 +165,93 @@ class ReportService {
         throw new Error(`Failed to load report ${reportId}: ${response.status}`);
       }
       
-      const data = await response.json();
+      let rawData;
+      try {
+        rawData = await response.json();
+      } catch (jsonError) {
+        const errorResult = this.errorHandler.handleJsonParsingError(`${reportId}.json`, jsonError);
+        throw new Error(errorResult.userMessage);
+      }
       
-      // Cache the result
+      // Validate and sanitize the report data
+      let validationResult;
+      try {
+        validationResult = this.validator.validateReport(rawData, `${reportId}.json`);
+      } catch (validationError) {
+        this.errorHandler.logError(`Validation failed for ${reportId}`, { reportId }, validationError);
+        validationResult = {
+          isValid: false,
+          errors: [{ message: validationError.message }],
+          warnings: [],
+          sanitizedData: rawData
+        };
+      }
+      
+      // Handle validation results
+      if (validationResult.errors && validationResult.errors.length > 0) {
+        this.errorHandler.handleValidationError(`${reportId}.json`, validationResult);
+      }
+      
+      let processedData;
+      if (validationResult.isValid || validationResult.sanitizedData) {
+        // Use sanitized data if available, otherwise use raw data
+        processedData = validationResult.sanitizedData || rawData;
+        
+        // Add validation metadata
+        processedData._validation = {
+          isValid: validationResult.isValid,
+          errors: validationResult.errors,
+          warnings: validationResult.warnings,
+          processedEntryCount: validationResult.processedEntryCount,
+          originalEntryCount: validationResult.originalEntryCount
+        };
+        
+        // Enhance with accurate status calculations
+        try {
+          processedData = this.enhanceReportWithAccurateStatus(processedData);
+          
+          // Perform data integrity validation
+          const integrityReport = this.integrityValidator.generateIntegrityReport(
+            this.extractAccurateTestCounts(processedData),
+            rawData
+          );
+          
+          processedData._integrity = integrityReport;
+          
+          if (integrityReport.overallStatus === 'critical') {
+            this.errorHandler.logError(`Critical data integrity issues in ${reportId}`, { 
+              reportId, 
+              criticalIssues: integrityReport.summary.criticalIssues 
+            });
+          }
+          
+        } catch (statusError) {
+          this.errorHandler.logError(`Status calculation failed for ${reportId}`, { reportId }, statusError);
+          // Continue with unenhanced data
+        }
+        
+      } else {
+        // Validation failed, but try to provide fallback
+        this.errorHandler.logWarning(`Report ${reportId} failed validation, using raw data with warnings`, { reportId });
+        processedData = rawData;
+        processedData._validation = {
+          isValid: false,
+          errors: validationResult.errors,
+          warnings: ['Report failed validation - results may be inaccurate'],
+          processedEntryCount: 0,
+          originalEntryCount: validationResult.originalEntryCount
+        };
+      }
+      
+      // Cache the processed result
       this.cache.set(cacheKey, {
-        data,
+        data: processedData,
         timestamp: Date.now()
       });
       
-      return data;
+      return processedData;
     } catch (error) {
-      console.error(`Error loading report ${reportId}:`, error);
+      this.errorHandler.logError(`Failed to load report ${reportId}`, { reportId }, error);
       throw error;
     }
   }
@@ -342,7 +443,7 @@ class ReportService {
   }
 
   /**
-   * Calculate statistics from merged reports
+   * Calculate statistics from merged reports with enhanced accuracy
    */
   calculateStatistics(reports) {
     if (!reports || reports.length === 0) {
@@ -353,9 +454,12 @@ class ReportService {
         totalPassed: 0,
         totalFailed: 0,
         totalSkipped: 0,
+        totalErrors: 0,
         passRate: '0.00',
         failRate: '0.00',
-        skipRate: '0.00'
+        skipRate: '0.00',
+        errorRate: '0.00',
+        validationIssues: 0
       };
     }
 
@@ -364,12 +468,17 @@ class ReportService {
       steps: acc.steps + (report.steps || 0),
       passed: acc.passed + (report.passed || 0),
       failed: acc.failed + (report.failed || 0),
-      skipped: acc.skipped + (report.skipped || 0)
-    }), { scenarios: 0, steps: 0, passed: 0, failed: 0, skipped: 0 });
+      skipped: acc.skipped + (report.skipped || 0),
+      errors: acc.errors + (report.errors || 0),
+      validationIssues: acc.validationIssues + (report.validationIssues || 0)
+    }), { scenarios: 0, steps: 0, passed: 0, failed: 0, skipped: 0, errors: 0, validationIssues: 0 });
 
-    const passRate = totals.steps > 0 ? (totals.passed / totals.steps * 100).toFixed(2) : '0.00';
-    const failRate = totals.steps > 0 ? (totals.failed / totals.steps * 100).toFixed(2) : '0.00';
-    const skipRate = totals.steps > 0 ? (totals.skipped / totals.steps * 100).toFixed(2) : '0.00';
+    // Calculate rates based on scenarios (more accurate than steps for overall status)
+    const totalScenarios = totals.scenarios || 1; // Avoid division by zero
+    const passRate = ((totals.passed / totalScenarios) * 100).toFixed(2);
+    const failRate = ((totals.failed / totalScenarios) * 100).toFixed(2);
+    const skipRate = ((totals.skipped / totalScenarios) * 100).toFixed(2);
+    const errorRate = ((totals.errors / totalScenarios) * 100).toFixed(2);
 
     return {
       totalReports: reports.length,
@@ -378,10 +487,154 @@ class ReportService {
       totalPassed: totals.passed,
       totalFailed: totals.failed,
       totalSkipped: totals.skipped,
+      totalErrors: totals.errors,
       passRate,
       failRate,
-      skipRate
+      skipRate,
+      errorRate,
+      validationIssues: totals.validationIssues
     };
+  }
+
+  /**
+   * Enhance report with accurate status calculations
+   */
+  enhanceReportWithAccurateStatus(reportData) {
+    if (!Array.isArray(reportData)) {
+      return reportData;
+    }
+
+    const enhancedFeatures = reportData.map(feature => {
+      const enhancedFeature = { ...feature };
+      
+      // Calculate accurate feature status
+      const featureStatus = this.statusCalculator.calculateFeatureStatus(feature);
+      enhancedFeature._calculatedStatus = featureStatus;
+      
+      // Enhance scenarios with accurate status
+      if (feature.elements && Array.isArray(feature.elements)) {
+        enhancedFeature.elements = feature.elements.map(scenario => {
+          const enhancedScenario = { ...scenario };
+          const scenarioStatus = this.statusCalculator.calculateScenarioStatus(scenario);
+          enhancedScenario._calculatedStatus = scenarioStatus;
+          return enhancedScenario;
+        });
+      }
+      
+      return enhancedFeature;
+    });
+
+    return enhancedFeatures;
+  }
+
+  /**
+   * Extract accurate test counts from enhanced report data
+   */
+  extractAccurateTestCounts(reportData) {
+    const counts = {
+      features: 0,
+      scenarios: 0,
+      steps: 0,
+      passed: 0,
+      failed: 0,
+      skipped: 0,
+      errors: 0
+    };
+
+    if (!Array.isArray(reportData)) {
+      return counts;
+    }
+
+    reportData.forEach(feature => {
+      counts.features++;
+      
+      if (feature.elements && Array.isArray(feature.elements)) {
+        feature.elements.forEach(scenario => {
+          if (scenario.type === 'background') return;
+          
+          counts.scenarios++;
+          
+          // Use calculated status if available, otherwise fallback to original logic
+          let scenarioStatus = 'unknown';
+          if (scenario._calculatedStatus) {
+            scenarioStatus = scenario._calculatedStatus.status;
+          } else {
+            // Fallback to original status calculation
+            const statusResult = this.statusCalculator.calculateScenarioStatus(scenario);
+            scenarioStatus = statusResult.status;
+          }
+          
+          // Count scenario status
+          switch (scenarioStatus) {
+            case 'passed': counts.passed++; break;
+            case 'failed': counts.failed++; break;
+            case 'skipped': counts.skipped++; break;
+            default: counts.errors++; break;
+          }
+          
+          // Count steps
+          if (scenario.steps && Array.isArray(scenario.steps)) {
+            counts.steps += scenario.steps.length;
+          }
+        });
+      }
+    });
+
+    return counts;
+  }
+
+  /**
+   * Validate report consistency
+   */
+  validateReportConsistency(reportData, expectedCounts = null) {
+    const validation = {
+      isConsistent: true,
+      issues: [],
+      actualCounts: null,
+      expectedCounts: expectedCounts
+    };
+
+    try {
+      validation.actualCounts = this.extractAccurateTestCounts(reportData);
+      
+      if (expectedCounts) {
+        // Check for discrepancies
+        Object.keys(expectedCounts).forEach(key => {
+          if (validation.actualCounts[key] !== expectedCounts[key]) {
+            validation.isConsistent = false;
+            validation.issues.push({
+              type: 'count_mismatch',
+              field: key,
+              expected: expectedCounts[key],
+              actual: validation.actualCounts[key]
+            });
+          }
+        });
+      }
+      
+      // Check internal consistency
+      const totalStatusCounts = validation.actualCounts.passed + 
+                               validation.actualCounts.failed + 
+                               validation.actualCounts.skipped + 
+                               validation.actualCounts.errors;
+      
+      if (totalStatusCounts !== validation.actualCounts.scenarios) {
+        validation.isConsistent = false;
+        validation.issues.push({
+          type: 'internal_inconsistency',
+          message: `Status counts (${totalStatusCounts}) don't match scenario count (${validation.actualCounts.scenarios})`
+        });
+      }
+      
+    } catch (error) {
+      validation.isConsistent = false;
+      validation.issues.push({
+        type: 'validation_error',
+        message: error.message
+      });
+    }
+
+    return validation;
   }
 
   /**
@@ -389,6 +642,43 @@ class ReportService {
    */
   clearCache() {
     this.cache.clear();
+  }
+
+  /**
+   * Get error summary for debugging
+   */
+  getErrorSummary() {
+    return this.errorHandler.getErrorSummary();
+  }
+
+  /**
+   * Clear error logs
+   */
+  clearErrorLogs() {
+    this.errorHandler.clearLogs();
+  }
+
+  /**
+   * Export error logs for debugging
+   */
+  exportErrorLogs() {
+    return this.errorHandler.exportLogs();
+  }
+
+  /**
+   * Get data integrity report for a processed report
+   */
+  getIntegrityReport(reportData, originalJson = null) {
+    const counts = this.extractAccurateTestCounts(reportData);
+    return this.integrityValidator.generateIntegrityReport(counts, originalJson);
+  }
+
+  /**
+   * Validate report consistency with expected counts
+   */
+  validateReportConsistency(reportData, expectedCounts = null) {
+    const counts = this.extractAccurateTestCounts(reportData);
+    return this.integrityValidator.validateTestCounts(counts, reportData);
   }
 
   /**

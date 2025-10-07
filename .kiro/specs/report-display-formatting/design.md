@@ -254,7 +254,7 @@ class FilterService {
 }
 ```
 
-#### 4. Enhanced Error Analysis and Screenshot Display
+#### 4. Enhanced Error Analysis and Failed Scenario Display
 ```javascript
 class ErrorAnalyzer {
   groupSimilarErrors(errors) {
@@ -287,6 +287,275 @@ class ErrorAnalyzer {
     // Show first 3 lines of error message
     // Add "..." indicator for truncated content
     // Provide click handler for full error expansion
+  }
+  
+  handleMalformedScenarios(scenario) {
+    // Generate placeholder names for empty scenario names
+    // Handle scenarios with missing or null data
+    // Ensure all failed scenarios are visible regardless of data quality
+    // Mark scenarios with data integrity issues
+  }
+  
+  processExecutionErrorFeatures(feature) {
+    // Detect classpath:io/cucumber/core/failure.feature
+    // Display execution errors as special framework error section
+    // Handle IllegalArgumentException and similar framework errors
+    // Provide guidance for resolving execution-level issues
+  }
+}
+```
+
+#### 4.1. Failed Scenario Display Handler
+```javascript
+class FailedScenarioDisplayHandler {
+  constructor() {
+    this.placeholderNames = new Map();
+    this.dataIssueFlags = new Set();
+  }
+  
+  normalizeScenarioName(scenario) {
+    // Generate meaningful names for empty or null scenario names
+    // Use scenario ID or step information to create descriptive names
+    // Format: "Unnamed Scenario (ID: scenario-id)" or "Scenario with [step count] steps"
+    if (!scenario.name || scenario.name.trim() === '') {
+      return this.generatePlaceholderName(scenario);
+    }
+    return scenario.name;
+  }
+  
+  generatePlaceholderName(scenario) {
+    // Create descriptive placeholder based on available data
+    if (scenario.id) {
+      return `Unnamed Scenario (${scenario.id.split(';').pop() || 'unknown'})`;
+    }
+    if (scenario.steps && scenario.steps.length > 0) {
+      return `Scenario with ${scenario.steps.length} steps`;
+    }
+    return 'Unnamed Scenario';
+  }
+  
+  validateScenarioData(scenario) {
+    // Check for data integrity issues
+    // Flag scenarios with missing critical information
+    // Return validation status and issues found
+    const issues = [];
+    
+    if (!scenario.name || scenario.name.trim() === '') {
+      issues.push('empty_name');
+    }
+    if (!scenario.steps || scenario.steps.length === 0) {
+      issues.push('no_steps');
+    }
+    if (scenario.steps && scenario.steps.some(step => !step.result)) {
+      issues.push('missing_results');
+    }
+    
+    return {
+      isValid: issues.length === 0,
+      issues: issues,
+      severity: issues.length > 2 ? 'high' : issues.length > 0 ? 'medium' : 'low'
+    };
+  }
+  
+  renderScenarioWithIssues(scenario, validation) {
+    // Display scenario with data quality indicators
+    // Show warning icons for data issues
+    // Provide tooltips explaining the problems
+    // Ensure scenario is still expandable and functional
+  }
+}
+```
+
+#### 4.2. Execution Error Feature Handler
+```javascript
+class ExecutionErrorFeatureHandler {
+  constructor() {
+    this.executionErrorPatterns = [
+      'classpath:io/cucumber/core/failure.feature',
+      'failure.feature',
+      'execution-error'
+    ];
+  }
+  
+  isExecutionErrorFeature(feature) {
+    // Detect Cucumber framework error features
+    return this.executionErrorPatterns.some(pattern => 
+      feature.uri && feature.uri.includes(pattern)
+    );
+  }
+  
+  renderExecutionErrorFeature(feature) {
+    // Display execution errors with special styling
+    // Use distinct visual indicators (warning colors, icons)
+    // Show "Framework Execution Error" label
+    // Display error details prominently
+    return {
+      type: 'execution-error',
+      title: 'Test Execution Error',
+      description: feature.description || 'There were errors during the execution',
+      severity: 'critical',
+      guidance: this.getExecutionErrorGuidance(feature)
+    };
+  }
+  
+  getExecutionErrorGuidance(feature) {
+    // Provide specific guidance based on error type
+    const scenarios = feature.elements || [];
+    const errorScenarios = scenarios.filter(s => 
+      s.steps && s.steps.some(step => 
+        step.result && step.result.status === 'failed'
+      )
+    );
+    
+    if (errorScenarios.length > 0) {
+      const firstError = errorScenarios[0].steps.find(step => 
+        step.result && step.result.status === 'failed'
+      );
+      
+      if (firstError && firstError.result.error_message) {
+        const errorMessage = firstError.result.error_message;
+        
+        if (errorMessage.includes('Test name must not be null or empty')) {
+          return {
+            issue: 'Empty test names detected',
+            solution: 'Ensure all scenarios have meaningful names in your feature files',
+            action: 'Review your Cucumber feature files and add names to all scenarios'
+          };
+        }
+        
+        if (errorMessage.includes('IllegalArgumentException')) {
+          return {
+            issue: 'Invalid test configuration',
+            solution: 'Check your test runner configuration and step definitions',
+            action: 'Review test setup and ensure all required parameters are provided'
+          };
+        }
+      }
+    }
+    
+    return {
+      issue: 'Test execution framework error',
+      solution: 'Check Cucumber configuration and test setup',
+      action: 'Review logs and test runner configuration for detailed error information'
+    };
+  }
+}
+```
+
+#### 4.3. Consistent Display Formatter
+```javascript
+class ConsistentDisplayFormatter {
+  constructor() {
+    this.displaySettings = {
+      alignment: 'left',
+      tagFormat: {
+        removeBraces: true,
+        separator: ' ',
+        styling: {
+          backgroundColor: '#e3f2fd',
+          textColor: '#1976d2',
+          borderRadius: '4px',
+          padding: '2px 8px'
+        }
+      }
+    };
+  }
+  
+  formatFeatureDisplay(feature, metadata = {}) {
+    // Apply consistent formatting regardless of feature type
+    const isExecutionError = metadata.isExecutionError || false;
+    const hasDataIssues = metadata.hasDataIssues || false;
+    
+    return {
+      name: this.formatFeatureName(feature, isExecutionError),
+      description: this.formatDescription(feature.description),
+      scenarios: this.formatScenarios(feature.elements || [], hasDataIssues),
+      tags: this.formatTags(feature.tags || []),
+      styling: this.getFeatureStyling(isExecutionError, hasDataIssues)
+    };
+  }
+  
+  formatFeatureName(feature, isExecutionError) {
+    if (isExecutionError) {
+      return `⚠️ ${feature.name || 'Test Execution Error'}`;
+    }
+    return feature.name || 'Unnamed Feature';
+  }
+  
+  formatScenarios(scenarios, hasDataIssues) {
+    return scenarios.map(scenario => {
+      const validation = this.validateScenarioData(scenario);
+      
+      return {
+        name: this.normalizeScenarioName(scenario),
+        status: this.calculateScenarioStatus(scenario),
+        steps: this.formatSteps(scenario.steps || []),
+        tags: this.formatTags(scenario.tags || []),
+        dataQuality: validation,
+        styling: this.getScenarioStyling(scenario, validation)
+      };
+    });
+  }
+  
+  formatTags(tags) {
+    // Remove curly braces and apply consistent styling
+    return tags.map(tag => ({
+      name: tag.name ? tag.name.replace(/[{}]/g, '') : '',
+      styling: this.displaySettings.tagFormat.styling
+    }));
+  }
+  
+  getFeatureStyling(isExecutionError, hasDataIssues) {
+    if (isExecutionError) {
+      return {
+        borderLeft: '4px solid #f44336',
+        backgroundColor: '#ffebee',
+        icon: 'mdi-alert-circle'
+      };
+    }
+    
+    if (hasDataIssues) {
+      return {
+        borderLeft: '4px solid #ff9800',
+        backgroundColor: '#fff3e0',
+        icon: 'mdi-alert'
+      };
+    }
+    
+    return {
+      borderLeft: '4px solid #4caf50',
+      backgroundColor: '#f1f8e9',
+      icon: 'mdi-check-circle'
+    };
+  }
+  
+  getScenarioStyling(scenario, validation) {
+    const baseStyle = {
+      textAlign: 'left',
+      padding: '8px 16px',
+      marginBottom: '4px'
+    };
+    
+    if (!validation.isValid) {
+      return {
+        ...baseStyle,
+        borderLeft: '2px solid #ff9800',
+        backgroundColor: '#fff8e1'
+      };
+    }
+    
+    const status = this.calculateScenarioStatus(scenario);
+    const statusColors = {
+      passed: '#4caf50',
+      failed: '#f44336',
+      skipped: '#ff9800',
+      unknown: '#9e9e9e'
+    };
+    
+    return {
+      ...baseStyle,
+      borderLeft: `2px solid ${statusColors[status] || statusColors.unknown}`
+    };
   }
 }
 ```
@@ -472,6 +741,149 @@ class DashboardService {
 - **Authentication Issues**: Clear messaging for access control problems
 - **Rate Limiting**: Graceful handling of API throttling
 - **Version Compatibility**: Support for different Cucumber JSON versions
+
+## Specific Issue Resolution Design
+
+### Register Feature Display Issues
+
+The register feature display problems stem from scenarios with empty names and malformed data. The solution involves:
+
+#### Problem Analysis
+- **Empty Scenario Names**: Scenarios with `"name": ""` or `null` names cause display issues
+- **IllegalArgumentException**: Framework errors like "Test name must not be null or empty" break normal processing
+- **Inconsistent Data**: Some scenarios have complete data while others are missing critical information
+
+#### Solution Architecture
+```mermaid
+graph TD
+    A[Raw Cucumber JSON] --> B[Data Validation Layer]
+    B --> C{Scenario Name Valid?}
+    C -->|No| D[Generate Placeholder Name]
+    C -->|Yes| E[Use Original Name]
+    D --> F[Scenario Display Handler]
+    E --> F
+    F --> G[Consistent Formatting]
+    G --> H[Rendered UI]
+    
+    I[Error Detection] --> J{Execution Error?}
+    J -->|Yes| K[Execution Error Handler]
+    J -->|No| L[Standard Error Handler]
+    K --> M[Special Error Display]
+    L --> N[Standard Error Display]
+```
+
+#### Implementation Strategy
+1. **Pre-processing Layer**: Validate and normalize all scenario data before display
+2. **Placeholder Generation**: Create meaningful names for unnamed scenarios
+3. **Error Classification**: Distinguish between test failures and execution errors
+4. **Consistent Rendering**: Apply uniform styling regardless of data quality
+
+### Execution Error Feature Handling
+
+The `classpath:io/cucumber/core/failure.feature` represents Cucumber framework execution errors, not test failures.
+
+#### Design Approach
+- **Special Detection**: Identify execution error features by URI pattern
+- **Distinct Styling**: Use warning colors and icons to differentiate from test failures
+- **Error Guidance**: Provide specific resolution steps for common execution errors
+- **Framework Context**: Clearly indicate these are framework issues, not test logic problems
+
+#### Visual Design
+```css
+.execution-error-feature {
+  border-left: 4px solid #f44336;
+  background-color: #ffebee;
+  margin-bottom: 16px;
+}
+
+.execution-error-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #ffcdd2;
+}
+
+.execution-error-icon {
+  color: #f44336;
+  margin-right: 8px;
+}
+
+.execution-error-guidance {
+  padding: 16px;
+  background-color: #fff3e0;
+  border-left: 3px solid #ff9800;
+  margin-top: 8px;
+}
+```
+
+### Data Quality Management
+
+#### Validation Pipeline
+```javascript
+class DataQualityManager {
+  validateReport(reportData) {
+    const issues = [];
+    
+    reportData.forEach((feature, featureIndex) => {
+      // Validate feature structure
+      if (!feature.name) {
+        issues.push({
+          type: 'missing_feature_name',
+          location: `Feature ${featureIndex}`,
+          severity: 'medium'
+        });
+      }
+      
+      // Validate scenarios
+      if (feature.elements) {
+        feature.elements.forEach((scenario, scenarioIndex) => {
+          if (scenario.type !== 'background') {
+            const scenarioIssues = this.validateScenario(scenario);
+            issues.push(...scenarioIssues.map(issue => ({
+              ...issue,
+              location: `Feature ${featureIndex}, Scenario ${scenarioIndex}`
+            })));
+          }
+        });
+      }
+    });
+    
+    return {
+      isValid: issues.length === 0,
+      issues: issues,
+      summary: this.generateValidationSummary(issues)
+    };
+  }
+  
+  validateScenario(scenario) {
+    const issues = [];
+    
+    if (!scenario.name || scenario.name.trim() === '') {
+      issues.push({
+        type: 'empty_scenario_name',
+        severity: 'high',
+        suggestion: 'Generate placeholder name from scenario ID or steps'
+      });
+    }
+    
+    if (!scenario.steps || scenario.steps.length === 0) {
+      issues.push({
+        type: 'no_steps',
+        severity: 'high',
+        suggestion: 'Scenario should have at least one step'
+      });
+    }
+    
+    return issues;
+  }
+}
+```
+
+#### Recovery Strategies
+1. **Graceful Degradation**: Display available information even when data is incomplete
+2. **Smart Defaults**: Generate meaningful placeholders for missing data
+3. **User Feedback**: Clearly indicate data quality issues without breaking functionality
+4. **Progressive Enhancement**: Show basic information first, then enhance with additional details
 
 ## Testing Strategy
 

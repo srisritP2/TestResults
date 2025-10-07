@@ -6,7 +6,7 @@
         <div class="header-left">
           <v-icon color="primary" :size="$vuetify.display.mobile ? 20 : 24" class="header-icon">mdi-folder-multiple</v-icon>
           <div class="header-text">
-            <h3 class="collection-title">Test Reports</h3>
+            <h3 class="collection-title">Test Reports:</h3>
             <p class="collection-subtitle" v-if="reportsCollection.length > 0">
               {{ reportsCollection.length }} report{{ reportsCollection.length !== 1 ? 's' : '' }} available
             </p>

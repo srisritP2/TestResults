@@ -232,9 +232,84 @@
   - Build report sharing capabilities with access control
   - _Requirements: 8.4, 9.2_
 
-## Phase 12: Quality Assurance and Testing
+## Phase 13: Failed Scenario Display Fixes (NEW - HIGH PRIORITY)
 
-- [ ] 27. Implement comprehensive testing strategy
+- [x] 29. Implement Failed Scenario Display Handler
+
+  - Create FailedScenarioDisplayHandler class to handle empty scenario names
+  - Implement generatePlaceholderName() method to create meaningful names from scenario IDs
+  - Add validateScenarioData() method to check for data integrity issues
+  - Build renderScenarioWithIssues() method to display scenarios with data quality indicators
+  - _Requirements: 13.1, 13.2, 13.3, 13.4, 13.5_
+
+- [x] 30. Create Execution Error Feature Handler
+
+  - Implement ExecutionErrorFeatureHandler class to detect classpath:io/cucumber/core/failure.feature
+  - Add isExecutionErrorFeature() method to identify framework error features
+  - Create renderExecutionErrorFeature() method with special styling and clear labeling
+
+  - Build getExecutionErrorGuidance() method to provide specific resolution steps for IllegalArgumentException
+  - _Requirements: 14.1, 14.2, 14.3, 14.4, 14.5_
+
+- [x] 31. Build Consistent Display Formatter
+
+  - Create ConsistentDisplayFormatter class to handle mixed content types
+
+  - Implement formatFeatureDisplay() method to apply uniform styling regardless of data quality
+  - Add formatScenarios() method to handle both normal and malformed scenarios
+
+  - Build getFeatureStyling() and getScenarioStyling() methods for visual consistency
+  - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5_
+
+- [-] 32. Integrate Data Quality Management
+
+  - Create DataQualityManager class with validateReport() method
+  - Implement pre-processing validation pipeline for all incoming report data
+
+  - Add recovery strategies for incomplete or malformed scenario data
+  - Build smart placeholder generation for missing critical information
+
+  - _Requirements: 13.1, 13.2, 13.5, 15.4_
+
+- [ ] 33. Update ReportViewer Component
+
+  - Integrate FailedScenarioDisplayHandler into existing ReportViewer.vue
+  - Update scenarioStatus() method to handle execution errors and malformed data
+
+  - Modify template to use new display handlers for consistent rendering
+  - Add visual indicators for data quality issues and execution errors
+  - _Requirements: 13.1, 13.2, 13.3, 14.1, 14.2, 15.1, 15.2_
+
+- [ ] 34. Add Error Guidance UI Components
+
+  - Create ExecutionErrorGuidance.vue component for framework error help
+  - Build DataQualityIndicator.vue component to show data integrity issues
+
+  - Add ScenarioPlaceholderName.vue component for unnamed scenarios
+  - Implement error resolution tooltips and help text
+  - _Requirements: 14.4, 14.5, 13.4, 13.5_
+
+## Phase 14: Testing and Validation for Display Fixes
+
+- [x] 35. Create Test Cases for Failed Scenario Display
+
+  - Write unit tests for FailedScenarioDisplayHandler with empty scenario names
+  - Add tests for ExecutionErrorFeatureHandler with classpath:io/cucumber/core/failure.feature
+  - Create integration tests using report tagged 7594 as test data
+  - Build visual regression tests to ensure consistent display formatting
+  - _Requirements: 13.1, 13.2, 14.1, 14.2, 15.1_
+
+- [x] 36. Validate Against Real Report Data
+
+  - Test with actual report tagged 7594 to verify register feature display fixes
+  - Validate execution error feature handling with IllegalArgumentException scenarios
+  - Ensure all failed scenarios are visible and properly formatted
+  - Verify consistent styling across mixed content types
+  - _Requirements: 13.3, 13.4, 14.3, 14.4, 15.2, 15.3_
+
+## Phase 15: Quality Assurance and Testing
+
+- [ ] 37. Implement comprehensive testing strategy
 
   - Create unit tests for all components with 90%+ coverage
   - Add integration tests for API endpoints and data processing
@@ -242,7 +317,8 @@
   - Build performance tests for large dataset handling
   - _Requirements: All requirements validation_
 
-- [ ] 28. Add monitoring and error handling
+
+- [ ] 38. Add monitoring and error handling
   - Implement comprehensive error boundaries with graceful degradation
   - Add application monitoring with performance metrics
   - Create error reporting and logging system
