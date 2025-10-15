@@ -83,13 +83,13 @@
 
         <!-- Time & Duration Section -->
         <div class="time-section">
-          <div class="time-card">
-            <div class="time-icon">
-              <v-icon size="20" color="#06B6D4">mdi-clock-outline</v-icon>
+          <div class="scenarios-card">
+            <div class="scenarios-icon">
+              <v-icon size="20" color="#06B6D4">mdi-script-text</v-icon>
             </div>
-            <div class="time-content">
-              <span class="time-label">Execution Time</span>
-              <span class="time-value">{{ timeAgo }}</span>
+            <div class="scenarios-content">
+              <span class="scenarios-label">Scenarios</span>
+              <span class="scenarios-value">{{ summary.total }}</span>
             </div>
           </div>
           <div class="duration-card">
@@ -98,7 +98,7 @@
             </div>
             <div class="duration-content">
               <span class="duration-label">Total Duration</span>
-              <span class="duration-value">{{ summary.duration }}</span>
+              <span class="duration-value">{{ formatDurationFixed(summary.duration) }}</span>
             </div>
           </div>
         </div>
@@ -107,14 +107,8 @@
         <div class="left-actions">
           <v-tooltip text="Back to Collection" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="goBackToCollection"
-                icon="mdi-arrow-left"
-                variant="text"
-                size="large"
-                class="back-btn"
-              />
+              <v-btn v-bind="props" @click="goBackToCollection" icon="mdi-arrow-left" variant="text" size="large"
+                class="back-btn" />
             </template>
           </v-tooltip>
         </div>
@@ -123,29 +117,16 @@
         <div class="right-actions">
           <v-tooltip text="Refresh Report Data" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="refreshReport"
-                icon="mdi-refresh"
-                variant="text"
-                size="large"
-                class="refresh-btn"
-              />
+              <v-btn v-bind="props" @click="refreshReport" icon="mdi-refresh" variant="text" size="large"
+                class="refresh-btn" />
             </template>
           </v-tooltip>
-          
+
           <v-tooltip :text="deleting ? 'Deleting Report...' : 'Delete Report'" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="deleteCurrentReport"
-                :icon="deleting ? 'mdi-loading mdi-spin' : 'mdi-delete'"
-                variant="text"
-                size="large"
-                class="delete-btn"
-                :disabled="deleting"
-                :loading="deleting"
-              />
+              <v-btn v-bind="props" @click="deleteCurrentReport"
+                :icon="deleting ? 'mdi-loading mdi-spin' : 'mdi-delete'" variant="text" size="large" class="delete-btn"
+                :disabled="deleting" :loading="deleting" />
             </template>
           </v-tooltip>
         </div>
@@ -354,36 +335,27 @@
             </span>
             <span class="stat duration">
               <v-icon color="primary" size="18">mdi-timer</v-icon>
-              {{ summary.duration }}
+              {{ formatDurationFixed(summary.duration) }}
             </span>
           </div>
         </div>
 
         <!-- Validation and Integrity Warnings -->
         <div v-if="summary.hasValidationIssues || summary.hasIntegrityIssues" class="validation-warnings">
-          <v-alert
-            v-if="summary.hasIntegrityIssues"
-            type="error"
-            variant="tonal"
-            density="compact"
-            class="mb-2"
-          >
+          <v-alert v-if="summary.hasIntegrityIssues" type="error" variant="tonal" density="compact" class="mb-2">
             <template #prepend>
               <v-icon>mdi-alert-octagon</v-icon>
             </template>
             <div class="alert-content">
               <strong>Critical Data Integrity Issues Detected</strong>
-              <p>This report contains significant inconsistencies that may affect result accuracy. Manual verification is recommended.</p>
+              <p>This report contains significant inconsistencies that may affect result accuracy. Manual verification
+                is
+                recommended.</p>
             </div>
           </v-alert>
 
-          <v-alert
-            v-if="summary.hasValidationIssues && !summary.hasIntegrityIssues"
-            type="warning"
-            variant="tonal"
-            density="compact"
-            class="mb-2"
-          >
+          <v-alert v-if="summary.hasValidationIssues && !summary.hasIntegrityIssues" type="warning" variant="tonal"
+            density="compact" class="mb-2">
             <template #prepend>
               <v-icon>mdi-alert-triangle</v-icon>
             </template>
@@ -395,13 +367,8 @@
                 {{ summary.validationWarnings > 0 ? `${summary.validationWarnings} warning(s)` : '' }}
                 detected during report processing. Some results may be incomplete.
               </p>
-              <v-btn
-                size="small"
-                variant="text"
-                color="warning"
-                @click="showValidationDetails = !showValidationDetails"
-                class="mt-1"
-              >
+              <v-btn size="small" variant="text" color="warning" @click="showValidationDetails = !showValidationDetails"
+                class="mt-1">
                 {{ showValidationDetails ? 'Hide' : 'Show' }} Details
                 <v-icon size="16" class="ml-1">
                   {{ showValidationDetails ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
@@ -416,11 +383,12 @@
               <v-card variant="outlined" class="mb-2">
                 <v-card-text class="pa-3">
                   <h4 class="text-subtitle-2 mb-2">Validation Details</h4>
-                  
+
                   <div v-if="report._validation.errors && report._validation.errors.length > 0" class="mb-3">
                     <h5 class="text-caption text-error mb-1">Errors ({{ report._validation.errors.length }}):</h5>
                     <ul class="validation-list">
-                      <li v-for="error in report._validation.errors.slice(0, 5)" :key="error.message" class="text-caption">
+                      <li v-for="error in report._validation.errors.slice(0, 5)" :key="error.message"
+                        class="text-caption">
                         <strong>{{ error.location || 'Unknown' }}:</strong> {{ error.message }}
                       </li>
                       <li v-if="report._validation.errors.length > 5" class="text-caption text-medium-emphasis">
@@ -432,7 +400,8 @@
                   <div v-if="report._validation.warnings && report._validation.warnings.length > 0">
                     <h5 class="text-caption text-warning mb-1">Warnings ({{ report._validation.warnings.length }}):</h5>
                     <ul class="validation-list">
-                      <li v-for="warning in report._validation.warnings.slice(0, 5)" :key="warning.message" class="text-caption">
+                      <li v-for="warning in report._validation.warnings.slice(0, 5)" :key="warning.message"
+                        class="text-caption">
                         <strong>{{ warning.location || 'Unknown' }}:</strong> {{ warning.message }}
                       </li>
                       <li v-if="report._validation.warnings.length > 5" class="text-caption text-medium-emphasis">
@@ -442,7 +411,9 @@
                   </div>
 
                   <div class="mt-2 text-caption text-medium-emphasis">
-                    Processed {{ report._validation.processedEntryCount || 0 }} of {{ report._validation.originalEntryCount || 0 }} entries
+                    Processed {{ report._validation.processedEntryCount || 0 }} of {{
+                      report._validation.originalEntryCount || 0
+                    }} entries
                   </div>
                 </v-card-text>
               </v-card>
@@ -477,40 +448,38 @@
         <!-- Regular expansion panels for smaller reports -->
         <v-expansion-panels v-else multiple class="cucumber-features-list">
           <v-expansion-panel v-for="(feature, idx) in filteredFeatures" :key="feature.id || feature.name">
-            <v-expansion-panel-title class="cucumber-feature-row" :class="[featureStatus(feature), getFeatureDisplayClass(feature)]">
+            <v-expansion-panel-title class="cucumber-feature-row"
+              :class="[featureStatus(feature), getFeatureDisplayClass(feature)]">
               <!-- Execution Error Feature Indicator -->
               <v-icon v-if="isExecutionErrorFeature(feature)" color="error" size="20">mdi-alert-circle</v-icon>
               <!-- Regular Feature Status Icons -->
-              <v-icon v-else-if="featureStatus(feature) === 'passed'" color="success" size="18">mdi-check-circle</v-icon>
+              <v-icon v-else-if="featureStatus(feature) === 'passed'" color="success"
+                size="18">mdi-check-circle</v-icon>
               <v-icon v-else-if="featureStatus(feature) === 'failed'" color="error" size="18">mdi-close-circle</v-icon>
               <v-icon v-else-if="featureStatus(feature) === 'skipped'" color="warning"
                 size="18">mdi-alert-circle</v-icon>
               <v-icon v-else color="grey" size="18">mdi-help-circle</v-icon>
-              
+
               <!-- Feature Name with Enhanced Display -->
               <span class="feature-file">{{ getFormattedFeatureName(feature) }}</span>
-              
+
               <!-- Execution Error Badge -->
-              <v-chip v-if="isExecutionErrorFeature(feature)" 
-                      color="error" 
-                      size="small" 
-                      variant="outlined" 
-                      class="ml-2">
+              <v-chip v-if="isExecutionErrorFeature(feature)" color="error" size="small" variant="outlined"
+                class="ml-2">
                 Framework Error
               </v-chip>
-              
+
               <!-- Data Quality Issues Badge -->
-              <v-chip v-else-if="hasDataQualityIssues(feature)" 
-                      color="warning" 
-                      size="small" 
-                      variant="outlined" 
-                      class="ml-2">
+              <v-chip v-else-if="hasDataQualityIssues(feature)" color="warning" size="small" variant="outlined"
+                class="ml-2">
                 Data Issues
               </v-chip>
-              
+
               <!-- Feature Tags with Enhanced Formatting -->
               <span v-if="feature.tags && feature.tags.length" class="feature-tags">
-                <span v-for="tag in getFormattedTags(feature.tags)" :key="tag.name" class="feature-tag">{{ tag.displayName }}</span>
+                <span v-for="tag in getFormattedTags(feature.tags)" :key="tag.name" class="feature-tag">{{
+                  tag.displayName
+                }}</span>
               </span>
             </v-expansion-panel-title>
             <v-expansion-panel-text>
@@ -523,17 +492,15 @@
                       <div class="scenario-header-content">
                         <div class="scenario-title-row">
                           <!-- Enhanced Scenario Name Display -->
-                          <span class="scenario-title">{{ scenario.keyword || 'Scenario' }}: {{ getFormattedScenarioName(scenario) }}</span>
-                          
+                          <span class="scenario-title">{{ scenario.keyword || 'Scenario' }}: {{
+                            getFormattedScenarioName(scenario) }}</span>
+
                           <!-- Data Quality Warning Icon -->
-                          <v-icon v-if="hasScenarioDataIssues(scenario)" 
-                                  color="warning" 
-                                  size="16" 
-                                  class="ml-1"
-                                  :title="getScenarioDataIssueTooltip(scenario)">
+                          <v-icon v-if="hasScenarioDataIssues(scenario)" color="warning" size="16" class="ml-1"
+                            :title="getScenarioDataIssueTooltip(scenario)">
                             mdi-alert
                           </v-icon>
-                          
+
                           <!-- Status Icons -->
                           <v-icon v-if="scenarioStatus(scenario) === 'passed'" color="success"
                             size="18">mdi-check-circle</v-icon>
@@ -542,10 +509,11 @@
                           <v-icon v-else-if="scenarioStatus(scenario) === 'skipped'" color="warning"
                             size="18">mdi-alert-circle</v-icon>
                           <v-icon v-else color="grey" size="18">mdi-help-circle</v-icon>
-                          <span class="scenario-duration">{{ formatDuration(scenario.duration) }}</span>
+                          <span class="scenario-duration">{{ formatDurationFixed(scenario.duration) }}</span>
                         </div>
                         <div v-if="scenario.tags && scenario.tags.length" class="scenario-tags">
-                          <span v-for="tag in getFormattedTags(scenario.tags)" :key="tag.name" class="scenario-tag">{{ tag.displayName }}</span>
+                          <span v-for="tag in getFormattedTags(scenario.tags)" :key="tag.name" class="scenario-tag">{{
+                            tag.displayName }}</span>
                         </div>
                       </div>
                     </v-expansion-panel-title>
@@ -562,7 +530,8 @@
                           <v-icon v-else color="grey" size="16">mdi-help-circle</v-icon>
                           <span class="step-keyword">{{ step.keyword }}</span>
                           <span class="step-text">{{ step.name }}</span>
-                          <span v-if="step.duration" class="step-duration">({{ formatDuration(step.duration) }})</span>
+                          <span v-if="step.duration" class="step-duration">({{ formatDurationFixed(step.duration)
+                            }})</span>
                           <!-- Enhanced Error Display -->
                           <div v-if="getStepErrorMessage(step)" class="step-error-block">
                             <div class="error-header">
@@ -618,33 +587,17 @@
     </div>
 
     <!-- Confirmation Dialog -->
-    <ConfirmationDialog
-      v-model="confirmationDialog.show"
-      :title="confirmationDialog.title"
-      :message="confirmationDialog.message"
-      :details="confirmationDialog.details"
-      :type="confirmationDialog.type"
-      :confirm-text="confirmationDialog.confirmText"
-      :confirm-color="confirmationDialog.confirmColor"
-      :show-environment-info="confirmationDialog.showEnvironmentInfo"
-      :environment="confirmationDialog.environment"
-      @confirm="confirmationDialog.onConfirm"
-      @cancel="confirmationDialog.onCancel"
-    />
+    <ConfirmationDialog v-model="confirmationDialog.show" :title="confirmationDialog.title"
+      :message="confirmationDialog.message" :details="confirmationDialog.details" :type="confirmationDialog.type"
+      :confirm-text="confirmationDialog.confirmText" :confirm-color="confirmationDialog.confirmColor"
+      :show-environment-info="confirmationDialog.showEnvironmentInfo" :environment="confirmationDialog.environment"
+      @confirm="confirmationDialog.onConfirm" @cancel="confirmationDialog.onCancel" />
 
     <!-- Success/Error Snackbar -->
-    <v-snackbar
-      v-model="snackbar.show"
-      :color="snackbar.color"
-      :timeout="snackbar.timeout"
-      location="top right"
-    >
+    <v-snackbar v-model="snackbar.show" :color="snackbar.color" :timeout="snackbar.timeout" location="top right">
       {{ snackbar.message }}
       <template #actions>
-        <v-btn
-          variant="text"
-          @click="snackbar.show = false"
-        >
+        <v-btn variant="text" @click="snackbar.show = false">
           Close
         </v-btn>
       </template>
@@ -840,14 +793,14 @@ export default {
     },
     summary() {
       let passed = 0, failed = 0, skipped = 0, errors = 0, total = 0, duration = 0;
-      
+
       if (!this.report || !Array.isArray(this.report.features)) {
-        return { 
-          passed, 
-          failed, 
-          skipped, 
-          errors, 
-          total, 
+        return {
+          passed,
+          failed,
+          skipped,
+          errors,
+          total,
           duration: 0,
           hasValidationIssues: false,
           hasIntegrityIssues: false
@@ -868,7 +821,7 @@ export default {
           } else {
             status = this.scenarioStatus(scenario);
           }
-          
+
           // Count scenarios by status
           switch (status) {
             case 'passed': passed++; break;
@@ -876,9 +829,9 @@ export default {
             case 'skipped': skipped++; break;
             default: errors++; break;
           }
-          
+
           total++;
-          
+
           // Calculate duration from all sources
           if (Array.isArray(scenario.steps)) {
             duration += scenario.steps.reduce((acc, st) => acc + (typeof st.result?.duration === 'number' ? st.result.duration : 0), 0);
@@ -895,14 +848,14 @@ export default {
           }
         });
       });
-      
+
       return {
         passed,
         failed,
         skipped,
         errors,
         total,
-        duration: this.formatDuration(duration, true),
+        duration: duration,
         hasValidationIssues,
         hasIntegrityIssues,
         validationErrors: this.report._validation?.errors?.length || 0,
@@ -916,12 +869,12 @@ export default {
       if (scenario._calculatedStatus) {
         return scenario._calculatedStatus.status;
       }
-      
+
       // Handle edge cases for malformed scenarios
       if (!scenario || typeof scenario !== 'object') {
         return 'unknown';
       }
-      
+
       // Handle scenarios with no name (common issue)
       if (!scenario.name && !scenario.id) {
         // If it has failed steps or hooks, it's still a failure
@@ -929,50 +882,50 @@ export default {
           return 'failed';
         }
       }
-      
+
       // Enhanced fallback logic that considers setup/teardown failures
-      
+
       // Check setup failures (before hooks) - these should be treated as failures
       if (scenario.before && Array.isArray(scenario.before)) {
-        const hasSetupFailure = scenario.before.some(hook => 
+        const hasSetupFailure = scenario.before.some(hook =>
           hook.result && hook.result.status === 'failed'
         );
         if (hasSetupFailure) return 'failed';
       }
-      
+
       // Check teardown failures (after hooks) - these should be treated as failures  
       if (scenario.after && Array.isArray(scenario.after)) {
-        const hasTeardownFailure = scenario.after.some(hook => 
+        const hasTeardownFailure = scenario.after.some(hook =>
           hook.result && hook.result.status === 'failed'
         );
         if (hasTeardownFailure) return 'failed';
       }
-      
+
       // Check step execution
       if (scenario.steps && Array.isArray(scenario.steps)) {
-        const hasFailedSteps = scenario.steps.some(s => 
+        const hasFailedSteps = scenario.steps.some(s =>
           (s.result && s.result.status === 'failed') || s.status === 'failed'
         );
-        const hasPassedSteps = scenario.steps.some(s => 
+        const hasPassedSteps = scenario.steps.some(s =>
           (s.result && s.result.status === 'passed') || s.status === 'passed'
         );
-        const allSkipped = scenario.steps.every(s => 
+        const allSkipped = scenario.steps.every(s =>
           (s.result && s.result.status === 'skipped') || s.status === 'skipped'
         );
-        
+
         if (hasFailedSteps) return 'failed';
         if (allSkipped) return 'skipped';
         if (hasPassedSteps) return 'passed';
       }
-      
+
       // Handle scenarios with no steps but with error information
       if ((!scenario.steps || scenario.steps.length === 0) && this.hasErrorInformation(scenario)) {
         return 'failed';
       }
-      
+
       // Fallback to scenario-level status
       if (scenario.status) return scenario.status;
-      
+
       return 'unknown';
     },
     scenarioStatusStyle(scenario) {
@@ -1134,18 +1087,39 @@ export default {
     stepKeywordClass(keyword) {
       return 'step-keyword';
     },
-    formatDuration(duration, alwaysSeconds = false) {
-      if (typeof duration !== 'number' || isNaN(duration)) return '-';
-      // If duration is in nanoseconds, convert to seconds
-      if (duration > 1000000) duration = duration / 1e9;
-      // Show as X minutes Y seconds if >= 60s
-      if (duration >= 60) {
-        const mins = Math.floor(duration / 60);
-        const secs = Math.round(duration % 60);
-        return `${mins} minute${mins !== 1 ? 's' : ''} ${secs} second${secs !== 1 ? 's' : ''}`;
+    formatDurationFixed(duration, alwaysSeconds = false) {
+      if (typeof duration !== 'number' || isNaN(duration) || duration === 0) return '0s';
+
+      let seconds = duration;
+
+      // Handle different duration formats
+      if (duration > 1000000000) {
+        // Nanoseconds (> 1 billion = more than 1 second in nanoseconds)
+        seconds = duration / 1000000000;
+      } else if (duration > 1000000) {
+        // Microseconds (> 1 million = more than 1 second in microseconds) 
+        seconds = duration / 1000000;
+      } else if (duration > 10000) {
+        // Milliseconds (> 10 seconds in milliseconds, to avoid false positives)
+        seconds = duration / 1000;
       }
-      if (duration < 1 && !alwaysSeconds) return (duration * 1000).toFixed(0) + ' ms';
-      return duration.toFixed(2) + ' s';
+      // else assume it's already in seconds
+
+      // Format the output
+      if (seconds >= 3600) {
+        const hours = Math.floor(seconds / 3600);
+        const mins = Math.floor((seconds % 3600) / 60);
+        const secs = Math.round(seconds % 60);
+        return `${hours}h ${mins}m ${secs}s`;
+      } else if (seconds >= 60) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.round(seconds % 60);
+        return `${mins}m ${secs}s`;
+      } else if (seconds >= 1) {
+        return `${seconds.toFixed(1)}s`;
+      } else {
+        return `${(seconds * 1000).toFixed(0)}ms`;
+      }
     },
     shouldTruncate(msg) {
       return msg && msg.split('\n').length > 5;
@@ -1410,7 +1384,7 @@ export default {
 
         // Get report ID from route params
         const reportId = this.$route.params.id;
-        
+
         const result = await this.deletionService.deleteReport(reportId, {
           confirm: false, // We already confirmed above
           showFeedback: false // We'll handle feedback ourselves
@@ -1420,15 +1394,15 @@ export default {
           // Show success message with appropriate text
           let successMessage;
           if (result.localOnly) {
-            successMessage = result.deletionType === 'soft' 
-              ? 'Report hidden locally (server offline)' 
+            successMessage = result.deletionType === 'soft'
+              ? 'Report hidden locally (server offline)'
               : 'Report removed from view (server offline)';
           } else {
-            successMessage = result.deletionType === 'soft' 
-              ? 'Report hidden from collection' 
+            successMessage = result.deletionType === 'soft'
+              ? 'Report hidden from collection'
               : 'Report deleted successfully';
           }
-          
+
           this.showSuccessMessage(successMessage);
 
           // Emit event for parent components
@@ -1455,11 +1429,11 @@ export default {
     async showDeleteConfirmation() {
       return new Promise((resolve) => {
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
+
         this.confirmationDialog = {
           show: true,
           title: isLocalhost ? 'Delete Report' : 'Hide Report',
-          message: isLocalhost 
+          message: isLocalhost
             ? 'This will permanently delete the report file from the server.'
             : 'This will hide the report from the collection. The file will remain until next deployment.',
           details: `Report: ${this.report?.name || this.$route.params.id}`,
@@ -1520,7 +1494,7 @@ export default {
       // Tags filter
       if (this.filters.tags.length > 0) {
         const featureTags = [];
-        
+
         // Collect feature tags
         if (feature.tags) {
           feature.tags.forEach(tag => {
@@ -1528,7 +1502,7 @@ export default {
             if (cleanTag) featureTags.push(cleanTag);
           });
         }
-        
+
         // Collect scenario tags
         if (feature.elements) {
           feature.elements.forEach(scenario => {
@@ -1540,7 +1514,7 @@ export default {
             }
           });
         }
-        
+
         // Check if any selected tags match
         const hasMatchingTag = this.filters.tags.some(selectedTag =>
           featureTags.includes(selectedTag)
@@ -1553,7 +1527,7 @@ export default {
       // Duration filter
       if (this.filters.duration) {
         const featureDuration = this.getFeatureDuration(feature);
-        
+
         if (this.filters.duration === 'fast' && featureDuration >= 1) {
           return false;
         } else if (this.filters.duration === 'medium' && (featureDuration < 1 || featureDuration > 10)) {
@@ -1577,7 +1551,7 @@ export default {
     // Get feature duration helper
     getFeatureDuration(feature) {
       if (!feature.elements) return 0;
-      
+
       let totalDuration = 0;
       feature.elements.forEach(scenario => {
         if (scenario.steps) {
@@ -1588,12 +1562,12 @@ export default {
           });
         }
       });
-      
+
       // Convert nanoseconds to seconds if needed
       if (totalDuration > 1000000) {
         totalDuration = totalDuration / 1e9;
       }
-      
+
       return totalDuration;
     },
 
@@ -1732,7 +1706,7 @@ export default {
      */
     getScenarioDataQualityIndicator(scenario) {
       const validation = this.validateScenarioData(scenario);
-      
+
       if (!validation.isValid) {
         return {
           severity: validation.severity,
@@ -1754,7 +1728,7 @@ export default {
 
       // Validate the report
       const validation = this.dataQualityManager.validateReport(reportData);
-      
+
       // Add validation metadata
       reportData._qualityValidation = validation;
 
@@ -1762,7 +1736,7 @@ export default {
       if (Array.isArray(reportData.features)) {
         reportData.features = reportData.features.map(feature => {
           const formattedFeature = this.getFormattedFeature(feature);
-          
+
           // Merge formatted data back into the feature
           return {
             ...feature,
@@ -2096,7 +2070,7 @@ export default {
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
-.time-card,
+.scenarios-card,
 .duration-card {
   display: flex;
   align-items: center;
@@ -2108,7 +2082,7 @@ export default {
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.time-icon,
+.scenarios-icon,
 .duration-icon {
   background: rgba(255, 255, 255, 0.2);
   padding: 8px;
@@ -2116,27 +2090,27 @@ export default {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.time-icon .v-icon,
+.scenarios-icon .v-icon,
 .duration-icon .v-icon {
   color: white !important;
   font-weight: 600;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.time-content,
+.scenarios-content,
 .duration-content {
   display: flex;
   flex-direction: column;
 }
 
-.time-label,
+.scenarios-label,
 .duration-label {
   font-size: 12px;
   opacity: 0.8;
   font-weight: 500;
 }
 
-.time-value,
+.scenarios-value,
 .duration-value {
   font-size: 14px;
   font-weight: 600;
@@ -3856,7 +3830,8 @@ export default {
 }
 
 /* Enhanced Tag Styling */
-.feature-tag, .scenario-tag {
+.feature-tag,
+.scenario-tag {
   background-color: #e3f2fd;
   color: #1976d2;
   border-radius: 4px;
@@ -3908,12 +3883,12 @@ export default {
     flex-wrap: wrap;
     gap: 4px;
   }
-  
+
   .feature-indicator {
     font-size: 10px;
     padding: 1px 4px;
   }
-  
+
   .indicator-text {
     display: none;
   }
@@ -4075,7 +4050,7 @@ export default {
   font-weight: 500;
 }
 
-[data-theme="dark"] .time-card,
+[data-theme="dark"] .scenarios-card,
 [data-theme="dark"] .duration-card {
   background: linear-gradient(145deg, rgba(74, 85, 104, 0.6) 0%, rgba(45, 55, 72, 0.8) 100%);
   backdrop-filter: blur(10px);
@@ -4086,7 +4061,7 @@ export default {
   overflow: hidden;
 }
 
-[data-theme="dark"] .time-card::before,
+[data-theme="dark"] .scenarios-card::before,
 [data-theme="dark"] .duration-card::before {
   content: '';
   position: absolute;
@@ -4098,24 +4073,24 @@ export default {
   transition: left 0.6s ease;
 }
 
-[data-theme="dark"] .time-card:hover,
+[data-theme="dark"] .scenarios-card:hover,
 [data-theme="dark"] .duration-card:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   border-color: rgba(96, 165, 250, 0.4);
 }
 
-[data-theme="dark"] .time-card:hover::before,
+[data-theme="dark"] .scenarios-card:hover::before,
 [data-theme="dark"] .duration-card:hover::before {
   left: 100%;
 }
 
-[data-theme="dark"] .time-label,
+[data-theme="dark"] .scenarios-label,
 [data-theme="dark"] .duration-label {
   color: var(--theme-text-secondary);
 }
 
-[data-theme="dark"] .time-value,
+[data-theme="dark"] .scenarios-value,
 [data-theme="dark"] .duration-value {
   color: var(--theme-text-primary);
 }

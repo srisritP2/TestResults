@@ -139,8 +139,8 @@ function generateIndex() {
     const originalCwd = process.cwd();
     process.chdir(UPLOADS_DIR);
     
-    // Run the index generation script
-    execSync('node generate-index-enhanced.js --verbose', { stdio: 'inherit' });
+    // Run the tolerant index generation script
+    execSync('node generate-index-tolerant-v2.js --verbose', { stdio: 'inherit' });
     
     // Change back to original directory
     process.chdir(originalCwd);

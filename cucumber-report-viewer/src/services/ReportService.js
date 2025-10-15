@@ -62,7 +62,6 @@ class ReportService {
         passed: report.passed || 0,
         failed: report.failed || 0,
         skipped: report.skipped || 0,
-        duration: report.duration || 0,
         tags: report.tags || [],
         size: report.size || 0,
         source: 'localStorage'
@@ -102,7 +101,6 @@ class ReportService {
             passed: report.passed || 0,
             failed: report.failed || 0,
             skipped: report.skipped || 0,
-            duration: report.duration || 0,
             tags: report.tags || [],
             size: report.size || 0,
             source: 'server'
@@ -333,9 +331,7 @@ class ReportService {
         if (!filters.environment.includes(report.environment)) return false;
       }
 
-      // Duration filter
-      if (filters.minDuration !== undefined && report.duration < filters.minDuration) return false;
-      if (filters.maxDuration !== undefined && report.duration > filters.maxDuration) return false;
+
 
       return true;
     });
@@ -359,10 +355,7 @@ class ReportService {
           aVal = a.name.toLowerCase();
           bVal = b.name.toLowerCase();
           break;
-        case 'duration':
-          aVal = a.duration || 0;
-          bVal = b.duration || 0;
-          break;
+
         case 'scenarios':
           aVal = a.scenarios || 0;
           bVal = b.scenarios || 0;
@@ -407,7 +400,7 @@ class ReportService {
           totalScenarios: 0,
           totalPassed: 0,
           totalFailed: 0,
-          totalDuration: 0
+  
         };
       }
       
@@ -416,7 +409,7 @@ class ReportService {
       day.totalScenarios += report.scenarios || 0;
       day.totalPassed += report.passed || 0;
       day.totalFailed += report.failed || 0;
-      day.totalDuration += report.duration || 0;
+
     });
     
     return Object.values(trendData).sort((a, b) => 

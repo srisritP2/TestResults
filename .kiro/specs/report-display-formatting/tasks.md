@@ -261,7 +261,10 @@
   - Build getFeatureStyling() and getScenarioStyling() methods for visual consistency
   - _Requirements: 15.1, 15.2, 15.3, 15.4, 15.5_
 
-- [-] 32. Integrate Data Quality Management
+- [x] 32. Integrate Data Quality Management
+
+
+
 
   - Create DataQualityManager class with validateReport() method
   - Implement pre-processing validation pipeline for all incoming report data

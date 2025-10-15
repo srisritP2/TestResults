@@ -4,7 +4,8 @@
       <!-- Enhanced Header with Title and Actions -->
       <v-card-title class="reports-collection-header">
         <div class="header-left">
-          <v-icon color="primary" :size="$vuetify.display.mobile ? 20 : 24" class="header-icon">mdi-folder-multiple</v-icon>
+          <v-icon color="primary" :size="$vuetify.display.mobile ? 20 : 24"
+            class="header-icon">mdi-folder-multiple</v-icon>
           <div class="header-text">
             <h3 class="collection-title">Test Reports:</h3>
             <p class="collection-subtitle" v-if="reportsCollection.length > 0">
@@ -13,25 +14,17 @@
           </div>
         </div>
         <div class="header-actions">
-          <v-btn 
-            :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
-            variant="outlined" 
-            color="primary" 
-            @click="refreshReports" 
-            :loading="loading"
-            class="action-btn"
-          >
-            <v-icon :size="$vuetify.display.mobile ? 14 : 16" :class="$vuetify.display.mobile ? '' : 'mr-1'">mdi-refresh</v-icon>
+          <v-btn :size="$vuetify.display.mobile ? 'x-small' : 'small'" variant="outlined" color="primary"
+            @click="refreshReports" :loading="loading" class="action-btn">
+            <v-icon :size="$vuetify.display.mobile ? 14 : 16"
+              :class="$vuetify.display.mobile ? '' : 'mr-1'">mdi-refresh</v-icon>
             <span v-if="!$vuetify.display.mobile">Refresh</span>
           </v-btn>
-          <v-btn 
-            :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
-            variant="text" 
-            color="secondary" 
-            @click="showFilters = !showFilters"
-            class="action-btn"
-          >
-            <v-icon :size="$vuetify.display.mobile ? 14 : 16" :class="$vuetify.display.mobile ? '' : 'mr-1'">mdi-filter</v-icon>
+
+          <v-btn :size="$vuetify.display.mobile ? 'x-small' : 'small'" variant="text" color="secondary"
+            @click="showFilters = !showFilters" class="action-btn">
+            <v-icon :size="$vuetify.display.mobile ? 14 : 16"
+              :class="$vuetify.display.mobile ? '' : 'mr-1'">mdi-filter</v-icon>
             <span v-if="!$vuetify.display.mobile">Filter</span>
           </v-btn>
         </div>
@@ -41,45 +34,14 @@
       <v-expand-transition>
         <v-card-text v-show="showFilters" class="filters-section">
           <div class="filters-grid">
-            <v-text-field 
-              v-model="searchQuery" 
-              placeholder="Search reports..." 
-              prepend-inner-icon="mdi-magnify"
-              variant="outlined" 
-              density="compact" 
-              clearable 
-              hide-details 
-              class="search-field" 
-            />
-            <v-select 
-              v-model="statusFilter" 
-              :items="statusOptions" 
-              label="Status" 
-              variant="outlined" 
-              density="compact"
-              clearable 
-              hide-details 
-              class="filter-select"
-            />
-            <v-select 
-              v-model="sortBy" 
-              :items="sortOptions" 
-              label="Sort by" 
-              variant="outlined" 
-              density="compact"
-              hide-details 
-              class="filter-select"
-            />
-            <v-select 
-              v-model="syncStatusFilter" 
-              :items="syncStatusOptions" 
-              label="Sync Status" 
-              variant="outlined"
-              density="compact" 
-              clearable 
-              hide-details 
-              class="filter-select"
-            />
+            <v-text-field v-model="searchQuery" placeholder="Search reports..." prepend-inner-icon="mdi-magnify"
+              variant="outlined" density="compact" clearable hide-details class="search-field" />
+            <v-select v-model="statusFilter" :items="statusOptions" label="Status" variant="outlined" density="compact"
+              clearable hide-details class="filter-select" />
+            <v-select v-model="sortBy" :items="sortOptions" label="Sort by" variant="outlined" density="compact"
+              hide-details class="filter-select" />
+            <v-select v-model="syncStatusFilter" :items="syncStatusOptions" label="Sync Status" variant="outlined"
+              density="compact" clearable hide-details class="filter-select" />
           </div>
         </v-card-text>
       </v-expand-transition>
@@ -116,21 +78,33 @@
           <v-card v-for="report in filteredReports" :key="report.id" class="report-card"
             :class="{ 'report-failed': report.failed > 0 }" @click="navigateToReport(report)">
             <v-card-text class="report-content">
+              <!-- Report Title -->
+              <div class="report-title-section">
+                <h4 class="report-title">{{ getReportTitle(report) }}</h4>
+              </div>
+
               <!-- Mobile-First Header Layout -->
               <div class="report-header">
-                <!-- Top Row: Status + Date + Actions -->
+                <!-- Top Row: Date + Actions -->
                 <div class="report-header-top">
-                  <div class="status-and-date">
-                    <v-icon :color="getStatusColor(report)" size="20" class="status-icon">
-                      {{ getStatusIcon(report) }}
-                    </v-icon>
-                    <span class="date-info">{{ formatDate(report.date) }}</span>
+                  <div class="date-info">
+                    <span class="report-date">{{ formatDate(report.date) }}</span>
                   </div>
                   <div class="report-actions">
-                    <v-btn :icon="isPublished(report) ? 'mdi-cloud-check' : 'mdi-cloud-upload'" size="small"
-                      variant="text" :color="isPublished(report) ? 'success' : 'primary'"
+                    <!-- Upload/Published Status Icon -->
+                    <v-btn :icon="isPublished(report) ? 'mdi-check-circle' : 'mdi-cloud-upload'" size="small"
+                      variant="text" :style="{ color: isPublished(report) ? '#4CAF50' : '#2196F3' }"
                       @click.stop="togglePublishStatus(report)"
-                      :title="isPublished(report) ? 'Unpublish from GitHub Pages' : 'Publish to GitHub Pages'"></v-btn>
+                      :title="isPublished(report) ? 'Published to GitHub Pages' : 'Publish to GitHub Pages'">
+                    </v-btn>
+
+                    <!-- Delete Icon -->
+                    <v-btn icon="mdi-delete" size="small" variant="text" style="color: #F44336"
+                      @click.stop="deleteReport(report)" :disabled="report.deleting"
+                      :title="report.deleting ? 'Deleting...' : 'Delete Report'">
+                    </v-btn>
+
+                    <!-- More Options Menu -->
                     <v-menu>
                       <template #activator="{ props }">
                         <v-btn icon="mdi-dots-vertical" size="small" variant="text" v-bind="props" @click.stop></v-btn>
@@ -145,16 +119,8 @@
                         <v-list-item @click="togglePublishStatus(report)">
                           <v-list-item-title>
                             <v-icon size="16" class="mr-2">{{ isPublished(report) ? 'mdi-cloud-off' : 'mdi-cloud-upload'
-                              }}</v-icon>
+                            }}</v-icon>
                             {{ isPublished(report) ? 'Unpublish' : 'Publish to GitHub Pages' }}
-                          </v-list-item-title>
-                        </v-list-item>
-                        <v-list-item @click="deleteReport(report)" class="text-error" :disabled="report.deleting">
-                          <v-list-item-title>
-                            <v-icon size="16" class="mr-2">
-                              {{ report.deleting ? 'mdi-loading mdi-spin' : 'mdi-delete' }}
-                            </v-icon>
-                            {{ report.deleting ? 'Deleting...' : 'Delete' }}
                           </v-list-item-title>
                         </v-list-item>
                       </v-list>
@@ -162,31 +128,21 @@
                   </div>
                 </div>
 
-                <!-- Second Row: Test Counts + Sync Status -->
-                <div class="report-header-bottom">
-                  <div class="test-counts-info">
-                    <span class="test-count-item">
-                      <span class="passed-count">{{ report.passed || 0 }}</span>
-                      <span class="count-label">passed</span>
-                    </span>
-                    <span class="test-count-separator">•</span>
-                    <span class="test-count-item">
-                      <span class="failed-count">{{ report.failed || 0 }}</span>
-                      <span class="count-label">failed</span>
-                    </span>
-                    <span class="test-count-separator">•</span>
-                    <span class="test-count-item">
-                      <span class="skipped-count">{{ report.skipped || 0 }}</span>
-                      <span class="count-label">skipped</span>
-                    </span>
+                <!-- Clean Test Counts Display -->
+                <div class="test-counts-clean">
+                  <div class="count-item passed-count">
+                    <div class="count-number">{{ report.passed || 0 }}</div>
+                    <div class="count-label">PASSED</div>
                   </div>
-                  <!-- Sync Status Indicators -->
-                  <div class="sync-status-indicators">
-                    <v-chip v-if="getReportSyncStatus(report) !== 'synced'" :color="getSyncStatusColor(report)"
-                      size="x-small" variant="outlined" class="sync-status-chip">
-                      <v-icon size="12" class="mr-1">{{ getSyncStatusIcon(report) }}</v-icon>
-                      {{ getSyncStatusLabel(report) }}
-                    </v-chip>
+
+                  <div class="count-item failed-count" v-if="(report.failed || 0) > 0">
+                    <div class="count-number">{{ report.failed || 0 }}</div>
+                    <div class="count-label">FAILED</div>
+                  </div>
+
+                  <div class="count-item skipped-count" v-if="(report.skipped || 0) > 0">
+                    <div class="count-number">{{ report.skipped || 0 }}</div>
+                    <div class="count-label">SKIPPED</div>
                   </div>
                 </div>
               </div>
@@ -204,15 +160,32 @@
                 </div>
               </div>
 
-              <!-- Tags Section -->
-              <div v-if="report.tags && report.tags.length" class="tags-section">
-                <v-chip v-for="tag in report.tags.slice(0, $vuetify.display.mobile ? 2 : 3)" :key="tag" size="x-small" variant="outlined"
-                  class="tag-chip">
-                  {{ tag }}
+              <!-- Enhanced Info Chips -->
+              <div class="info-chips-section">
+                <!-- Features Count -->
+                <v-chip size="x-small" variant="outlined" color="primary" class="info-chip">
+                  <v-icon size="12" class="mr-1">mdi-folder-multiple</v-icon>
+                  {{ report.features || 0 }} Features
                 </v-chip>
-                <span v-if="report.tags.length > ($vuetify.display.mobile ? 2 : 3)" class="more-tags">
-                  +{{ report.tags.length - ($vuetify.display.mobile ? 2 : 3) }} more
-                </span>
+
+                <!-- Scenarios Count -->
+                <v-chip size="x-small" variant="outlined" color="info" class="info-chip">
+                  <v-icon size="12" class="mr-1">mdi-script-text</v-icon>
+                  {{ report.scenarios || 0 }} Scenarios
+                </v-chip>
+
+                <!-- File Size -->
+                <v-chip size="x-small" variant="outlined" color="secondary" class="info-chip">
+                  <v-icon size="12" class="mr-1">mdi-file-document</v-icon>
+                  {{ formatFileSize(report.size) }}
+                </v-chip>
+
+                <!-- Quality Score (if has validation issues) -->
+                <v-chip v-if="report.validationIssues && report.validationIssues.length > 0" size="x-small"
+                  variant="outlined" color="warning" class="info-chip">
+                  <v-icon size="12" class="mr-1">mdi-alert-circle</v-icon>
+                  {{ report.validationIssues.length }} Issues
+                </v-chip>
               </div>
 
               <!-- Report Identifier -->
@@ -273,7 +246,6 @@ export default {
       sortOptions: [
         { title: 'Date (Newest)', value: 'date' },
         { title: 'Name', value: 'name' },
-        { title: 'Duration', value: 'duration' },
         { title: 'Scenarios', value: 'scenarios' },
         { title: 'Pass Rate', value: 'passRate' }
       ],
@@ -309,8 +281,11 @@ export default {
     };
   },
 
-  mounted() {
-    this.fetchReports();
+  async mounted() {
+    await this.fetchReports();
+
+    // Ensure report numbers are properly assigned after loading
+    this.ensureReportNumbering();
 
     // Listen for deletion events from other components
     window.addEventListener('reportDeleted', this.handleReportDeleted);
@@ -351,6 +326,29 @@ export default {
     }
   },
   methods: {
+    // Safe comparison utility functions
+    safeStringCompare(a, b, fallbackA = '', fallbackB = '') {
+      const stringA = (a ?? fallbackA).toString();
+      const stringB = (b ?? fallbackB).toString();
+      return stringA.localeCompare(stringB);
+    },
+
+    safeDateCompare(a, b) {
+      const dateA = new Date(a ?? 0);
+      const dateB = new Date(b ?? 0);
+      return dateA.getTime() - dateB.getTime();
+    },
+
+    // Report data sanitization
+    sanitizeReportForSorting(report, index) {
+      return {
+        ...report,
+        id: report.id ?? `fallback-${index}-${Date.now()}`,
+        timestamp: report.timestamp ?? report.date ?? new Date(0).toISOString(),
+        date: report.date ?? report.timestamp ?? new Date(0).toISOString()
+      };
+    },
+
     async fetchReports() {
       this.loading = true;
       this.reportsCollectionError = '';
@@ -360,11 +358,20 @@ export default {
         const indexData = await ReportService.loadIndex();
 
         if (indexData.reports) {
-          this.reportsCollection = indexData.reports;
+          // Map timestamp to date for UI compatibility and ensure id property exists
+          this.reportsCollection = indexData.reports.map(report => ({
+            ...report,
+            id: report.id || report.filename || report.name || 'unknown',
+            date: report.timestamp || report.date // Use timestamp if available, fallback to date
+          }));
           this.statistics = indexData.statistics;
         } else if (Array.isArray(indexData)) {
-          // Fallback to old format
-          this.reportsCollection = indexData;
+          // Fallback to old format - also map timestamp to date and ensure id property
+          this.reportsCollection = indexData.map(report => ({
+            ...report,
+            id: report.id || report.filename || report.name || 'unknown',
+            date: report.timestamp || report.date
+          }));
         }
 
         // Load statistics separately if not in index
@@ -379,7 +386,11 @@ export default {
         try {
           const localIndex = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
           if (localIndex.length > 0) {
-            this.reportsCollection = localIndex;
+            // Map timestamp to date for localStorage reports too
+            this.reportsCollection = localIndex.map(report => ({
+              ...report,
+              date: report.timestamp || report.date
+            }));
           }
         } catch (e) {
           console.error('Failed to load from localStorage:', e);
@@ -392,6 +403,9 @@ export default {
     async refreshReports() {
       ReportService.clearCache();
       await this.fetchReports();
+
+      // Ensure proper numbering after refresh
+      this.ensureReportNumbering();
     },
 
     navigateToReport(report) {
@@ -578,8 +592,8 @@ export default {
         case 'local-only': return 'mdi-laptop';
         case 'published-only': return 'mdi-cloud';
         case 'deleted': return 'mdi-delete';
-        case 'unknown': return 'mdi-help-circle';
-        default: return 'mdi-help-circle';
+        case 'unknown': return null;
+        default: return null;
       }
     },
 
@@ -605,7 +619,7 @@ export default {
     },
 
     getStatusIcon(report) {
-      if (!report.steps || report.steps === 0) return 'mdi-help-circle';
+      if (!report.steps || report.steps === 0) return null;
       if (report.failed > 0) return 'mdi-close-circle';
       if (report.passed > 0) return 'mdi-check-circle';
       return 'mdi-pause-circle';
@@ -638,6 +652,73 @@ export default {
       if (passRate >= 50) return 'pass-rate-warning';
       return 'pass-rate-poor';
     },
+
+    getReportTitle(report) {
+      // Generate sequential report number based on chronological order
+      return this.getSequentialReportNumber(report);
+    },
+
+    getSequentialReportNumber(report) {
+      try {
+        // Sort all reports by upload date/time (oldest first)
+        const sortedReports = [...this.reportsCollection].sort((a, b) => {
+          const timestampA = a.timestamp || a.date;
+          const timestampB = b.timestamp || b.date;
+
+          if (!timestampA && !timestampB) return 0;
+          if (!timestampA) return 1; // Put reports without dates at the end
+          if (!timestampB) return -1;
+
+          const dateA = new Date(timestampA);
+          const dateB = new Date(timestampB);
+
+          // Sort by full date/time including seconds
+          const timeDiff = dateA.getTime() - dateB.getTime();
+
+          // If timestamps are identical, use id as tiebreaker
+          if (timeDiff === 0) {
+            const idA = a.id || '';
+            const idB = b.id || '';
+            return idA.localeCompare(idB);
+          }
+
+          return timeDiff;
+        });
+
+        // Find this report's position in the sorted list using a more reliable method
+        const reportId = report.id || '';
+        const reportTimestamp = report.timestamp || report.date;
+
+        const reportIndex = sortedReports.findIndex(r => {
+          // First try to match by ID if both have IDs
+          if (reportId && r.id && reportId === r.id) {
+            return true;
+          }
+
+          // Fallback to timestamp matching
+          const rTimestamp = r.timestamp || r.date;
+          return rTimestamp === reportTimestamp;
+        });
+
+        // Return sequential number (1-based)
+        return `Report ${reportIndex >= 0 ? reportIndex + 1 : this.reportsCollection.length + 1}`;
+      } catch (error) {
+        console.warn('Error generating sequential report number:', error);
+        return 'Report (Error)';
+      }
+    },
+
+
+
+    ensureReportNumbering() {
+      // Numbers are now calculated dynamically based on chronological order
+      // No need to store or assign anything - just force update if needed
+      this.$forceUpdate();
+    },
+
+
+
+
 
     formatReportTitle(name) {
       if (!name) return 'Untitled Report';
@@ -766,29 +847,39 @@ export default {
     extractJsonFilename(id) {
       if (!id) return '';
 
-      // Extract the last part after the last dash (timestamp part)
-      const parts = id.split('-');
-      const lastPart = parts[parts.length - 1]; // Gets "735Z" or "010Z"
+      // Handle different ID formats
+      let identifier = '';
 
-      // Return the last 4 characters (like "735Z", "010Z")
-      return lastPart ? lastPart.slice(-4).toUpperCase() : '';
-    },
-
-    formatDuration(duration) {
-      if (!duration || duration === 0) return '0s';
-
-      if (duration < 60) {
-        return `${duration.toFixed(1)}s`;
-      } else if (duration < 3600) {
-        const minutes = Math.floor(duration / 60);
-        const seconds = Math.floor(duration % 60);
-        return `${minutes}m ${seconds}s`;
+      if (id.includes('.json')) {
+        // For filenames like "report-1760335046856.json"
+        const nameWithoutExt = id.replace('.json', '');
+        const parts = nameWithoutExt.split('-');
+        const lastPart = parts[parts.length - 1]; // Gets the timestamp part
+        identifier = lastPart ? lastPart.slice(-4) : '';
+      } else if (id.includes('-')) {
+        // For IDs like "Admin-Client-Settings-Page-Test-Scenarios-2025-07-17T11-06-24-735Z"
+        const parts = id.split('-');
+        const lastPart = parts[parts.length - 1]; // Gets "735Z" or similar
+        identifier = lastPart ? lastPart.slice(-4) : '';
       } else {
-        const hours = Math.floor(duration / 3600);
-        const minutes = Math.floor((duration % 3600) / 60);
-        return `${hours}h ${minutes}m`;
+        // For simple IDs, take last 4 characters
+        identifier = id.slice(-4);
       }
+
+      return identifier.toUpperCase();
     },
+
+    formatFileSize(bytes) {
+      if (!bytes || bytes === 0) return '0 B';
+
+      const sizes = ['B', 'KB', 'MB', 'GB'];
+      const i = Math.floor(Math.log(bytes) / Math.log(1024));
+      const size = (bytes / Math.pow(1024, i)).toFixed(i === 0 ? 0 : 1);
+
+      return `${size} ${sizes[i]}`;
+    },
+
+
 
     // Selective Publishing Feature Methods
     isPublished(report) {
@@ -900,8 +991,8 @@ export default {
         }
 
         // Download the index.json file
-        const indexBlob = new Blob([JSON.stringify(githubPagesIndex, null, 2)], { 
-          type: 'application/json' 
+        const indexBlob = new Blob([JSON.stringify(githubPagesIndex, null, 2)], {
+          type: 'application/json'
         });
         this.downloadFile(indexBlob, 'index.json');
 
@@ -1227,13 +1318,14 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .report-card {
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  background: #ffffff;
+  background: #2D3748;
   opacity: 0;
   animation: fadeInUp 0.5s ease-out forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .report-card:nth-child(1) {
@@ -1261,9 +1353,9 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .report-card:hover {
-  border-color: #3b82f6;
-  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.2);
-  transform: translateY(-4px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transform: translateY(-2px);
 }
 
 @keyframes fadeInUp {
@@ -1295,9 +1387,15 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .report-title-section {
-  display: flex;
-  align-items: flex-start;
-  flex: 1;
+  margin-bottom: 12px;
+}
+
+.report-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--theme-text-primary);
+  line-height: 1.3;
+  margin: 0;
 }
 
 .title-container {
@@ -1307,14 +1405,11 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .report-title {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #FFFFFF;
   margin: 0 0 4px 0;
   line-height: 1.4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .report-id {
@@ -1396,13 +1491,22 @@ The GitHub workflow will automatically update your GitHub Pages site!
   font-weight: 600;
 }
 
-/* Tags Section */
-.tags-section {
+/* Info Chips Section */
+.info-chips-section {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   gap: 4px;
   margin-bottom: 8px;
+}
+
+.info-chip {
+  font-size: 0.7rem !important;
+  height: 20px !important;
+}
+
+.info-chip {
+  font-size: 0.7rem !important;
+  height: 20px !important;
 }
 
 .more-tags {
@@ -1481,6 +1585,21 @@ The GitHub workflow will automatically update your GitHub Pages site!
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+/* Mobile responsive for clean counts */
+@media (max-width: 480px) {
+  .test-counts-clean {
+    gap: 1rem;
+  }
+
+  .count-item .count-number {
+    font-size: 2rem;
+  }
+
+  .count-item .count-label {
+    font-size: 0.7rem;
+  }
 }
 
 /* Responsive Design */
@@ -1766,8 +1885,8 @@ The GitHub workflow will automatically update your GitHub Pages site!
   color: var(--theme-error) !important;
 }
 
-/* Tags Section Dark Theme */
-[data-theme="dark"] .tags-section {
+/* Info Chips Section Dark Theme */
+[data-theme="dark"] .info-chips-section {
   background: var(--theme-surface);
 }
 
@@ -2050,15 +2169,20 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .date-info {
+  flex: 1;
+}
+
+.report-date {
   font-size: 0.875rem;
-  color: var(--theme-text-secondary);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 500;
 }
 
 .report-actions {
   display: flex;
-  gap: 4px;
+  gap: 8px;
   flex-shrink: 0;
+  align-items: center;
 }
 
 .report-header-bottom {
@@ -2069,6 +2193,65 @@ The GitHub workflow will automatically update your GitHub Pages site!
   gap: 8px;
 }
 
+/* Clean Test Counts Display */
+.test-counts-clean {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  justify-content: center;
+}
+
+.count-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.count-item .count-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.count-item .count-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Passed Tests - Green */
+.passed-count .count-number {
+  color: #4CAF50;
+}
+
+.passed-count .count-label {
+  color: #4CAF50;
+}
+
+/* Failed Tests - Red */
+.failed-count .count-number {
+  color: #F44336;
+}
+
+.failed-count .count-label {
+  color: #F44336;
+}
+
+/* Skipped Tests - Orange */
+.skipped-count .count-number {
+  color: #FF9800;
+}
+
+.skipped-count .count-label {
+  color: #FF9800;
+}
+
+/* Legacy test counts info - keep for backward compatibility */
 .test-counts-info {
   display: flex;
   align-items: center;
@@ -2134,26 +2317,31 @@ The GitHub workflow will automatically update your GitHub Pages site!
 }
 
 .total-tests {
-  color: var(--theme-text-secondary);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .pass-rate-text {
   font-weight: 600;
+  color: #4CAF50;
 }
 
-.pass-rate-excellent { color: #4caf50; }
-.pass-rate-good { color: #8bc34a; }
-.pass-rate-warning { color: #ff9800; }
-.pass-rate-poor { color: #f44336; }
-
-/* Tags Section */
-.tags-section {
-  margin-bottom: 8px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  align-items: center;
+.pass-rate-excellent {
+  color: #4caf50;
 }
+
+.pass-rate-good {
+  color: #8bc34a;
+}
+
+.pass-rate-warning {
+  color: #ff9800;
+}
+
+.pass-rate-poor {
+  color: #f44336;
+}
+
+
 
 .tag-chip {
   font-size: 0.75rem !important;
@@ -2172,20 +2360,23 @@ The GitHub workflow will automatically update your GitHub Pages site!
 
 .json-filename {
   font-size: 0.75rem;
-  color: var(--theme-text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   font-family: monospace;
-  background: rgba(0, 0, 0, 0.05);
-  padding: 2px 6px;
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 6px;
 }
 
 /* Empty and Loading States */
-.loading-state, .empty-state {
+.loading-state,
+.empty-state {
   text-align: center;
   padding: 40px 20px;
 }
 
-.loading-state p, .empty-state h4, .empty-state p {
+.loading-state p,
+.empty-state h4,
+.empty-state p {
   margin: 8px 0;
 }
 
@@ -2194,21 +2385,21 @@ The GitHub workflow will automatically update your GitHub Pages site!
   .reports-collection-container {
     padding: 16px;
   }
-  
+
   .filters-grid {
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 16px;
   }
-  
+
   .reports-grid {
     grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
     gap: 16px;
   }
-  
+
   .report-header-bottom {
     flex-wrap: nowrap;
   }
-  
+
   .test-counts-info {
     flex-wrap: nowrap;
   }
@@ -2219,16 +2410,16 @@ The GitHub workflow will automatically update your GitHub Pages site!
   .reports-collection-container {
     padding: 24px;
   }
-  
+
   .reports-grid {
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
     gap: 20px;
   }
-  
+
   .report-content {
     padding: 20px !important;
   }
-  
+
   .collection-title {
     font-size: 1.5rem;
   }
@@ -2265,6 +2456,39 @@ The GitHub workflow will automatically update your GitHub Pages site!
 
 [data-theme="dark"] .date-info {
   color: var(--theme-text-secondary) !important;
+}
+
+[data-theme="dark"] .report-date {
+  color: var(--theme-text-secondary) !important;
+}
+
+[data-theme="dark"] .report-title {
+  color: var(--theme-text-primary) !important;
+}
+
+/* Dark theme support for clean test counts */
+[data-theme="dark"] .passed-count .count-number {
+  color: #66BB6A !important;
+}
+
+[data-theme="dark"] .passed-count .count-label {
+  color: #66BB6A !important;
+}
+
+[data-theme="dark"] .failed-count .count-number {
+  color: #EF5350 !important;
+}
+
+[data-theme="dark"] .failed-count .count-label {
+  color: #EF5350 !important;
+}
+
+[data-theme="dark"] .skipped-count .count-number {
+  color: #FFB74D !important;
+}
+
+[data-theme="dark"] .skipped-count .count-label {
+  color: #FFB74D !important;
 }
 
 [data-theme="dark"] .count-label {
