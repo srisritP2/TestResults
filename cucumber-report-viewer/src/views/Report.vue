@@ -40,7 +40,7 @@
 import ReportViewer from '@/components/ReportViewer.vue';
 import ThemeToggle from '@/components/ThemeToggle.vue';
 import { useStore } from 'vuex';
-import { computed, ref, onMounted, reactive } from 'vue';
+import { computed, ref, onMounted, reactive, watch } from 'vue';
 import { useRoute } from 'vue-router';
 
 export default {
@@ -53,25 +53,136 @@ export default {
     const route = useRoute();
     const reportId = route && route.params && route.params.id ? route.params.id : null;
     const state = reactive({ staticReport: null });
-    const reportData = computed(() => {
-      // Try to load from localStorage if route param id matches a static report
-      if (reportId && localStorage.getItem('uploaded-report-' + reportId)) {
+
+    // Normalize report data to ensure consistent format
+    const normalizeReportData = (data) => {
+      if (!data) {
+        console.log('🔍 normalizeReportData: data is null/undefined');
+        return null;
+      }
+      
+      console.log('🔍 normalizeReportData input:', {
+        type: typeof data,
+        isArray: Array.isArray(data),
+        hasFeatures: !!(data.features),
+        featuresIsArray: !!(data.features && Array.isArray(data.features)),
+        keys: typeof data === 'object' ? Object.keys(data) : 'not object'
+      });
+      
+      // If it's already in the correct format with features array
+      if (data.features && Array.isArray(data.features)) {
+        console.log('✅ Data already has features array, features count:', data.features.length);
+        return data;
+      }
+      
+      // If it's a plain array of features
+      if (Array.isArray(data)) {
+        console.log('✅ Data is array, converting to {features: array}, length:', data.length);
+        return { features: data };
+      }
+      
+      // If it's a single feature object
+      if (data.name && (data.elements || data.scenarios)) {
+        console.log('✅ Data is single feature, converting to array');
+        return { features: [data] };
+      }
+      
+      // If it has a results property (TestNG format)
+      if (data.results && Array.isArray(data.results)) {
+        console.log('✅ Data has results property, using as features');
+        return { features: data.results };
+      }
+      
+      // Check for compressed format from ReportUploader
+      if (data.features && data.features.length > 0 && !Array.isArray(data.features)) {
+        console.log('⚠️ Data has features but not as array, trying to fix');
         try {
-          const data = JSON.parse(localStorage.getItem('uploaded-report-' + reportId));
-          if (Array.isArray(data)) return { features: data };
-          if (data && Array.isArray(data.features)) return data;
-        } catch {}
+          const featuresArray = Object.values(data.features);
+          if (Array.isArray(featuresArray)) {
+            return { features: featuresArray };
+          }
+        } catch (e) {
+          console.warn('❌ Failed to convert features to array:', e);
+        }
       }
-      // If the report was uploaded this session, use Vuex store
-      if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
-        if (Array.isArray(store.state.reportData)) return { features: store.state.reportData };
-        if (store.state.reportData && Array.isArray(store.state.reportData.features)) return store.state.reportData;
+      
+      console.warn('⚠️ Unknown report format:', data);
+      return null;
+    };
+    const reportData = computed(() => {
+      console.log('🔍 Report Data Debug:', {
+        reportId,
+        hasStoreData: !!store.state.reportData,
+        storeDataId: store.state.reportData?._uploadedId,
+        hasLocalStorage: reportId ? !!localStorage.getItem('uploaded-report-' + reportId) : false,
+        hasStaticReport: !!state.staticReport,
+        localStorageKeys: Object.keys(localStorage).filter(key => key.startsWith('uploaded-report-'))
+      });
+
+      // Priority 1: Check Vuex store for session data (most recent uploads)
+      if (store.state.reportData) {
+        // If we have a reportId, check if it matches
+        if (reportId && store.state.reportData._uploadedId === reportId) {
+          console.log('✅ Found matching report in Vuex store');
+          const normalized = normalizeReportData(store.state.reportData);
+          console.log('✅ Normalized Vuex data:', normalized);
+          return normalized;
+        }
+        // If no reportId (direct navigation to /report), use store data
+        if (!reportId) {
+          console.log('✅ Using Vuex store data for direct navigation');
+          const normalized = normalizeReportData(store.state.reportData);
+          console.log('✅ Normalized Vuex data:', normalized);
+          return normalized;
+        }
       }
-      // If fetched static report, use it
+
+      // Priority 2: Try to load from localStorage if route param id matches a static report
+      if (reportId) {
+        const localStorageKey = 'uploaded-report-' + reportId;
+        const rawData = localStorage.getItem(localStorageKey);
+        
+        console.log('🔍 Checking localStorage for key:', localStorageKey);
+        console.log('🔍 Raw localStorage data exists:', !!rawData);
+        
+        if (rawData) {
+          try {
+            console.log('✅ Found report in localStorage');
+            const data = JSON.parse(rawData);
+            console.log('🔍 Parsed localStorage data:', data);
+            const normalized = normalizeReportData(data);
+            console.log('✅ Normalized localStorage data:', normalized);
+            return normalized;
+          } catch (e) {
+            console.warn('❌ Failed to parse localStorage data:', e);
+          }
+        } else {
+          console.log('❌ No localStorage data found for key:', localStorageKey);
+          
+          // Check if the report exists in the index but not in storage
+          try {
+            const index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+            const reportInIndex = index.find(r => r.id === reportId);
+            console.log('🔍 Report in index:', reportInIndex);
+            
+            if (reportInIndex) {
+              console.log('⚠️ Report exists in index but not in localStorage storage');
+            }
+          } catch (e) {
+            console.warn('❌ Failed to check reports index:', e);
+          }
+        }
+      }
+
+      // Priority 3: If fetched static report, use it
       if (state.staticReport) {
-        if (Array.isArray(state.staticReport)) return { features: state.staticReport };
-        if (state.staticReport && Array.isArray(state.staticReport.features)) return state.staticReport;
+        console.log('✅ Using static report data');
+        const normalized = normalizeReportData(state.staticReport);
+        console.log('✅ Normalized static data:', normalized);
+        return normalized;
       }
+
+      console.log('❌ No report data found');
       return null;
     });
     // Track selected feature index, default to 0
@@ -80,21 +191,76 @@ export default {
       selectedFeatureIndex.value = idx;
     };
 
-    // Fetch static report JSON if needed
-    onMounted(() => {
+    // Extract server fetch logic for reuse
+    const fetchServerReport = async (reportId) => {
       if (!reportId) return;
-      if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
-      if (localStorage.getItem('uploaded-report-' + reportId)) return;
-      // Try to fetch from public/TestResultsJsons/<id>.json
-      fetch(process.env.BASE_URL + 'TestResultsJsons/' + reportId + '.json', { cache: 'reload' })
-        .then(r => r.ok ? r.json() : null)
-        .then(json => {
-          // Always normalize to {features: array}
-          if (Array.isArray(json)) state.staticReport = { features: json };
-          else if (json && Array.isArray(json.features)) state.staticReport = json;
-          else state.staticReport = null;
-        })
-        .catch(() => { state.staticReport = null; });
+      
+      console.log('🔍 fetchServerReport called with:', reportId);
+      const serverFilename = reportId;
+      
+      const possiblePaths = [
+        `/TestResultsJsons/${serverFilename}`,
+        `TestResultsJsons/${serverFilename}`,
+        `${process.env.BASE_URL || '/'}TestResultsJsons/${serverFilename}`,
+        `./TestResultsJsons/${serverFilename}`
+      ];
+      
+      if (!reportId.endsWith('.json')) {
+        possiblePaths.push(
+          `/TestResultsJsons/${serverFilename}.json`,
+          `TestResultsJsons/${serverFilename}.json`
+        );
+      }
+      
+      for (const path of possiblePaths) {
+        try {
+          console.log('🔍 Fetching from:', path);
+          const response = await fetch(path + '?t=' + Date.now(), { 
+            cache: 'no-cache',
+            headers: { 'Cache-Control': 'no-cache' }
+          });
+          
+          if (response.ok) {
+            const json = await response.json();
+            console.log('✅ Server fetch successful:', path);
+            
+            const normalized = normalizeReportData(json);
+            if (normalized && normalized.features && normalized.features.length > 0) {
+              state.staticReport = normalized;
+              console.log('✅ Server report loaded with', normalized.features.length, 'features');
+              return;
+            }
+          }
+        } catch (error) {
+          console.log('❌ Fetch failed:', path, error.message);
+        }
+      }
+      
+      console.log('❌ All server fetch attempts failed');
+    };
+
+    // Fetch static report JSON if needed
+    onMounted(async () => {
+      console.log('🔍 onMounted - reportId:', reportId);
+      
+      if (!reportId) {
+        console.log('🔍 No reportId, skipping server fetch');
+        return;
+      }
+      
+      // Check if we already have the data
+      if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
+        console.log('🔍 Already have data in Vuex store');
+        return;
+      }
+      
+      if (localStorage.getItem('uploaded-report-' + reportId)) {
+        console.log('🔍 Already have data in localStorage');
+        return;
+      }
+      
+      console.log('🔍 Attempting to fetch from server...');
+      await fetchServerReport(reportId);
     });
 
     // Soft expiry logic: check for t= timestamp in URL hash
@@ -113,6 +279,22 @@ export default {
     // Show a warning if the report is only available for this session
     const sessionOnly = computed(() => {
       return store.state.reportData && store.state.reportData._uploadedId === reportId;
+    });
+
+    // Watch for route changes to trigger server fetch
+    watch(() => route.params.id, async (newId, oldId) => {
+      if (newId && newId !== oldId) {
+        console.log('🔍 Route changed, new reportId:', newId);
+        state.staticReport = null; // Clear previous data
+        
+        // Trigger server fetch for new report
+        if (!store.state.reportData || store.state.reportData._uploadedId !== newId) {
+          if (!localStorage.getItem('uploaded-report-' + newId)) {
+            console.log('🔍 Triggering server fetch for new route');
+            await fetchServerReport(newId);
+          }
+        }
+      }
     });
 
     return { reportData, selectedFeatureIndex, onSelectFeature, expired, sessionOnly };

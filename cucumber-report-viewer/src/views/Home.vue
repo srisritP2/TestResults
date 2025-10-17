@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <LandingPage @file-uploaded="onFileUploaded" />
+    <LandingPage @report-uploaded="onReportUploaded" />
   </div>
 </template>
 
@@ -8,7 +8,6 @@
 import LandingPage from '@/components/LandingPage.vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
-import parseCucumberJson from '@/utils/parseCucumberJson';
 
 export default {
   components: {
@@ -17,13 +16,20 @@ export default {
   setup() {
     const store = useStore();
     const router = useRouter();
-    const onFileUploaded = (fileData) => {
-      const parsed = parseCucumberJson(fileData);
-      console.log('Parsed Cucumber JSON:', parsed); // Debug log
-      store.commit('setReportData', parsed);
-      router.push('/report');
+    const onReportUploaded = (reportData) => {
+      console.log('Report uploaded:', reportData); // Debug log
+      
+      // Store the report data in Vuex
+      store.commit('setReportData', reportData);
+      
+      // Navigate to report view
+      if (reportData._uploadedId) {
+        router.push({ name: 'Report', params: { id: reportData._uploadedId } });
+      } else {
+        router.push('/report');
+      }
     };
-    return { onFileUploaded };
+    return { onReportUploaded };
   }
 };
 </script>

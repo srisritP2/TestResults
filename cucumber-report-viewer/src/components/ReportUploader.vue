@@ -261,7 +261,13 @@ export default {
             const date = new Date().toISOString();
             
             // Set report data in store for immediate viewing
-            this.$store.commit('setReportData', reportData);
+            // Ensure proper format for store - wrap array in features object
+            const storeData = {
+              features: Array.isArray(reportData) ? reportData : (reportData.features || []),
+              _uploadedId: id,
+              _storageStrategy: 'pending' // Will be updated after storage
+            };
+            this.$store.commit('setReportData', storeData);
             
             // Try to upload to server first
             try {
@@ -274,13 +280,17 @@ export default {
                 // Also save to localStorage as backup
                 this.saveToLocalStorage(id, reportData, name, date, 'server');
                 
-                this.$emit('report-uploaded', { 
-                  ...reportData, 
+                // Update store with server data
+                const serverStoreData = {
+                  features: Array.isArray(reportData) ? reportData : (reportData.features || []),
                   _uploadedId: id, 
                   _storageStrategy: 'server',
                   _storageMessage: 'Report saved to server and will be available in the reports index.',
                   _serverUrl: uploadResult.url
-                });
+                };
+                this.$store.commit('setReportData', serverStoreData);
+                
+                this.$emit('report-uploaded', serverStoreData);
                 
                 this.selectedFile = null;
                 return;
@@ -306,8 +316,10 @@ export default {
                 // localStorage quota exceeded, try compressed storage
                 try {
                   // Simple compression: remove whitespace and store essential data only
+                  // reportData is an array of features, not an object with features property
+                  const featuresArray = Array.isArray(reportData) ? reportData : (reportData.features || []);
                   const compressedData = {
-                    features: reportData.features.map(f => ({
+                    features: featuresArray.map(f => ({
                       name: f.name,
                       uri: f.uri,
                       id: f.id,
@@ -343,13 +355,17 @@ export default {
             // Save to localStorage index
             this.saveToLocalStorage(id, reportData, name, date, storageStrategy);
             
-            // Show storage status to user
-            this.$emit('report-uploaded', { 
-              ...reportData, 
-              _uploadedId: id, 
+            // Update store with final storage strategy
+            const finalStoreData = {
+              features: Array.isArray(reportData) ? reportData : (reportData.features || []),
+              _uploadedId: id,
               _storageStrategy: storageStrategy,
               _storageMessage: storageMessage
-            });
+            };
+            this.$store.commit('setReportData', finalStoreData);
+            
+            // Show storage status to user
+            this.$emit('report-uploaded', finalStoreData);
             
             // Display storage status message
             this.showStorageStatus(storageStrategy, storageMessage);
