@@ -53,7 +53,11 @@ class ReportService {
     
     // First, load localStorage reports
     try {
-      const localIndex = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+      const localIndexRaw = localStorage.getItem('uploaded-reports-index') || '[]';
+      console.log('🔍 ReportService: Raw localStorage index:', localIndexRaw);
+      const localIndex = JSON.parse(localIndexRaw);
+      console.log('🔍 ReportService: Parsed localStorage index:', localIndex);
+      
       localReports = localIndex.map(report => ({
         ...report,
         features: report.features || 0,
@@ -66,9 +70,9 @@ class ReportService {
         size: report.size || 0,
         source: 'localStorage'
       }));
-      console.log(`Loaded ${localReports.length} reports from localStorage`);
+      console.log(`✅ ReportService: Loaded ${localReports.length} reports from localStorage`);
     } catch (localError) {
-      console.warn('Failed to load from localStorage:', localError);
+      console.warn('❌ ReportService: Failed to load from localStorage:', localError);
     }
 
     // Second, try to load server reports
@@ -81,18 +85,21 @@ class ReportService {
     
     for (const indexPath of possiblePaths) {
       try {
-        console.log(`Trying to load server index from: ${indexPath}`);
+        console.log(`🔍 ReportService: Trying to load server index from: ${indexPath}`);
         const response = await fetch(`${indexPath}?t=${Date.now()}`, { cache: 'reload' });
         
         if (!response.ok) {
+          console.log(`❌ ReportService: Server responded with ${response.status} for ${indexPath}`);
           throw new Error(`Failed to load index: ${response.status} ${response.statusText}`);
         }
         
         const data = await response.json();
+        console.log(`🔍 ReportService: Server data received from ${indexPath}:`, data);
         
         // Handle both enhanced and legacy formats
         if (Array.isArray(data)) {
           // Legacy format: array of reports
+          console.log(`✅ ReportService: Processing legacy format with ${data.length} reports`);
           serverReports = data.map(report => ({
             ...report,
             features: report.features || 0,
@@ -107,13 +114,16 @@ class ReportService {
           }));
         } else if (data && data.reports) {
           // Enhanced format: object with reports and statistics
+          console.log(`✅ ReportService: Processing enhanced format with ${data.reports.length} reports`);
           serverReports = data.reports.map(report => ({
             ...report,
             source: 'server'
           }));
+        } else {
+          console.warn(`⚠️ ReportService: Unexpected server data format:`, data);
         }
         
-        console.log(`Successfully loaded ${serverReports.length} reports from server: ${indexPath}`);
+        console.log(`✅ ReportService: Successfully loaded ${serverReports.length} reports from server: ${indexPath}`);
         break; // Successfully loaded, exit loop
         
       } catch (error) {
@@ -123,7 +133,9 @@ class ReportService {
     }
     
     // Merge localStorage and server reports
+    console.log(`🔍 ReportService: Merging reports - Local: ${localReports.length}, Server: ${serverReports.length}`);
     const mergedReports = this.mergeReports(localReports, serverReports);
+    console.log(`🔍 ReportService: Merged result: ${mergedReports.length} reports`);
     
     const mergedData = {
       reports: mergedReports,
@@ -136,13 +148,15 @@ class ReportService {
       }
     };
     
+    console.log(`🔍 ReportService: Final merged data:`, mergedData);
+    
     // Cache the merged result
     this.cache.set(cacheKey, {
       data: mergedData,
       timestamp: Date.now()
     });
     
-    console.log(`✅ Successfully merged reports: ${localReports.length} local + ${serverReports.length} server = ${mergedReports.length} total`);
+    console.log(`✅ ReportService: Successfully merged reports: ${localReports.length} local + ${serverReports.length} server = ${mergedReports.length} total`);
     return mergedData;
   }
 

@@ -355,9 +355,12 @@ export default {
 
       try {
         // Try to load enhanced index first
+        console.log('🔍 ReportsCollection: Loading index...');
         const indexData = await ReportService.loadIndex();
+        console.log('🔍 ReportsCollection: Index data received:', indexData);
 
-        if (indexData.reports) {
+        if (indexData && indexData.reports) {
+          console.log('✅ ReportsCollection: Found reports in indexData.reports:', indexData.reports.length);
           // Map timestamp to date for UI compatibility and ensure id property exists
           this.reportsCollection = indexData.reports.map(report => ({
             ...report,
@@ -365,13 +368,19 @@ export default {
             date: report.timestamp || report.date // Use timestamp if available, fallback to date
           }));
           this.statistics = indexData.statistics;
+          console.log('✅ ReportsCollection: Set reportsCollection with', this.reportsCollection.length, 'reports');
         } else if (Array.isArray(indexData)) {
+          console.log('✅ ReportsCollection: Found array format indexData:', indexData.length);
           // Fallback to old format - also map timestamp to date and ensure id property
           this.reportsCollection = indexData.map(report => ({
             ...report,
             id: report.id || report.filename || report.name || 'unknown',
             date: report.timestamp || report.date
           }));
+          console.log('✅ ReportsCollection: Set reportsCollection with', this.reportsCollection.length, 'reports');
+        } else {
+          console.warn('⚠️ ReportsCollection: Unexpected indexData format:', indexData);
+          this.reportsCollection = [];
         }
 
         // Load statistics separately if not in index
@@ -380,23 +389,32 @@ export default {
         }
 
       } catch (error) {
+        console.error('❌ ReportsCollection: Error loading index:', error);
         this.reportsCollectionError = error.message || 'Failed to load reports collection.';
 
         // Fallback to localStorage
+        console.log('🔍 ReportsCollection: Falling back to localStorage...');
         try {
           const localIndex = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+          console.log('🔍 ReportsCollection: localStorage index:', localIndex);
           if (localIndex.length > 0) {
             // Map timestamp to date for localStorage reports too
             this.reportsCollection = localIndex.map(report => ({
               ...report,
               date: report.timestamp || report.date
             }));
+            console.log('✅ ReportsCollection: Loaded', this.reportsCollection.length, 'reports from localStorage');
+          } else {
+            console.log('⚠️ ReportsCollection: No reports in localStorage');
+            this.reportsCollection = [];
           }
         } catch (e) {
-          console.error('Failed to load from localStorage:', e);
+          console.error('❌ ReportsCollection: Failed to load from localStorage:', e);
+          this.reportsCollection = [];
         }
       } finally {
         this.loading = false;
+        console.log('🔍 ReportsCollection: Final reportsCollection:', this.reportsCollection);
       }
     },
 
