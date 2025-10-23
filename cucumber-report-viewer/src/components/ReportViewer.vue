@@ -10,7 +10,7 @@
               <v-icon size="32" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
             </div>
             <div class="brand-text">
-              <h1 class="brand-title">Cucumber Reports</h1>
+              <h1 class="brand-title">Automation Test Results</h1>
               <p class="brand-subtitle">Test Execution Dashboard</p>
             </div>
           </div>

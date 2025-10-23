@@ -14,7 +14,7 @@
             <ThemeToggle />
           </div>
         </div>
-        <h1 class="main-title">Cucumber Test Results</h1>
+        <h1 class="main-title">Automation Test Results</h1>
       </div>
     </header>
     <main class="main-content">
