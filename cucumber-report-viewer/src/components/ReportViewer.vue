@@ -102,14 +102,8 @@
         <div class="left-actions">
           <v-tooltip text="Back to Collection" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="goBackToCollection"
-                icon="mdi-arrow-left"
-                variant="text"
-                size="large"
-                class="back-btn"
-              />
+              <v-btn v-bind="props" @click="goBackToCollection" icon="mdi-arrow-left" variant="text" size="large"
+                class="back-btn" />
             </template>
           </v-tooltip>
         </div>
@@ -118,29 +112,16 @@
         <div class="right-actions">
           <v-tooltip text="Refresh Report Data" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="refreshReport"
-                icon="mdi-refresh"
-                variant="text"
-                size="large"
-                class="refresh-btn"
-              />
+              <v-btn v-bind="props" @click="refreshReport" icon="mdi-refresh" variant="text" size="large"
+                class="refresh-btn" />
             </template>
           </v-tooltip>
-          
+
           <v-tooltip :text="deleting ? 'Deleting Report...' : 'Delete Report'" location="bottom">
             <template #activator="{ props }">
-              <v-btn
-                v-bind="props"
-                @click="deleteCurrentReport"
-                :icon="deleting ? 'mdi-loading mdi-spin' : 'mdi-delete'"
-                variant="text"
-                size="large"
-                class="delete-btn"
-                :disabled="deleting"
-                :loading="deleting"
-              />
+              <v-btn v-bind="props" @click="deleteCurrentReport"
+                :icon="deleting ? 'mdi-loading mdi-spin' : 'mdi-delete'" variant="text" size="large" class="delete-btn"
+                :disabled="deleting" :loading="deleting" />
             </template>
           </v-tooltip>
         </div>
@@ -273,9 +254,9 @@
                         <v-icon size="16" color="#F59E0B" class="mr-1">mdi-tag</v-icon>
                         Tags
                       </label>
-                      <v-select v-model="filters.tags" :items="availableTags" multiple chips closable-chips
-                        variant="outlined" density="compact" class="filter-select" placeholder="All tags"
-                        @update:modelValue="applyFilters" hide-details>
+                      <v-select v-model="filters.tags" :items="tagFilterOptions" item-title="text" item-value="value"
+                        multiple chips closable-chips variant="outlined" density="compact" class="filter-select"
+                        placeholder="All tags" @update:modelValue="applyFilters" hide-details>
                       </v-select>
                     </div>
 
@@ -297,7 +278,7 @@
                         <v-icon size="16" color="#8B5CF6" class="mr-1">mdi-file-document</v-icon>
                         Features
                       </label>
-                      <v-select v-model="filters.features" :items="availableFeatures" item-title="text"
+                      <v-select v-model="filters.features" :items="featureFilterOptions" item-title="text"
                         item-value="value" multiple chips closable-chips variant="outlined" density="compact"
                         class="filter-select" placeholder="All features" @update:modelValue="applyFilters" hide-details>
                       </v-select>
@@ -484,33 +465,17 @@
     </div>
 
     <!-- Confirmation Dialog -->
-    <ConfirmationDialog
-      v-model="confirmationDialog.show"
-      :title="confirmationDialog.title"
-      :message="confirmationDialog.message"
-      :details="confirmationDialog.details"
-      :type="confirmationDialog.type"
-      :confirm-text="confirmationDialog.confirmText"
-      :confirm-color="confirmationDialog.confirmColor"
-      :show-environment-info="confirmationDialog.showEnvironmentInfo"
-      :environment="confirmationDialog.environment"
-      @confirm="confirmationDialog.onConfirm"
-      @cancel="confirmationDialog.onCancel"
-    />
+    <ConfirmationDialog v-model="confirmationDialog.show" :title="confirmationDialog.title"
+      :message="confirmationDialog.message" :details="confirmationDialog.details" :type="confirmationDialog.type"
+      :confirm-text="confirmationDialog.confirmText" :confirm-color="confirmationDialog.confirmColor"
+      :show-environment-info="confirmationDialog.showEnvironmentInfo" :environment="confirmationDialog.environment"
+      @confirm="confirmationDialog.onConfirm" @cancel="confirmationDialog.onCancel" />
 
     <!-- Success/Error Snackbar -->
-    <v-snackbar
-      v-model="snackbar.show"
-      :color="snackbar.color"
-      :timeout="snackbar.timeout"
-      location="top right"
-    >
+    <v-snackbar v-model="snackbar.show" :color="snackbar.color" :timeout="snackbar.timeout" location="top right">
       {{ snackbar.message }}
       <template #actions>
-        <v-btn
-          variant="text"
-          @click="snackbar.show = false"
-        >
+        <v-btn variant="text" @click="snackbar.show = false">
           Close
         </v-btn>
       </template>
@@ -641,6 +606,9 @@ export default {
     filteredFeatures() {
       if (!this.report || !this.report.features) return [];
       return this.report.features.filter(feature => this.shouldShowFeature(feature));
+    },
+    filteredFeaturesCount() {
+      return this.filteredFeatures.length;
     },
     hasActiveFilters() {
       return this.filters.status.length > 0 ||
@@ -925,11 +893,11 @@ export default {
       return (val / total * 100).toFixed(1) + '%';
     },
     featureStatus(feature) {
-      if (!feature || !feature.elements) return '';
+      if (!feature || !feature.elements) return 'unknown';
 
       // Filter out background elements to only consider actual scenarios
       const scenarios = feature.elements.filter(el => el.type !== 'background');
-      if (scenarios.length === 0) return '';
+      if (scenarios.length === 0) return 'unknown';
 
       // Check if any scenario failed
       if (scenarios.some(s => this.scenarioStatus(s) === 'failed')) return 'failed';
@@ -940,8 +908,9 @@ export default {
       // Check if all scenarios are skipped
       if (scenarios.every(s => this.scenarioStatus(s) === 'skipped')) return 'skipped';
 
-      // Mixed status or unknown
-      return '';
+      // Mixed status or unknown - treat as passed if there are some passed scenarios
+      const hasPassedScenarios = scenarios.some(s => this.scenarioStatus(s) === 'passed');
+      return hasPassedScenarios ? 'passed' : 'unknown';
     },
     onSearchInput() {
       // Clear existing timer
@@ -1174,7 +1143,7 @@ export default {
 
         // Get report ID from route params
         const reportId = this.$route.params.id;
-        
+
         const result = await this.deletionService.deleteReport(reportId, {
           confirm: false, // We already confirmed above
           showFeedback: false // We'll handle feedback ourselves
@@ -1184,15 +1153,15 @@ export default {
           // Show success message with appropriate text
           let successMessage;
           if (result.localOnly) {
-            successMessage = result.deletionType === 'soft' 
-              ? 'Report hidden locally (server offline)' 
+            successMessage = result.deletionType === 'soft'
+              ? 'Report hidden locally (server offline)'
               : 'Report removed from view (server offline)';
           } else {
-            successMessage = result.deletionType === 'soft' 
-              ? 'Report hidden from collection' 
+            successMessage = result.deletionType === 'soft'
+              ? 'Report hidden from collection'
               : 'Report deleted successfully';
           }
-          
+
           this.showSuccessMessage(successMessage);
 
           // Emit event for parent components
@@ -1219,11 +1188,11 @@ export default {
     async showDeleteConfirmation() {
       return new Promise((resolve) => {
         const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-        
+
         this.confirmationDialog = {
           show: true,
           title: isLocalhost ? 'Delete Report' : 'Hide Report',
-          message: isLocalhost 
+          message: isLocalhost
             ? 'This will permanently delete the report file from the server.'
             : 'This will hide the report from the collection. The file will remain until next deployment.',
           details: `Report: ${this.report?.name || this.$route.params.id}`,
@@ -1274,7 +1243,7 @@ export default {
     // Feature filtering method
     shouldShowFeature(feature) {
       // Status filter
-      if (this.filters.status.length > 0) {
+      if (this.filters.status.length > 0 && !this.filters.status.includes('all')) {
         const featureStatus = this.featureStatus(feature);
         if (!this.filters.status.includes(featureStatus)) {
           return false;
@@ -1284,7 +1253,7 @@ export default {
       // Tags filter
       if (this.filters.tags.length > 0) {
         const featureTags = [];
-        
+
         // Collect feature tags
         if (feature.tags) {
           feature.tags.forEach(tag => {
@@ -1292,7 +1261,7 @@ export default {
             if (cleanTag) featureTags.push(cleanTag);
           });
         }
-        
+
         // Collect scenario tags
         if (feature.elements) {
           feature.elements.forEach(scenario => {
@@ -1304,7 +1273,7 @@ export default {
             }
           });
         }
-        
+
         // Check if any selected tags match
         const hasMatchingTag = this.filters.tags.some(selectedTag =>
           featureTags.includes(selectedTag)
@@ -1317,7 +1286,7 @@ export default {
       // Duration filter
       if (this.filters.duration) {
         const featureDuration = this.getFeatureDuration(feature);
-        
+
         if (this.filters.duration === 'fast' && featureDuration >= 1) {
           return false;
         } else if (this.filters.duration === 'medium' && (featureDuration < 1 || featureDuration > 10)) {
@@ -1329,8 +1298,8 @@ export default {
 
       // Features filter
       if (this.filters.features.length > 0) {
-        const featureId = feature.id || feature.name;
-        if (!this.filters.features.includes(featureId)) {
+        const featureIndex = this.report.features.indexOf(feature);
+        if (!this.filters.features.includes(featureIndex)) {
           return false;
         }
       }
@@ -1341,7 +1310,7 @@ export default {
     // Get feature duration helper
     getFeatureDuration(feature) {
       if (!feature.elements) return 0;
-      
+
       let totalDuration = 0;
       feature.elements.forEach(scenario => {
         if (scenario.steps) {
@@ -1352,12 +1321,12 @@ export default {
           });
         }
       });
-      
+
       // Convert nanoseconds to seconds if needed
       if (totalDuration > 1000000) {
         totalDuration = totalDuration / 1e9;
       }
-      
+
       return totalDuration;
     }
   }
