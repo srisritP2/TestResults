@@ -123,8 +123,8 @@ module.exports = {
       short_name: "Test Results",
       description:
         "View and analyze automation test results with an interactive web interface",
-      start_url: "/",
-      scope: "/",
+      start_url: "/TestResults/",
+      scope: "/TestResults/",
       display: "standalone",
       background_color: "#ffffff",
       theme_color: "#3B82F6",
