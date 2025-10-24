@@ -1,81 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automation Test Results Viewer</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <!-- Theme initialization script to prevent flash of unstyled content -->
-    <script>
-      (function() {
-        // Detect system preference
-        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Load user preference from localStorage
-        const savedPreference = localStorage.getItem('theme-preference') || 'system';
-        
-        // Determine if should be dark
-        let shouldBeDark = false;
-        if (savedPreference === 'dark') {
-          shouldBeDark = true;
-        } else if (savedPreference === 'light') {
-          shouldBeDark = false;
-        } else { // system
-          shouldBeDark = systemPrefersDark;
-        }
-        
-        // Apply theme to document immediately
-        if (shouldBeDark) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.removeAttribute('data-theme');
-        }
-      })();
-    </script>
-    
-    <style>
-      /* Prevent flash of unstyled content */
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Automation Test Results Viewer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Theme initialization script to prevent flash of unstyled content -->
+  <script>
+    (function () {
+      // Detect system preference
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Load user preference from localStorage
+      const savedPreference = localStorage.getItem('theme-preference') || 'system';
+
+      // Determine if should be dark
+      let shouldBeDark = false;
+      if (savedPreference === 'dark') {
+        shouldBeDark = true;
+      } else if (savedPreference === 'light') {
+        shouldBeDark = false;
+      } else { // system
+        shouldBeDark = systemPrefersDark;
       }
-      
-      #app {
-        min-height: 100vh;
+
+      // Apply theme to document immediately
+      if (shouldBeDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
       }
-      
-      /* Loading spinner for better UX */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(59, 130, 246, 0.3);
-        border-top: 3px solid #3B82F6;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 9999;
+    })();
+  </script>
+
+  <style>
+    /* Prevent flash of unstyled content */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #app {
+      min-height: 100vh;
+    }
+
+    /* Loading spinner for better UX */
+    .loading-spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(59, 130, 246, 0.3);
+      border-top: 3px solid #3B82F6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 9999;
+    }
+
+    [data-theme="dark"] .loading-spinner {
+      border: 3px solid rgba(96, 165, 250, 0.3);
+      border-top: 3px solid #60A5FA;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
-      
-      [data-theme="dark"] .loading-spinner {
-        border: 3px solid rgba(96, 165, 250, 0.3);
-        border-top: 3px solid #60A5FA;
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
       }
-      
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }
-    </style>
+    }
+  </style>
 </head>
+
 <body>
-    <div id="app">
-      <!-- Loading spinner shown until Vue app loads -->
-      <div class="loading-spinner"></div>
-    </div>
+  <div id="app">
+    <!-- Loading spinner shown until Vue app loads -->
+    <div class="loading-spinner"></div>
+  </div>
 </body>
+
 </html>
