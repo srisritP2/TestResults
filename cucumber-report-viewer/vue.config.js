@@ -2,7 +2,7 @@
 const path = require("path");
 
 module.exports = {
-  publicPath: "/",
+  publicPath: "/TestResults/",
   lintOnSave: false,
   devServer: {
     port: 8080,
