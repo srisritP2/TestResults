@@ -7,7 +7,7 @@
         <div class="brand-section">
           <div class="brand-logo">
             <div class="logo-icon">
-              <v-icon size="32" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
+              <v-icon size="40" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
             </div>
             <div class="brand-text">
               <h1 class="brand-title">Test Execution</h1>
@@ -1351,6 +1351,7 @@ export default {
   align-items: center;
   max-width: 1800px;
   margin: 0 auto;
+  position: relative;
 }
 
 /* Left Actions */
@@ -1364,6 +1365,8 @@ export default {
   color: #6366F1 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .back-btn:hover {
@@ -1388,6 +1391,8 @@ export default {
   color: #10B981 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .refresh-btn:hover {
@@ -1404,6 +1409,8 @@ export default {
   color: #EF4444 !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 12px;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .delete-btn:hover {
@@ -1435,10 +1442,16 @@ export default {
 
 .logo-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 12px;
-  border-radius: 12px;
+  padding: 16px;
+  border-radius: 16px;
   backdrop-filter: blur(10px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo-icon .v-icon {
@@ -1482,13 +1495,20 @@ export default {
   border-radius: 8px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 60px;
 }
 
 .info-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
 }
 
 .info-icon .v-icon {
@@ -1500,6 +1520,8 @@ export default {
 .info-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .info-label {
@@ -1621,14 +1643,21 @@ export default {
   border-radius: 8px;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 60px;
 }
 
 .time-icon,
 .duration-icon {
   background: rgba(255, 255, 255, 0.2);
-  padding: 8px;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  flex-shrink: 0;
 }
 
 .time-icon .v-icon,
@@ -1642,6 +1671,8 @@ export default {
 .duration-content {
   display: flex;
   flex-direction: column;
+  gap: 2px;
+  flex: 1;
 }
 
 .time-label,
@@ -1657,11 +1688,11 @@ export default {
   font-weight: 600;
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Responsive Design */
 @media (max-width: 1200px) {
   .header-container {
     grid-template-columns: 1fr;
-    gap: 24px;
+    gap: 20px;
     text-align: center;
   }
 
@@ -1677,8 +1708,9 @@ export default {
 
 @media (max-width: 768px) {
   .modern-header {
-    padding: 20px 16px;
-    margin-bottom: 24px;
+    padding: 16px 12px;
+    margin-bottom: 16px;
+    position: relative;
   }
 
   .header-container {
@@ -1688,7 +1720,157 @@ export default {
     grid-template-columns: none;
     align-items: center;
     text-align: center;
-    padding-top: 70px; /* Enough space to clear action buttons */
+    padding-top: 70px;
+    /* Enough space to clear action buttons */
+  }
+
+  .brand-section {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .logo-icon {
+    display: none;
+    /* Hide the brand logo on mobile to avoid duplication */
+  }
+
+  .brand-logo {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .brand-text {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-title {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .brand-subtitle {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .brand-title {
+    font-size: 18px !important;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .brand-subtitle {
+    font-size: 12px !important;
+    margin: 0;
+  }
+
+  .execution-info {
+    order: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .time-section {
+    order: 4;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .results-overview {
+    order: 3;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .info-card,
+  .time-card,
+  .duration-card {
+    padding: 10px 12px;
+    min-width: auto;
+    min-height: 50px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .info-icon,
+  .time-icon,
+  .duration-icon {
+    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
+  }
+
+  .info-content,
+  .time-content,
+  .duration-content {
+    gap: 2px;
+  }
+
+  .info-label,
+  .time-label,
+  .duration-label {
+    font-size: 11px;
+  }
+
+  .info-value,
+  .time-value,
+  .duration-value {
+    font-size: 12px;
+  }
+
+  .results-chart {
+    order: 1;
+  }
+
+  .chart-container {
+    width: 80px;
+    height: 80px;
+  }
+
+  .success-percentage {
+    font-size: 14px;
+  }
+
+  .chart-label {
+    font-size: 10px;
+  }
+
+  .results-summary {
+    order: 2;
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .summary-item {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .summary-count {
+    font-size: 16px;
+  }
+
+  .summary-label {
+    font-size: 11px;
   }
 
   .left-actions {
@@ -1725,77 +1907,118 @@ export default {
     justify-content: center !important;
   }
 
-  .logo-icon {
-    display: none; /* Hide the brand logo on mobile to avoid duplication */
+  .back-btn .v-icon,
+  .refresh-btn .v-icon,
+  .delete-btn .v-icon {
+    color: white !important;
+    font-size: 20px !important;
   }
 
-  .brand-section {
-    order: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .back-btn:hover,
+  .refresh-btn:hover,
+  .delete-btn:hover {
+    background: rgba(0, 0, 0, 0.4) !important;
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .modern-header {
+    padding: 12px 8px;
+  }
+
+  .header-container {
+    padding-top: 60px;
+    /* Enough space to clear action buttons on small mobile */
+    gap: 12px;
+  }
+
+  .execution-info,
+  .time-section {
+    max-width: 280px;
+  }
+
+  .logo-icon {
+    display: none;
+    /* Keep logo hidden on small mobile too */
   }
 
   .brand-text {
     text-align: center;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
 
   .brand-title {
+    font-size: 16px !important;
     text-align: center !important;
-    width: 100%;
   }
 
   .brand-subtitle {
+    font-size: 11px !important;
     text-align: center !important;
-    width: 100%;
-  }
-
-  .execution-info,
-  .time-section {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .results-overview {
-    flex-direction: column;
-    gap: 16px;
   }
 
   .info-card,
   .time-card,
   .duration-card {
-    padding: 10px 12px;
-    min-width: auto;
-    min-height: 50px;
-    gap: 10px;
-    width: 100%;
+    padding: 8px 10px;
+    min-height: 44px;
+    gap: 8px;
   }
 
   .info-icon,
   .time-icon,
   .duration-icon {
-    padding: 8px;
-    min-width: 36px;
-    min-height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+    padding: 6px;
+    min-width: 32px;
+    min-height: 32px;
   }
-}
 
-/* Small Mobile Optimization */
-@media (max-width: 480px) {
-  .header-container {
-    padding-top: 60px; /* Enough space to clear action buttons on small mobile */
+  .info-label,
+  .time-label,
+  .duration-label {
+    font-size: 11px;
+  }
+
+  .info-value,
+  .time-value,
+  .duration-value {
+    font-size: 12px;
+  }
+
+  .chart-container {
+    width: 70px;
+    height: 70px;
+  }
+
+  .success-percentage {
+    font-size: 12px;
+  }
+
+  .results-summary {
     gap: 12px;
   }
-  
+
+  .summary-count {
+    font-size: 14px;
+  }
+
+  .summary-label {
+    font-size: 10px;
+  }
+
+  .left-actions {
+    top: 12px;
+    left: 12px;
+  }
+
+  .right-actions {
+    top: 12px;
+    right: 12px;
+    gap: 6px;
+  }
+
   .back-btn,
   .refresh-btn,
   .delete-btn {
@@ -1804,6 +2027,12 @@ export default {
     width: 40px !important;
     height: 40px !important;
     border-radius: 10px !important;
+  }
+
+  .back-btn .v-icon,
+  .refresh-btn .v-icon,
+  .delete-btn .v-icon {
+    font-size: 18px !important;
   }
 }
 
@@ -2225,23 +2454,94 @@ export default {
   flex-shrink: 0;
 }
 
-/* Responsive Design for Search and Filters */
+/* Enhanced Mobile Responsive Design for Search and Filters */
 @media (max-width: 768px) {
+  .controls-bar-container {
+    margin-bottom: 12px;
+  }
 
-  .search-section,
-  .filters-section {
-    padding: 16px;
-    margin-bottom: 16px;
+  .controls-bar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .control-toggle {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .control-content {
+    margin: 0 8px;
+  }
+
+  .control-label {
+    font-size: 14px;
+  }
+
+  .expandable-panels {
+    margin-top: 8px;
+  }
+
+  .panel-container {
+    margin-bottom: 8px;
+  }
+
+  .search-panel,
+  .filters-panel {
+    padding: 12px;
+    border-radius: 8px;
+  }
+
+  .search-input {
+    margin-bottom: 12px;
+  }
+
+  .search-results-info {
+    margin-top: 8px;
+  }
+
+  .results-breakdown {
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+  }
+
+  .breakdown-item {
+    font-size: 12px;
   }
 
   .filters-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 12px;
+  }
+
+  .filter-group {
+    margin-bottom: 8px;
+  }
+
+  .filter-label {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  .filter-select {
+    font-size: 14px;
+  }
+
+  .active-filters-summary {
+    margin-top: 12px;
+    padding: 8px;
   }
 
   .active-filters-content {
     flex-direction: column;
     align-items: flex-start;
+    gap: 8px;
+  }
+
+  .summary-text {
+    font-size: 12px;
   }
 
   .search-results-badge,
@@ -2249,6 +2549,41 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
+  }
+
+  .no-results-text {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .controls-bar {
+    padding: 8px;
+  }
+
+  .control-toggle {
+    padding: 10px;
+  }
+
+  .control-label {
+    font-size: 13px;
+  }
+
+  .search-panel,
+  .filters-panel {
+    padding: 8px;
+  }
+
+  .filters-grid {
+    gap: 8px;
+  }
+
+  .filter-label {
+    font-size: 12px;
+  }
+
+  .breakdown-item {
+    font-size: 11px;
   }
 }
 
@@ -2376,6 +2711,19 @@ export default {
   padding: 0 1.5rem 2rem 1.5rem;
 }
 
+/* Mobile styles for main content */
+@media (max-width: 768px) {
+  .cucumber-report-content {
+    padding: 0 12px 16px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cucumber-report-content {
+    padding: 0 8px 12px 8px;
+  }
+}
+
 .cucumber-summary-bar {
   display: flex;
   align-items: center;
@@ -2386,6 +2734,63 @@ export default {
   padding: 0.7rem 1.2rem;
   margin-bottom: 1.2rem;
   font-size: 1.05rem;
+}
+
+/* Mobile styles for summary bar */
+@media (max-width: 768px) {
+  .cucumber-summary-bar {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .summary-env {
+    order: 1;
+    justify-content: center;
+  }
+
+  .env-label {
+    font-size: 13px;
+  }
+
+  .env-value {
+    font-size: 13px;
+  }
+
+  .summary-stats {
+    order: 2;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .stat {
+    font-size: 13px;
+    flex-direction: column;
+    text-align: center;
+    gap: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cucumber-summary-bar {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .summary-stats {
+    gap: 12px;
+  }
+
+  .stat {
+    font-size: 12px;
+  }
+
+  .env-label,
+  .env-value {
+    font-size: 12px;
+  }
 }
 
 .summary-env {
@@ -2461,6 +2866,111 @@ export default {
   border-radius: 8px;
   margin-bottom: 1.2rem;
   padding: 0.5rem 0.7rem;
+}
+
+/* Mobile styles for features list */
+@media (max-width: 768px) {
+  .cucumber-features-list {
+    padding: 8px;
+    margin-bottom: 16px;
+  }
+
+  .cucumber-feature-row {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 8px;
+    font-size: 14px;
+  }
+
+  .feature-file {
+    font-size: 13px;
+    line-height: 1.3;
+    word-break: break-word;
+  }
+
+  .feature-tags {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .feature-tag {
+    font-size: 11px;
+    padding: 2px 6px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+  }
+
+  .cucumber-scenario-block {
+    margin-bottom: 12px;
+  }
+
+  .scenario-header-row {
+    padding: 10px 8px;
+  }
+
+  .scenario-title-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .scenario-title {
+    font-size: 13px;
+    line-height: 1.3;
+    word-break: break-word;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .scenario-duration {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .scenario-tags {
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .scenario-tag {
+    font-size: 10px;
+    padding: 2px 4px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cucumber-features-list {
+    padding: 6px;
+  }
+
+  .cucumber-feature-row {
+    padding: 10px 6px;
+    font-size: 13px;
+  }
+
+  .feature-file {
+    font-size: 12px;
+  }
+
+  .feature-tag {
+    font-size: 10px;
+    padding: 1px 4px;
+  }
+
+  .scenario-title {
+    font-size: 12px;
+    min-width: 150px;
+  }
+
+  .scenario-duration {
+    font-size: 10px;
+  }
+
+  .scenario-tag {
+    font-size: 9px;
+    padding: 1px 3px;
+  }
 }
 
 .cucumber-feature-row {
@@ -2621,6 +3131,108 @@ export default {
   padding: 0.2em 0;
   flex-wrap: wrap;
   word-break: break-word;
+}
+
+/* Mobile styles for steps list */
+@media (max-width: 768px) {
+  .cucumber-steps-list {
+    margin: 8px 0;
+    padding: 0 8px;
+  }
+
+  .cucumber-step-row {
+    gap: 8px;
+    padding: 8px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .step-keyword {
+    min-width: 40px;
+    font-size: 12px;
+  }
+
+  .step-text {
+    font-size: 13px;
+    line-height: 1.4;
+    flex: 1 1 150px;
+  }
+
+  .step-duration {
+    font-size: 11px;
+    margin-left: 0;
+    width: 100%;
+    text-align: right;
+  }
+
+  .step-error-block {
+    margin-top: 8px;
+    margin-left: 0;
+    padding: 8px;
+    width: calc(100% - 16px);
+  }
+
+  .error-header {
+    margin-bottom: 6px;
+    font-size: 12px;
+  }
+
+  .step-error-message {
+    font-size: 11px;
+    padding: 6px;
+    max-height: 150px;
+  }
+
+  .error-actions {
+    margin-top: 6px;
+    gap: 6px;
+  }
+
+  .expand-error-btn,
+  .copy-error-btn {
+    font-size: 11px !important;
+    padding: 3px 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cucumber-steps-list {
+    padding: 0 4px;
+  }
+
+  .cucumber-step-row {
+    gap: 6px;
+    padding: 6px 0;
+    font-size: 12px;
+  }
+
+  .step-keyword {
+    min-width: 35px;
+    font-size: 11px;
+  }
+
+  .step-text {
+    font-size: 12px;
+    flex: 1 1 120px;
+  }
+
+  .step-duration {
+    font-size: 10px;
+  }
+
+  .step-error-block {
+    padding: 6px;
+  }
+
+  .error-header {
+    font-size: 11px;
+  }
+
+  .step-error-message {
+    font-size: 10px;
+    padding: 4px;
+    max-height: 120px;
+  }
 }
 
 .step-keyword {
