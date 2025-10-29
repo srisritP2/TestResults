@@ -10,8 +10,8 @@
               <v-icon size="32" :color="isDarkTheme ? '#34D399' : '#10B981'">mdi-leaf</v-icon>
             </div>
             <div class="brand-text">
-              <h1 class="brand-title">Automation Test Results</h1>
-              <p class="brand-subtitle">Test Execution Dashboard</p>
+              <h1 class="brand-title">Test Execution</h1>
+              <p class="brand-subtitle">Dashboard</p>
             </div>
           </div>
         </div>
@@ -1681,6 +1681,80 @@ export default {
     margin-bottom: 24px;
   }
 
+  .header-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    grid-template-columns: none;
+    align-items: center;
+    text-align: center;
+    padding-top: 70px; /* Enough space to clear action buttons */
+  }
+
+  .left-actions {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 10;
+  }
+
+  .right-actions {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .back-btn,
+  .refresh-btn,
+  .delete-btn {
+    background: rgba(0, 0, 0, 0.3) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 12px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  .logo-icon {
+    display: none; /* Hide the brand logo on mobile to avoid duplication */
+  }
+
+  .brand-section {
+    order: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .brand-text {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-title {
+    text-align: center !important;
+    width: 100%;
+  }
+
+  .brand-subtitle {
+    text-align: center !important;
+    width: 100%;
+  }
+
   .execution-info,
   .time-section {
     flex-direction: column;
@@ -1690,6 +1764,46 @@ export default {
   .results-overview {
     flex-direction: column;
     gap: 16px;
+  }
+
+  .info-card,
+  .time-card,
+  .duration-card {
+    padding: 10px 12px;
+    min-width: auto;
+    min-height: 50px;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .info-icon,
+  .time-icon,
+  .duration-icon {
+    padding: 8px;
+    min-width: 36px;
+    min-height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+}
+
+/* Small Mobile Optimization */
+@media (max-width: 480px) {
+  .header-container {
+    padding-top: 60px; /* Enough space to clear action buttons on small mobile */
+    gap: 12px;
+  }
+  
+  .back-btn,
+  .refresh-btn,
+  .delete-btn {
+    min-width: 40px !important;
+    min-height: 40px !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
   }
 }
 
