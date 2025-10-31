@@ -1,5 +1,5 @@
 {
-  "generated": "2025-10-31T09:13:37.862Z",
+  "generated": "2025-10-31T09:40:29.114Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -48,9 +48,9 @@
       "isDeleted": false
     },
     {
-      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T06-17-26-631Z",
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T05-39-25-830Z",
       "name": "Admin Client Settings Page || Test Scenarios",
-      "date": "2025-10-29T06:17:26.631Z",
+      "date": "2025-10-29T05:39:25.830Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
@@ -93,7 +93,7 @@
       "isDeleted": false
     },
     {
-      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T05-39-25-830Z",
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T06-17-26-631Z",
       "name": "Admin Client Settings Page || Test Scenarios",
       "date": "2025-10-29T05:39:25.830Z",
       "features": 15,
@@ -1820,7 +1820,14 @@
       ]
     },
     {
-      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T09-00-22-105Z.json",
+      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T06-17-26-631Z.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T06-55-05-033Z.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
@@ -1881,23 +1888,6 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
-    },
-    {
-      "file": "report-1761718646631.json",
-      "errors": [
-        "Feature 2, Scenario 0: Missing name",
-        "Feature 2, Scenario 2: Missing name"
-      ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T09-00-22-105Z.json",
-      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T06-55-05-033Z.json"
-    },
-    {
-      "from": "report-1761718646631.json",
-      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T06-17-26-631Z.json"
     }
   ]
 }
