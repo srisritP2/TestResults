@@ -86,7 +86,7 @@ export default {
       if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
       if (localStorage.getItem('uploaded-report-' + reportId)) return;
       // Try to fetch from public/TestResultsJsons/<id>.json
-      fetch(process.env.BASE_URL + 'TestResultsJsons/' + reportId + '.json', { cache: 'reload' })
+      fetch('/TestResults/TestResultsJsons/' + reportId + '.json', { cache: 'reload' })
         .then(r => r.ok ? r.json() : null)
         .then(json => {
           // Always normalize to {features: array}
