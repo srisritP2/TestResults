@@ -60,9 +60,9 @@
     "isDeleted": false
   },
   "newestReport": {
-    "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T09-02-51-925Z",
+    "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z",
     "name": "Admin Client Settings Page || Test Scenarios",
-    "date": "2025-11-06T09:02:51.925Z",
+    "date": "2025-11-06T07:00:06.033Z",
     "size": 201260,
     "features": 15,
     "scenarios": 52,
@@ -102,7 +102,7 @@
     "tool": null,
     "version": null,
     "hash": "539f28d30b98da1e5f213d0b85e07647",
-    "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T09-02-51-925Z.json",
+    "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z.json",
     "status": "active",
     "isDeleted": false
   },
