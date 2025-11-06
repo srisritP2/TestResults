@@ -86,15 +86,24 @@ export default {
       if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
       if (localStorage.getItem('uploaded-report-' + reportId)) return;
       // Try to fetch from public/TestResultsJsons/<id>.json
-      fetch('/TestResults/TestResultsJsons/' + reportId + '.json', { cache: 'reload' })
-        .then(r => r.ok ? r.json() : null)
+      const fetchUrl = '/TestResults/TestResultsJsons/' + reportId + '.json';
+      console.log('Fetching report from:', fetchUrl);
+      fetch(fetchUrl, { cache: 'reload' })
+        .then(r => {
+          console.log('Fetch response:', r.status, r.ok);
+          return r.ok ? r.json() : null;
+        })
         .then(json => {
+          console.log('Fetched JSON:', json ? 'Success' : 'Failed');
           // Always normalize to {features: array}
           if (Array.isArray(json)) state.staticReport = { features: json };
           else if (json && Array.isArray(json.features)) state.staticReport = json;
           else state.staticReport = null;
         })
-        .catch(() => { state.staticReport = null; });
+        .catch(error => { 
+          console.error('Fetch error:', error);
+          state.staticReport = null; 
+        });
     });
 
     // Soft expiry logic: check for t= timestamp in URL hash
