@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-06T09:05:02.529Z",
+  "generated": "2025-11-06T09:15:08.846Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -1879,7 +1879,7 @@
       ]
     },
     {
-      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T09-02-51-925Z.json",
+      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
@@ -1940,12 +1940,6 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T09-02-51-925Z.json",
-      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z.json"
     }
   ]
 }
