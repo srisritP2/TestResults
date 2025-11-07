@@ -1,7 +1,52 @@
 {
-  "generated": "2025-11-07T13:32:43.601Z",
+  "generated": "2025-11-07T13:38:43.324Z",
   "version": "2.1.0",
   "reports": [
+    {
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T13-29-03-792Z",
+      "name": "Admin Client Settings Page || Test Scenarios",
+      "date": "2025-11-07T13:29:03.792Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 965.8489095,
+      "size": 201282,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "4675c6a3dbc93921c7e8da678b6bba0a",
+      "status": "active",
+      "isDeleted": false
+    },
     {
       "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z",
       "name": "Admin Client Settings Page || Test Scenarios",
@@ -1539,19 +1584,19 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 34,
-    "totalFeatures": 524,
-    "totalScenarios": 1782,
-    "totalSteps": 22154,
-    "totalPassed": 22089,
+    "totalReports": 35,
+    "totalFeatures": 539,
+    "totalScenarios": 1834,
+    "totalSteps": 22813,
+    "totalPassed": 22748,
     "totalFailed": 30,
     "totalSkipped": 35,
-    "totalDuration": 32635.243809599997,
-    "totalSize": 12147853,
-    "averageDuration": "959.86",
-    "passRate": "99.71",
-    "failRate": "0.14",
-    "skipRate": "0.16",
+    "totalDuration": 33601.0927191,
+    "totalSize": 12349135,
+    "averageDuration": "960.03",
+    "passRate": "99.72",
+    "failRate": "0.13",
+    "skipRate": "0.15",
     "oldestReport": {
       "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-07-17T11-06-24-735Z",
       "name": "Admin Client Settings Page || Test Scenarios",
@@ -1600,17 +1645,17 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z",
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T13-29-03-792Z",
       "name": "Admin Client Settings Page || Test Scenarios",
-      "date": "2025-11-06T07:00:06.033Z",
-      "size": 201260,
+      "date": "2025-11-07T13:29:03.792Z",
+      "size": 201282,
       "features": 15,
       "scenarios": 52,
       "steps": 659,
       "passed": 659,
       "failed": 0,
       "skipped": 0,
-      "duration": 919.5847478,
+      "duration": 965.8489095,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -1641,8 +1686,8 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "539f28d30b98da1e5f213d0b85e07647",
-      "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-06T07-00-06-033Z.json",
+      "hash": "4675c6a3dbc93921c7e8da678b6bba0a",
+      "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T13-29-03-792Z.json",
       "status": "active",
       "isDeleted": false
     },
@@ -1940,6 +1985,19 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
+    },
+    {
+      "file": "report-1762522143792.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    }
+  ],
+  "renames": [
+    {
+      "from": "report-1762522143792.json",
+      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T13-29-03-792Z.json"
     }
   ]
 }
