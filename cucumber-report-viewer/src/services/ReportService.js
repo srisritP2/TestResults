@@ -134,25 +134,41 @@ class ReportService {
       return cached.data;
     }
 
-    try {
-      const response = await fetch(`${this.baseUrl}${reportId}.json?t=${Date.now()}`);
-      if (!response.ok) {
-        throw new Error(`Failed to load report ${reportId}: ${response.status}`);
+    // Try multiple paths for better compatibility
+    const possiblePaths = [
+      `${process.env.BASE_URL || '/'}TestResultsJsons/${reportId}.json`,
+      `/TestResults/TestResultsJsons/${reportId}.json`,
+      `/TestResultsJsons/${reportId}.json`,
+      `./TestResultsJsons/${reportId}.json`
+    ];
+
+    for (const path of possiblePaths) {
+      try {
+        console.log(`Trying to load report from: ${path}`);
+        const response = await fetch(`${path}?t=${Date.now()}`);
+        
+        if (response.ok) {
+          const data = await response.json();
+          console.log(`✅ Successfully loaded report from: ${path}`);
+          
+          // Cache the result
+          this.cache.set(cacheKey, {
+            data,
+            timestamp: Date.now()
+          });
+          
+          return data;
+        }
+      } catch (error) {
+        console.warn(`Failed to load from ${path}:`, error.message);
+        // Continue to next path
       }
-      
-      const data = await response.json();
-      
-      // Cache the result
-      this.cache.set(cacheKey, {
-        data,
-        timestamp: Date.now()
-      });
-      
-      return data;
-    } catch (error) {
-      console.error(`Error loading report ${reportId}:`, error);
-      throw error;
     }
+
+    // If all paths failed
+    const error = new Error(`Failed to load report ${reportId} from all paths`);
+    console.error(error);
+    throw error;
   }
 
   /**

@@ -85,25 +85,47 @@ export default {
       if (!reportId) return;
       if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
       if (localStorage.getItem('uploaded-report-' + reportId)) return;
-      // Try to fetch from public/TestResultsJsons/<id>.json
-      const fetchUrl = '/TestResults/TestResultsJsons/' + reportId + '.json';
-      console.log('Fetching report from:', fetchUrl);
-      fetch(fetchUrl, { cache: 'reload' })
-        .then(r => {
-          console.log('Fetch response:', r.status, r.ok);
-          return r.ok ? r.json() : null;
-        })
-        .then(json => {
-          console.log('Fetched JSON:', json ? 'Success' : 'Failed');
-          // Always normalize to {features: array}
-          if (Array.isArray(json)) state.staticReport = { features: json };
-          else if (json && Array.isArray(json.features)) state.staticReport = json;
-          else state.staticReport = null;
-        })
-        .catch(error => { 
-          console.error('Fetch error:', error);
-          state.staticReport = null; 
-        });
+      
+      // Try multiple paths for better compatibility
+      const possiblePaths = [
+        `${process.env.BASE_URL || '/'}TestResultsJsons/${reportId}.json`,
+        `/TestResults/TestResultsJsons/${reportId}.json`,
+        `/TestResultsJsons/${reportId}.json`,
+        `./TestResultsJsons/${reportId}.json`
+      ];
+      
+      const tryFetchReport = async (paths) => {
+        for (const fetchUrl of paths) {
+          try {
+            console.log('Trying to fetch report from:', fetchUrl);
+            const response = await fetch(fetchUrl, { cache: 'reload' });
+            
+            if (response.ok) {
+              const json = await response.json();
+              console.log('✅ Successfully fetched report from:', fetchUrl);
+              
+              // Always normalize to {features: array}
+              if (Array.isArray(json)) {
+                state.staticReport = { features: json };
+              } else if (json && Array.isArray(json.features)) {
+                state.staticReport = json;
+              } else {
+                state.staticReport = null;
+              }
+              return; // Success, exit the loop
+            }
+          } catch (error) {
+            console.warn(`Failed to fetch from ${fetchUrl}:`, error.message);
+            // Continue to next path
+          }
+        }
+        
+        // If all paths failed
+        console.error('❌ Failed to fetch report from all paths');
+        state.staticReport = null;
+      };
+      
+      tryFetchReport(possiblePaths);
     });
 
     // Soft expiry logic: check for t= timestamp in URL hash

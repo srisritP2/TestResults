@@ -1,58 +1,63 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cucumber Report Viewer</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><script>(function() {
-        // Detect system preference
-        const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        // Load user preference from localStorage
-        const savedPreference = localStorage.getItem('theme-preference') || 'system';
-        
-        // Determine if should be dark
-        let shouldBeDark = false;
-        if (savedPreference === 'dark') {
-          shouldBeDark = true;
-        } else if (savedPreference === 'light') {
-          shouldBeDark = false;
-        } else { // system
-          shouldBeDark = systemPrefersDark;
-        }
-        
-        // Apply theme to document immediately
-        if (shouldBeDark) {
-          document.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          document.documentElement.removeAttribute('data-theme');
-        }
-      })();</script><style>/* Prevent flash of unstyled content */
-      body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Automation Test Results Viewer</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"><script>(function () {
+      // Detect system preference
+      const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      // Load user preference from localStorage
+      const savedPreference = localStorage.getItem('theme-preference') || 'system';
+
+      // Determine if should be dark
+      let shouldBeDark = false;
+      if (savedPreference === 'dark') {
+        shouldBeDark = true;
+      } else if (savedPreference === 'light') {
+        shouldBeDark = false;
+      } else { // system
+        shouldBeDark = systemPrefersDark;
       }
-      
-      #app {
-        min-height: 100vh;
+
+      // Apply theme to document immediately
+      if (shouldBeDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
       }
-      
-      /* Loading spinner for better UX */
-      .loading-spinner {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 40px;
-        height: 40px;
-        border: 3px solid rgba(59, 130, 246, 0.3);
-        border-top: 3px solid #3B82F6;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-        z-index: 9999;
+    })();</script><style>/* Prevent flash of unstyled content */
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #app {
+      min-height: 100vh;
+    }
+
+    /* Loading spinner for better UX */
+    .loading-spinner {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(59, 130, 246, 0.3);
+      border-top: 3px solid #3B82F6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      z-index: 9999;
+    }
+
+    [data-theme="dark"] .loading-spinner {
+      border: 3px solid rgba(96, 165, 250, 0.3);
+      border-top: 3px solid #60A5FA;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
       }
-      
-      [data-theme="dark"] .loading-spinner {
-        border: 3px solid rgba(96, 165, 250, 0.3);
-        border-top: 3px solid #60A5FA;
+
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
       }
-      
-      @keyframes spin {
-        0% { transform: translate(-50%, -50%) rotate(0deg); }
-        100% { transform: translate(-50%, -50%) rotate(360deg); }
-      }</style><script defer="defer" src="/TestResults/vendors.4822cf65.js"></script><script defer="defer" src="/TestResults/app.b50358a7.js"></script><link href="/TestResults/css/vendors.a257c586.css" rel="stylesheet"><link href="/TestResults/css/app.eb420a9f.css" rel="stylesheet"><!--[if IE]><link rel="icon" type="image/svg+xml" href="/TestResults/img/icons/favicon.svg"><![endif]--><link rel="icon" type="image/png" sizes="32x32" href="/TestResults/img/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/TestResults/img/icons/favicon-16x16.png"><link rel="manifest" href="/TestResults/manifest.json"><meta name="theme-color" content="#3B82F6"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Cucumber Report Viewer"><link rel="apple-touch-icon" href="/TestResults/img/icons/apple-touch-icon.png"><link rel="mask-icon" href="/TestResults/img/icons/favicon.svg" color="#3B82F6"><meta name="msapplication-TileImage" content="/TestResults/img/icons/favicon-32x32.png"><meta name="msapplication-TileColor" content="#000000"></head><body><div id="app"><div class="loading-spinner"></div></div></body></html>
+    }</style><script defer="defer" src="/TestResults/vendors.c33357c5.js"></script><script defer="defer" src="/TestResults/app.99dbb33a.js"></script><link href="/TestResults/css/vendors.a257c586.css" rel="stylesheet"><link href="/TestResults/css/app.83dfc784.css" rel="stylesheet"><!--[if IE]><link rel="icon" type="image/svg+xml" href="/TestResults/img/icons/favicon.svg"><![endif]--><link rel="icon" type="image/png" sizes="32x32" href="/TestResults/img/icons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/TestResults/img/icons/favicon-16x16.png"><link rel="manifest" href="/TestResults/manifest.json"><meta name="theme-color" content="#3B82F6"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><meta name="apple-mobile-web-app-title" content="Automation Test Results Viewer"><link rel="apple-touch-icon" href="/TestResults/img/icons/apple-touch-icon.png"><link rel="mask-icon" href="/TestResults/img/icons/favicon.svg" color="#3B82F6"><meta name="msapplication-TileImage" content="/TestResults/img/icons/favicon-32x32.png"><meta name="msapplication-TileColor" content="#000000"></head><body><div id="app"><div class="loading-spinner"></div></div></body></html>
