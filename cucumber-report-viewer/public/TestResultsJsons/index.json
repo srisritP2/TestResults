@@ -1,9 +1,144 @@
 {
-  "generated": "2025-11-12T15:09:27.356Z",
+  "generated": "2025-11-14T13:34:49.531Z",
   "version": "2.1.0",
   "reports": [
     {
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T13-33-09-006Z",
+      "name": "Admin Client Settings Page || Test Scenarios",
+      "date": "2025-11-14T13:33:09.006Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 979.9499337,
+      "size": 201318,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "35f16d8513313833c1f0dca578e304db",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T12-53-56-612Z",
+      "name": "Admin Client Settings Page || Test Scenarios",
+      "date": "2025-11-14T12:53:56.612Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 649,
+      "failed": 2,
+      "skipped": 8,
+      "duration": 974.0858903,
+      "size": 552882,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "c3b6d88994053eefb68c50ec34e73a21",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
       "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T14-23-12-472Z",
+      "name": "Admin Client Settings Page || Test Scenarios",
+      "date": "2025-11-12T14:23:12.472Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 997.3328293,
+      "size": 201354,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "e9ab8323b2fc37a13fb7cf74e45c9a99",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T15-04-33-776Z",
       "name": "Admin Client Settings Page || Test Scenarios",
       "date": "2025-11-12T14:23:12.472Z",
       "features": 15,
@@ -184,6 +319,51 @@
     },
     {
       "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T05-59-28-599Z",
+      "name": "Admin Client Settings Page || Test Scenarios",
+      "date": "2025-10-31T05:59:28.599Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 658,
+      "failed": 1,
+      "skipped": 0,
+      "duration": 1026.5320429,
+      "size": 274401,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "95992a2d7a05cf96d6590d8ecfc944c8",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T15-25-42-654Z",
       "name": "Admin Client Settings Page || Test Scenarios",
       "date": "2025-10-31T05:59:28.599Z",
       "features": 15,
@@ -1674,19 +1854,19 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 37,
-    "totalFeatures": 569,
-    "totalScenarios": 1938,
-    "totalSteps": 24131,
-    "totalPassed": 24065,
-    "totalFailed": 31,
-    "totalSkipped": 35,
-    "totalDuration": 35624.9575913,
-    "totalSize": 12824890,
-    "averageDuration": "962.84",
-    "passRate": "99.73",
+    "totalReports": 41,
+    "totalFeatures": 629,
+    "totalScenarios": 2146,
+    "totalSteps": 26767,
+    "totalPassed": 26690,
+    "totalFailed": 34,
+    "totalSkipped": 43,
+    "totalDuration": 39602.85828750001,
+    "totalSize": 14054845,
+    "averageDuration": "965.92",
+    "passRate": "99.71",
     "failRate": "0.13",
-    "skipRate": "0.15",
+    "skipRate": "0.16",
     "oldestReport": {
       "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-07-17T11-06-24-735Z",
       "name": "Admin Client Settings Page || Test Scenarios",
@@ -1735,17 +1915,17 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T14-23-12-472Z",
+      "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T13-33-09-006Z",
       "name": "Admin Client Settings Page || Test Scenarios",
-      "date": "2025-11-12T14:23:12.472Z",
-      "size": 201354,
+      "date": "2025-11-14T13:33:09.006Z",
+      "size": 201318,
       "features": 15,
       "scenarios": 52,
       "steps": 659,
       "passed": 659,
       "failed": 0,
       "skipped": 0,
-      "duration": 997.3328293,
+      "duration": 979.9499337,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -1776,8 +1956,8 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "e9ab8323b2fc37a13fb7cf74e45c9a99",
-      "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T14-23-12-472Z.json",
+      "hash": "35f16d8513313833c1f0dca578e304db",
+      "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T13-33-09-006Z.json",
       "status": "active",
       "isDeleted": false
     },
@@ -2007,6 +2187,13 @@
       ]
     },
     {
+      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T05-59-28-599Z.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
       "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T06-55-05-033Z.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
@@ -2029,6 +2216,13 @@
     },
     {
       "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T15-25-42-654Z.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T14-23-12-472Z.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
@@ -2096,16 +2290,30 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
+    },
+    {
+      "file": "report-1763124836612.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "report-1763127189006.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
     }
   ],
   "renames": [
     {
-      "from": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T15-04-33-776Z.json",
-      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T14-23-12-472Z.json"
+      "from": "report-1763127189006.json",
+      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T13-33-09-006Z.json"
     },
     {
-      "from": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T15-25-42-654Z.json",
-      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-31T05-59-28-599Z.json"
+      "from": "report-1763124836612.json",
+      "to": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T12-53-56-612Z.json"
     }
   ]
 }
