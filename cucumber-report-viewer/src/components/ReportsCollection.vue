@@ -142,6 +142,12 @@
                             View Report
                           </v-list-item-title>
                         </v-list-item>
+                        <v-list-item @click="downloadReport(report)">
+                          <v-list-item-title>
+                            <v-icon size="16" class="mr-2">mdi-download</v-icon>
+                            Download JSON
+                          </v-list-item-title>
+                        </v-list-item>
                         <v-list-item @click="togglePublishStatus(report)">
                           <v-list-item-title>
                             <v-icon size="16" class="mr-2">{{ isPublished(report) ? 'mdi-cloud-off' : 'mdi-cloud-upload'
@@ -400,6 +406,66 @@ export default {
         params: { id: report.id },
         query: { t: Date.now() }
       });
+    },
+
+    async downloadReport(report) {
+      try {
+        // Try to fetch the report JSON file
+        const possiblePaths = [
+          `${process.env.BASE_URL || '/'}TestResultsJsons/${report.id}.json`,
+          `/TestResults/TestResultsJsons/${report.id}.json`,
+          `/TestResultsJsons/${report.id}.json`
+        ];
+
+        let reportData = null;
+        let successPath = null;
+
+        // First, try to get from localStorage
+        const localData = localStorage.getItem('uploaded-report-' + report.id);
+        if (localData) {
+          reportData = localData;
+          successPath = 'localStorage';
+          console.log('✅ Found report in localStorage');
+        } else {
+          // Try to fetch from server
+          for (const path of possiblePaths) {
+            try {
+              const response = await fetch(path);
+              if (response.ok) {
+                reportData = await response.text();
+                successPath = path;
+                console.log(`✅ Found report at: ${path}`);
+                break;
+              }
+            } catch (e) {
+              // Continue to next path
+            }
+          }
+        }
+
+        if (!reportData) {
+          this.showErrorMessage(`Could not find report file for ${report.id}`);
+          return;
+        }
+
+        // Create blob and download
+        const blob = new Blob([reportData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${report.id}.json`;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        this.showSuccessMessage(`Downloaded ${report.id}.json successfully!`);
+        console.log(`✅ Downloaded report: ${report.id}.json from ${successPath}`);
+      } catch (error) {
+        console.error('Error downloading report:', error);
+        this.showErrorMessage(`Failed to download report: ${error.message}`);
+      }
     },
 
     async deleteReport(report) {
