@@ -105,6 +105,16 @@
                   @click="viewStoredReport(report.id)"
                   icon="mdi-eye"
                   class="mr-1"
+                  title="View Report"
+                ></v-btn>
+                <v-btn 
+                  size="small" 
+                  variant="text" 
+                  color="success" 
+                  @click="downloadStoredReport(report.id, report.name)"
+                  icon="mdi-download"
+                  class="mr-1"
+                  title="Download JSON file for GitHub"
                 ></v-btn>
                 <v-btn 
                   size="small" 
@@ -112,6 +122,7 @@
                   color="error" 
                   @click="deleteStoredReport(report.id)"
                   icon="mdi-delete"
+                  title="Delete Report"
                 ></v-btn>
               </div>
             </div>
@@ -603,6 +614,47 @@ export default {
           console.error('Error clearing reports:', e);
           this.errorMessage = 'Failed to clear reports. Please try again.';
         }
+      }
+    },
+    downloadStoredReport(reportId, reportName) {
+      try {
+        // Load the report data from localStorage
+        const reportData = localStorage.getItem('uploaded-report-' + reportId);
+        
+        if (reportData) {
+          // Create a blob from the JSON data
+          const blob = new Blob([reportData], { type: 'application/json' });
+          const url = URL.createObjectURL(blob);
+          
+          // Create a temporary link and trigger download
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `${reportId}.json`;
+          link.style.display = 'none';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          
+          // Show success message with instructions
+          this.showStorageStatus('success', 
+            `Downloaded ${reportId}.json! Copy this file to cucumber-report-viewer/public/TestResultsJsons/ and push to GitHub.`
+          );
+          
+          console.log(`✅ Downloaded report: ${reportId}.json`);
+        } else {
+          // Report not found in localStorage
+          this.showStorageStatus('error', `Report "${reportId}" not found in localStorage.`);
+          
+          // Remove from index since it's not available
+          let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+          index = index.filter(report => report.id !== reportId);
+          localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
+          this.$forceUpdate();
+        }
+      } catch (e) {
+        console.error('Error downloading stored report:', e);
+        this.errorMessage = 'Failed to download report. Please try again.';
       }
     },
     viewStoredReport(reportId) {
