@@ -217,7 +217,9 @@ jobs:
               
               **Latest Report:** ${stats.newestReport?.name || 'N/A'}
               
-              [View Reports](https://your-domain.com/cucumber-reports)`;
+              🔗 **[View Reports on GitHub Pages](https://srisritP2.github.io/TestResults/)**
+              
+              📈 Reports are automatically deployed and available within 2-3 minutes.`;
               
               github.rest.repos.createCommitComment({
                 owner: context.repo.owner,
