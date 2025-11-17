@@ -13,8 +13,8 @@
   "failRate": "0.12",
   "skipRate": "0.17",
   "oldestReport": {
-    "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-07-17T11-06-24-735Z",
-    "name": "Admin Client Settings Page || Test Scenarios",
+    "id": "GeoCall-Automation-Test-Results-Report-2025-07-17T11-06-24-735Z",
+    "name": "GeoCall Automation Test Results Report",
     "date": "2025-07-17T11:06:24.735Z",
     "size": 201167,
     "features": 15,
@@ -55,13 +55,13 @@
     "tool": null,
     "version": null,
     "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-    "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-07-17T11-06-24-735Z.json",
+    "suggestedFilename": "GeoCall-Automation-Test-Results-Report-2025-07-17T11-06-24-735Z.json",
     "status": "active",
     "isDeleted": false
   },
   "newestReport": {
-    "id": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-17T07-53-31-760Z",
-    "name": "Admin Client Settings Page || Test Scenarios",
+    "id": "GeoCall-Automation-Test-Results-Report-2025-11-17T07-53-31-760Z",
+    "name": "GeoCall Automation Test Results Report",
     "date": "2025-11-17T07:53:31.760Z",
     "size": 201317,
     "features": 15,
@@ -102,7 +102,7 @@
     "tool": null,
     "version": null,
     "hash": "cac853fe8c5619e278f1b06150688d7f",
-    "suggestedFilename": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-17T07-53-31-760Z.json",
+    "suggestedFilename": "GeoCall-Automation-Test-Results-Report-2025-11-17T07-53-31-760Z.json",
     "status": "active",
     "isDeleted": false
   },

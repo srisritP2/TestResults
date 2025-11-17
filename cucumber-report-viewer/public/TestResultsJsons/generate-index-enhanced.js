@@ -29,6 +29,23 @@ class CucumberIndexGenerator {
   }
 
   /**
+   * Transform feature name to custom report name
+   * Customize this function to change how feature names are displayed
+   */
+  transformFeatureName(featureName) {
+    // Replace "Admin Client Settings Page Test Scenarios" with custom name
+    if (featureName.includes('Admin Client Settings Page')) {
+      return 'GeoCall Automation Test Results Report';
+    }
+    
+    // You can add more transformations here
+    // Example: featureName.replace('Old Name', 'New Name')
+    
+    // Return original name if no transformation matches
+    return featureName;
+  }
+
+  /**
    * Sanitize string for use in filenames
    */
   sanitizeFilename(str) {
@@ -78,7 +95,8 @@ class CucumberIndexGenerator {
       json.forEach(feature => {
         // Feature name (use first feature name as report name)
         if (feature.name && metadata.name === 'Automation Test Results') {
-          metadata.name = feature.name;
+          // Transform feature name to custom report name
+          metadata.name = this.transformFeatureName(feature.name);
         }
 
         // Feature tags
