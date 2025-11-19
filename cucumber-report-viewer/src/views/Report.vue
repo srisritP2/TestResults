@@ -57,21 +57,35 @@ export default {
       // Try to load from localStorage if route param id matches a static report
       if (reportId && localStorage.getItem('uploaded-report-' + reportId)) {
         try {
+          console.log('📦 Loading report from localStorage:', reportId);
           const data = JSON.parse(localStorage.getItem('uploaded-report-' + reportId));
-          if (Array.isArray(data)) return { features: data };
-          if (data && Array.isArray(data.features)) return data;
-        } catch {}
+          console.log('✅ localStorage data loaded:', data ? 'Success' : 'Failed');
+          if (Array.isArray(data)) {
+            console.log('✅ Returning array format with', data.length, 'features');
+            return { features: data };
+          }
+          if (data && Array.isArray(data.features)) {
+            console.log('✅ Returning object format with', data.features.length, 'features');
+            return data;
+          }
+          console.warn('⚠️ localStorage data exists but format is invalid');
+        } catch (error) {
+          console.error('❌ Error parsing localStorage data:', error);
+        }
       }
       // If the report was uploaded this session, use Vuex store
       if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
+        console.log('📦 Loading report from Vuex store');
         if (Array.isArray(store.state.reportData)) return { features: store.state.reportData };
         if (store.state.reportData && Array.isArray(store.state.reportData.features)) return store.state.reportData;
       }
       // If fetched static report, use it
       if (state.staticReport) {
+        console.log('📦 Loading report from fetched static report');
         if (Array.isArray(state.staticReport)) return { features: state.staticReport };
         if (state.staticReport && Array.isArray(state.staticReport.features)) return state.staticReport;
       }
+      console.warn('❌ No report data found for:', reportId);
       return null;
     });
     // Track selected feature index, default to 0
@@ -82,9 +96,24 @@ export default {
 
     // Fetch static report JSON if needed
     onMounted(() => {
-      if (!reportId) return;
-      if (store.state.reportData && store.state.reportData._uploadedId === reportId) return;
-      if (localStorage.getItem('uploaded-report-' + reportId)) return;
+      console.log('🔍 Report.vue mounted, reportId:', reportId);
+      
+      if (!reportId) {
+        console.warn('⚠️ No reportId provided');
+        return;
+      }
+      
+      if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
+        console.log('✅ Report found in Vuex store, skipping fetch');
+        return;
+      }
+      
+      if (localStorage.getItem('uploaded-report-' + reportId)) {
+        console.log('✅ Report found in localStorage, skipping fetch');
+        return;
+      }
+      
+      console.log('🌐 Report not in localStorage or Vuex, attempting to fetch from server...');
       
       // Try multiple paths for better compatibility
       const possiblePaths = [
