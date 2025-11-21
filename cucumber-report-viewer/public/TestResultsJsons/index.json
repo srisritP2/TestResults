@@ -1,5 +1,5 @@
 {
-  "generated": "2025-11-21T12:53:15.970Z",
+  "generated": "2025-11-21T12:54:01.612Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -2745,6 +2745,18 @@
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "package.json",
+      "errors": [
+        "Root element must be an array"
+      ]
+    },
+    {
+      "file": "package.json",
+      "errors": [
+        "Invalid Cucumber JSON format: root should be an array"
       ]
     },
     {
