@@ -1,8 +1,11 @@
 // vue.config.js for GitHub Pages deployment with performance optimizations
 const path = require("path");
 
+// Use root path for Netlify, subdirectory for GitHub Pages
+const publicPath = process.env.NETLIFY ? "/" : "/TestResults/";
+
 module.exports = {
-  publicPath: "/TestResults/",
+  publicPath: publicPath,
   lintOnSave: false,
   devServer: {
     port: 8080,
@@ -123,8 +126,8 @@ module.exports = {
       short_name: "Test Results",
       description:
         "View and analyze automation test results with an interactive web interface",
-      start_url: "/TestResults/",
-      scope: "/TestResults/",
+      start_url: publicPath,
+      scope: publicPath,
       display: "standalone",
       background_color: "#ffffff",
       theme_color: "#3B82F6",
