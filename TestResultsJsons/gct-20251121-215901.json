@@ -1,0 +1,183 @@
+[
+  {
+    "timestamp": "2025-11-21T16:12:11.237Z",
+    "renames": [
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-26T13-34-23-252Z.json",
+        "new": "gct-20250826-133423.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-28T05-53-57-241Z.json",
+        "new": "gct-20250828-055357.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-28T06-14-05-285Z.json",
+        "new": "gct-20250828-061405.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-28T06-51-30-097Z.json",
+        "new": "gct-20250828-065130.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-28T08-15-16-967Z.json",
+        "new": "gct-20250828-081516.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-08-28T09-23-32-017Z.json",
+        "new": "gct-20250828-092332.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-09-04T13-45-59-697Z.json",
+        "new": "gct-20250904-134559.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-09-25T10-22-46-149Z.json",
+        "new": "gct-20250925-102246.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-23T12-33-01-177Z.json",
+        "new": "gct-20251023-123301.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-24T12-17-50-224Z.json",
+        "new": "gct-20251024-121750.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-27T09-40-29-433Z.json",
+        "new": "gct-20251027-094029.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-28T12-02-55-915Z.json",
+        "new": "gct-20251028-120255.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-28T12-46-18-396Z.json",
+        "new": "gct-20251028-124618.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-10-29T06-17-26-631Z.json",
+        "new": "gct-20251029-061726.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-07T15-25-42-654Z.json",
+        "new": "gct-20251107-152542.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-12T15-04-33-776Z.json",
+        "new": "gct-20251112-150433.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T12-53-56-612Z.json",
+        "new": "gct-20251114-125356.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-14T13-33-09-006Z.json",
+        "new": "gct-20251114-133309.json"
+      },
+      {
+        "old": "Admin-Client-Settings-Page-Test-Scenarios-2025-11-17T09-34-18-137Z.json",
+        "new": "gct-20251117-093418.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-07-17T11-06-24-735Z.json",
+        "new": "gct-20250717-110624.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-07-30T12-29-58-033Z.json",
+        "new": "gct-20250730-122958.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-08-25T10-01-54-005Z.json",
+        "new": "gct-20250825-100154.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-08-28T08-55-28-848Z.json",
+        "new": "gct-20250828-085528.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-09-04T13-11-58-255Z.json",
+        "new": "gct-20250904-131158.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-09-24T09-15-06-353Z.json",
+        "new": "gct-20250924-091506.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-22T17-28-38-806Z.json",
+        "new": "gct-20251022-172838.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-24T11-02-19-105Z.json",
+        "new": "gct-20251024-110219.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-27T08-38-11-205Z.json",
+        "new": "gct-20251027-083811.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-28T11-34-41-998Z.json",
+        "new": "gct-20251028-113441.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-28T12-04-25-732Z.json",
+        "new": "gct-20251028-120425.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-29T05-39-25-830Z.json",
+        "new": "gct-20251029-053925.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-31T05-59-28-599Z.json",
+        "new": "gct-20251031-055928.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-10-31T06-55-05-033Z.json",
+        "new": "gct-20251031-065505.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-06T07-00-06-033Z.json",
+        "new": "gct-20251106-070006.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-07T13-00-02-635Z.json",
+        "new": "gct-20251107-130002.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-12T14-23-12-472Z.json",
+        "new": "gct-20251112-142312.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-14T11-54-06-304Z.json",
+        "new": "gct-20251114-115406.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-14T12-54-36-553Z.json",
+        "new": "gct-20251114-125436.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-17T07-53-31-760Z.json",
+        "new": "gct-20251117-075331.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-19T10-14-01-359Z.json",
+        "new": "gct-20251119-101401.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-19T11-59-13-103Z.json",
+        "new": "gct-20251119-115913.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-21T12-09-10-190Z.json",
+        "new": "gct-20251121-120910.json"
+      },
+      {
+        "old": "GeoCall-Automation-Test-Results-Report-2025-11-21T13-08-22-420Z.json",
+        "new": "gct-20251121-130822.json"
+      },
+      {
+        "old": "test-automated-workflow-2025-11-17T21-00-00-000Z.json",
+        "new": "gct-20251117-210000.json"
+      }
+    ]
+  }
+]
