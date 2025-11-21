@@ -187,10 +187,16 @@ class CucumberIndexGenerator {
         metadata.date = stats.mtime.toISOString();
       }
 
-      // Generate suggested filename
-      const timestamp = metadata.date.replace(/[:.]/g, '-');
-      const sanitizedName = this.sanitizeFilename(metadata.name);
-      metadata.suggestedFilename = `${sanitizedName}-${timestamp}.json`;
+      // Generate suggested filename in short format: gct-YYYYMMDD-HHMMSS.json
+      const dateObj = new Date(metadata.date);
+      const year = dateObj.getFullYear();
+      const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+      const day = String(dateObj.getDate()).padStart(2, '0');
+      const hour = String(dateObj.getHours()).padStart(2, '0');
+      const minute = String(dateObj.getMinutes()).padStart(2, '0');
+      const second = String(dateObj.getSeconds()).padStart(2, '0');
+      
+      metadata.suggestedFilename = `gct-${year}${month}${day}-${hour}${minute}${second}.json`;
 
     } catch (error) {
       this.log(`Error processing ${filename}: ${error.message}`);
