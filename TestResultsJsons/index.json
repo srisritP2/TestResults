@@ -1,30 +1,11 @@
 {
-  "generated": "2025-11-21T16:30:34.578Z",
+  "generated": "2025-11-26T11:15:26.795Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20251121-215901",
+      "id": "gct-20251126-164515",
       "name": "Automation Test Results",
-      "date": "2025-11-21T16:29:01.634Z",
-      "features": 1,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "duration": 0,
-      "size": 5024,
-      "tags": [],
-      "environment": null,
-      "tool": null,
-      "hash": "9faa0bcc9ee697b59a39c56a6b2958d9",
-      "status": "active",
-      "isDeleted": false
-    },
-    {
-      "id": "gct-20251121-214211",
-      "name": "Automation Test Results",
-      "date": "2025-11-21T16:12:11.239Z",
+      "date": "2025-11-26T11:15:15.862Z",
       "features": 1,
       "scenarios": 0,
       "steps": 0,
@@ -3062,16 +3043,16 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 69,
-    "totalFeatures": 1023,
+    "totalReports": 68,
+    "totalFeatures": 1022,
     "totalScenarios": 3500,
     "totalSteps": 43865,
     "totalPassed": 43697,
     "totalFailed": 52,
     "totalSkipped": 116,
     "totalDuration": 65539.3471612,
-    "totalSize": 24225895,
-    "averageDuration": "949.85",
+    "totalSize": 24220871,
+    "averageDuration": "963.81",
     "passRate": "99.62",
     "failRate": "0.12",
     "skipRate": "0.26",
@@ -3123,9 +3104,9 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251121-215901",
+      "id": "gct-20251126-164515",
       "name": "Automation Test Results",
-      "date": "2025-11-21T16:29:01.634Z",
+      "date": "2025-11-26T11:15:15.862Z",
       "size": 5024,
       "features": 1,
       "scenarios": 0,
@@ -3139,7 +3120,7 @@
       "tool": null,
       "version": null,
       "hash": "9faa0bcc9ee697b59a39c56a6b2958d9",
-      "suggestedFilename": "gct-20251121-215901.json",
+      "suggestedFilename": "gct-20251126-164515.json",
       "status": "active",
       "isDeleted": false
     },
@@ -3646,7 +3627,7 @@
       ]
     },
     {
-      "file": "gct-20251121-161707.json",
+      "file": "gct-20251121-163120.json",
       "errors": [
         "Feature 0: Missing name"
       ]
@@ -3656,12 +3637,6 @@
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
-      ]
-    },
-    {
-      "file": "gct-20251121-214211.json",
-      "errors": [
-        "Feature 0: Missing name"
       ]
     },
     {
@@ -3686,8 +3661,8 @@
   ],
   "renames": [
     {
-      "from": "gct-20251121-161707.json",
-      "to": "gct-20251121-215901.json"
+      "from": "gct-20251121-163120.json",
+      "to": "gct-20251126-164515.json"
     }
   ]
 }
