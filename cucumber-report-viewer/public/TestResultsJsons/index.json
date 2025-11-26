@@ -1,11 +1,11 @@
 {
-  "generated": "2025-11-26T11:15:26.795Z",
+  "generated": "2025-11-26T11:16:13.802Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20251126-164515",
+      "id": "gct-20251126-111610",
       "name": "Automation Test Results",
-      "date": "2025-11-26T11:15:15.862Z",
+      "date": "2025-11-26T11:16:10.386Z",
       "features": 1,
       "scenarios": 0,
       "steps": 0,
@@ -3099,14 +3099,14 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-163624.json",
+      "suggestedFilename": "gct-20250717-110624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251126-164515",
+      "id": "gct-20251126-111610",
       "name": "Automation Test Results",
-      "date": "2025-11-26T11:15:15.862Z",
+      "date": "2025-11-26T11:16:10.386Z",
       "size": 5024,
       "features": 1,
       "scenarios": 0,
@@ -3120,7 +3120,7 @@
       "tool": null,
       "version": null,
       "hash": "9faa0bcc9ee697b59a39c56a6b2958d9",
-      "suggestedFilename": "gct-20251126-164515.json",
+      "suggestedFilename": "gct-20251126-111610.json",
       "status": "active",
       "isDeleted": false
     },
@@ -3662,7 +3662,7 @@
   "renames": [
     {
       "from": "gct-20251121-163120.json",
-      "to": "gct-20251126-164515.json"
+      "to": "gct-20251126-111610.json"
     }
   ]
 }
