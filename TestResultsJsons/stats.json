@@ -55,12 +55,12 @@
     "tool": null,
     "version": null,
     "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-    "suggestedFilename": "gct-20250717-163624.json",
+    "suggestedFilename": "gct-20250717-110624.json",
     "status": "active",
     "isDeleted": false
   },
   "newestReport": {
-    "id": "gct-20251126-160812",
+    "id": "gct-20251126-103812",
     "name": "GeoCall Automation Test Results Report",
     "date": "2025-11-26T10:38:12.427Z",
     "size": 315493,
@@ -102,7 +102,7 @@
     "tool": null,
     "version": null,
     "hash": "7b40aeda5c213ed5daf5da02996bd14f",
-    "suggestedFilename": "gct-20251126-160812.json",
+    "suggestedFilename": "gct-20251126-103812.json",
     "status": "active",
     "isDeleted": false
   },
