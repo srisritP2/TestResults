@@ -60,17 +60,17 @@
     "isDeleted": false
   },
   "newestReport": {
-    "id": "gct-20251202-181800",
+    "id": "gct-20251202-125810",
     "name": "GeoCall Automation Test Results Report",
     "date": "2025-12-02T12:48:00.815Z",
-    "size": 1170558,
+    "size": 1170852,
     "features": 15,
     "scenarios": 52,
     "steps": 659,
-    "passed": 643,
-    "failed": 2,
-    "skipped": 14,
-    "duration": 951.5322414,
+    "passed": 659,
+    "failed": 0,
+    "skipped": 0,
+    "duration": 965.5322414,
     "tags": [
       "AddResponse",
       "AddResponseFlowValidation",
@@ -101,7 +101,7 @@
     "environment": null,
     "tool": null,
     "version": null,
-    "hash": "36414c0df0974d01c0a554b026909201",
+    "hash": "ccc1d9f228ebac28c03e54f57159b39b",
     "suggestedFilename": "gct-20251202-181800.json",
     "status": "active",
     "isDeleted": false
