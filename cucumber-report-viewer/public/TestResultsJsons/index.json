@@ -1,9 +1,9 @@
 {
-  "generated": "2025-12-02T18:19:32.448Z",
+  "generated": "2025-12-02T18:20:14.570Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20251202-125810",
+      "id": "gct-20251202-124800",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-02T12:48:00.815Z",
       "features": 15,
@@ -3305,12 +3305,12 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-163624.json",
+      "suggestedFilename": "gct-20250717-110624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251202-125810",
+      "id": "gct-20251202-124800",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-02T12:48:00.815Z",
       "size": 1170852,
@@ -3352,7 +3352,7 @@
       "tool": null,
       "version": null,
       "hash": "ccc1d9f228ebac28c03e54f57159b39b",
-      "suggestedFilename": "gct-20251202-181800.json",
+      "suggestedFilename": "gct-20251202-124800.json",
       "status": "active",
       "isDeleted": false
     },
@@ -3918,6 +3918,12 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
+    }
+  ],
+  "renames": [
+    {
+      "from": "gct-20251202-125810.json",
+      "to": "gct-20251202-124800.json"
     }
   ]
 }
