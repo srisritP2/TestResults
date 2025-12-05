@@ -1,8 +1,79 @@
 {
+<<<<<<< HEAD
   "generated": "2025-12-05T17:51:14.403Z",
   "version": "2.1.0",
   "reports": [
     {
+=======
+  "generated": "2025-12-05T17:48:45.099Z",
+  "version": "2.1.0",
+  "reports": [
+    {
+      "id": "gct-20251205-174842",
+      "name": "Automation Test Results",
+      "date": "2025-12-05T17:48:42.190Z",
+      "features": 0,
+      "scenarios": 0,
+      "steps": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 0,
+      "size": 2,
+      "tags": [],
+      "environment": null,
+      "tool": null,
+      "hash": "d751713988987e9331980363e24189ce",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "Automation-Test-Results-2025-12-04T13-16-32-735Z",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-12-04T13:16:32.735Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 641,
+      "failed": 3,
+      "skipped": 15,
+      "duration": 976.025447,
+      "size": 1394620,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "c8dc3aa3c2b3277cba03ed45f6033e2f",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+>>>>>>> 0e347a4ea35ae6718e4909334dce01392c71f5b6
       "id": "gct-20251204-131632",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-04T13:16:32.735Z",
@@ -2523,6 +2594,7 @@
       "isDeleted": false
     },
     {
+<<<<<<< HEAD
       "id": "gct-20251023-115931",
       "name": "Automation Test Results",
       "date": "2025-10-23T06:29:31.313Z",
@@ -2538,6 +2610,49 @@
       "environment": null,
       "tool": null,
       "hash": "d751713988987e9331980363e24189ce",
+=======
+      "id": "Automation-Test-Results-2025-10-22T17-28-38-806Z",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-10-22T17:28:38.806Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 996.3752479,
+      "size": 201347,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "9c74fdbac450508c427795d28e545f5f",
+>>>>>>> 0e347a4ea35ae6718e4909334dce01392c71f5b6
       "status": "active",
       "isDeleted": false
     },
@@ -3639,11 +3754,12 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-163624.json",
+      "suggestedFilename": "gct-20250717-110624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
+<<<<<<< HEAD
       "id": "gct-20251204-131632",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-04T13:16:32.735Z",
@@ -3687,6 +3803,25 @@
       "version": null,
       "hash": "1da42dc9ec46ebbee5c218501e220a77",
       "suggestedFilename": "gct-20251204-184632.json",
+=======
+      "id": "gct-20251205-174842",
+      "name": "Automation Test Results",
+      "date": "2025-12-05T17:48:42.190Z",
+      "size": 2,
+      "features": 0,
+      "scenarios": 0,
+      "steps": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 0,
+      "tags": [],
+      "environment": null,
+      "tool": null,
+      "version": null,
+      "hash": "d751713988987e9331980363e24189ce",
+      "suggestedFilename": "gct-20251205-174842.json",
+>>>>>>> 0e347a4ea35ae6718e4909334dce01392c71f5b6
       "status": "active",
       "isDeleted": false
     },
@@ -4301,6 +4436,12 @@
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
       ]
+    }
+  ],
+  "renames": [
+    {
+      "from": "gct-20251023-115931.json",
+      "to": "gct-20251205-174842.json"
     }
   ]
 }
