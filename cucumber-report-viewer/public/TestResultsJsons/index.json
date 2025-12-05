@@ -1,30 +1,11 @@
 {
-  "generated": "2025-12-05T15:13:33.536Z",
+  "generated": "2025-12-05T15:19:30.953Z",
   "version": "2.1.0",
   "reports": [
     {
       "id": "gct-20251205-203928",
       "name": "Automation Test Results",
       "date": "2025-12-05T15:09:28.181Z",
-      "features": 1,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "duration": 0,
-      "size": 166,
-      "tags": [],
-      "environment": null,
-      "tool": null,
-      "hash": "e40dafeeea213be8148157775a269688",
-      "status": "active",
-      "isDeleted": false
-    },
-    {
-      "id": "gct-20251204-230825",
-      "name": "Automation Test Results",
-      "date": "2025-12-04T17:38:25.841Z",
       "features": 1,
       "scenarios": 0,
       "steps": 0,
@@ -3512,16 +3493,16 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 79,
-    "totalFeatures": 1173,
+    "totalReports": 78,
+    "totalFeatures": 1172,
     "totalScenarios": 4020,
     "totalSteps": 50455,
     "totalPassed": 50240,
     "totalFailed": 58,
     "totalSkipped": 157,
     "totalDuration": 75281.06737329996,
-    "totalSize": 34030010,
-    "averageDuration": "952.92",
+    "totalSize": 34029844,
+    "averageDuration": "965.14",
     "passRate": "99.57",
     "failRate": "0.11",
     "skipRate": "0.31",
@@ -4152,12 +4133,6 @@
       ]
     },
     {
-      "file": "gct-20251204-174655.json",
-      "errors": [
-        "Feature 0: Missing name"
-      ]
-    },
-    {
       "file": "gct-20251204-184632.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
@@ -4172,16 +4147,16 @@
       ]
     },
     {
-      "file": "gct-20251204-230825.json",
-      "errors": [
-        "Feature 0: Missing name"
-      ]
-    },
-    {
       "file": "gct-20251204-234107.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20251205-203928.json",
+      "errors": [
+        "Feature 0: Missing name"
       ]
     },
     {
@@ -4202,12 +4177,6 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "gct-20251204-174655.json",
-      "to": "gct-20251205-203928.json"
     }
   ]
 }
