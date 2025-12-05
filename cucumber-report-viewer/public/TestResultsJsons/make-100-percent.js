@@ -9,7 +9,15 @@ if (!reportFile) {
 }
 
 const reportPath = path.join(__dirname, reportFile);
-const data = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+const rawData = JSON.parse(fs.readFileSync(reportPath, 'utf8'));
+
+// Handle both array format and object with features property
+const data = Array.isArray(rawData) ? rawData : rawData.features || [];
+
+if (!Array.isArray(data) || data.length === 0) {
+  console.error('Error: Invalid report format or no features found');
+  process.exit(1);
+}
 
 // Count current stats
 let totalSteps = 0;
@@ -50,9 +58,16 @@ data.forEach(feature => {
   });
 });
 
-// Generate new filename with timestamp
-const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-const newFilename = `GeoCall-Automation-Test-Results-Report-${timestamp}.json`;
+// Generate new filename with gct-timestamp format
+const now = new Date();
+const year = now.getFullYear();
+const month = String(now.getMonth() + 1).padStart(2, '0');
+const day = String(now.getDate()).padStart(2, '0');
+const hours = String(now.getHours()).padStart(2, '0');
+const minutes = String(now.getMinutes()).padStart(2, '0');
+const seconds = String(now.getSeconds()).padStart(2, '0');
+const timestamp = `${year}${month}${day}-${hours}${minutes}${seconds}`;
+const newFilename = `gct-${timestamp}.json`;
 const newPath = path.join(__dirname, newFilename);
 
 // Write the new report
