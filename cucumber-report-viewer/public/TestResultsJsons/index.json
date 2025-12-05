@@ -1,5 +1,5 @@
 {
-  "generated": "2025-12-05T17:05:34.678Z",
+  "generated": "2025-12-05T17:19:31.966Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -1758,6 +1758,51 @@
       "isDeleted": false
     },
     {
+      "id": "gct-20251205-221523",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-10-31T05:59:28.599Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 1026.5320429,
+      "size": 274401,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "2b5cc94e83b1b6429814c35b18ead9c5",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
       "id": "gct-20251029-053925",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-10-29T05:39:25.830Z",
@@ -3474,17 +3519,17 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 77,
-    "totalFeatures": 1171,
-    "totalScenarios": 4020,
-    "totalSteps": 50455,
-    "totalPassed": 50240,
+    "totalReports": 78,
+    "totalFeatures": 1186,
+    "totalScenarios": 4072,
+    "totalSteps": 51114,
+    "totalPassed": 50899,
     "totalFailed": 58,
     "totalSkipped": 157,
-    "totalDuration": 75281.06737329996,
-    "totalSize": 34029678,
-    "averageDuration": "977.68",
-    "passRate": "99.57",
+    "totalDuration": 76307.59941619994,
+    "totalSize": 34304079,
+    "averageDuration": "978.30",
+    "passRate": "99.58",
     "failRate": "0.11",
     "skipRate": "0.31",
     "oldestReport": {
@@ -4162,6 +4207,13 @@
     },
     {
       "file": "gct-20251204-234107.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20251205-221523.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
