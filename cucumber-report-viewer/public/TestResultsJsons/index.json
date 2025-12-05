@@ -1,11 +1,11 @@
 {
-  "generated": "2025-12-05T15:19:30.953Z",
+  "generated": "2025-12-05T15:20:53.753Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20251205-203928",
+      "id": "gct-20251205-152050",
       "name": "Automation Test Results",
-      "date": "2025-12-05T15:09:28.181Z",
+      "date": "2025-12-05T15:20:50.457Z",
       "features": 1,
       "scenarios": 0,
       "steps": 0,
@@ -3549,14 +3549,14 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-163624.json",
+      "suggestedFilename": "gct-20250717-110624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251205-203928",
+      "id": "gct-20251205-152050",
       "name": "Automation Test Results",
-      "date": "2025-12-05T15:09:28.181Z",
+      "date": "2025-12-05T15:20:50.457Z",
       "size": 166,
       "features": 1,
       "scenarios": 0,
@@ -3570,7 +3570,7 @@
       "tool": null,
       "version": null,
       "hash": "e40dafeeea213be8148157775a269688",
-      "suggestedFilename": "gct-20251205-203928.json",
+      "suggestedFilename": "gct-20251205-152050.json",
       "status": "active",
       "isDeleted": false
     },
@@ -4177,6 +4177,12 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
+    }
+  ],
+  "renames": [
+    {
+      "from": "gct-20251205-203928.json",
+      "to": "gct-20251205-152050.json"
     }
   ]
 }
