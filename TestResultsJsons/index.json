@@ -1,7 +1,26 @@
 {
-  "generated": "2025-12-05T18:08:37.117Z",
+  "generated": "2025-12-05T18:18:04.585Z",
   "version": "2.1.0",
   "reports": [
+    {
+      "id": "gct-20251205-181758",
+      "name": "Automation Test Results",
+      "date": "2025-12-05T18:17:58.811Z",
+      "features": 0,
+      "scenarios": 0,
+      "steps": 0,
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 0,
+      "size": 2,
+      "tags": [],
+      "environment": null,
+      "tool": null,
+      "hash": "d751713988987e9331980363e24189ce",
+      "status": "active",
+      "isDeleted": false
+    },
     {
       "id": "gct-20251204-131632",
       "name": "GeoCall Automation Test Results Report",
@@ -3564,7 +3583,7 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 79,
+    "totalReports": 80,
     "totalFeatures": 1201,
     "totalScenarios": 4124,
     "totalSteps": 51773,
@@ -3572,8 +3591,8 @@
     "totalFailed": 58,
     "totalSkipped": 157,
     "totalDuration": 77273.13165759995,
-    "totalSize": 35474931,
-    "averageDuration": "978.14",
+    "totalSize": 35474933,
+    "averageDuration": "965.91",
     "passRate": "99.58",
     "failRate": "0.11",
     "skipRate": "0.30",
@@ -3620,54 +3639,28 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-163624.json",
+      "suggestedFilename": "gct-20250717-110624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251204-131632",
-      "name": "GeoCall Automation Test Results Report",
-      "date": "2025-12-04T13:16:32.735Z",
-      "size": 1394935,
-      "features": 15,
-      "scenarios": 52,
-      "steps": 659,
-      "passed": 659,
+      "id": "gct-20251205-181758",
+      "name": "Automation Test Results",
+      "date": "2025-12-05T18:17:58.811Z",
+      "size": 2,
+      "features": 0,
+      "scenarios": 0,
+      "steps": 0,
+      "passed": 0,
       "failed": 0,
       "skipped": 0,
-      "duration": 991.025447,
-      "tags": [
-        "AddResponse",
-        "AddResponseFlowValidation",
-        "AuthDashBoard",
-        "AuthTicket",
-        "CreateTicket",
-        "EndToEndSuite",
-        "Excavators",
-        "ExistingUserData",
-        "HomeOwnerTicket",
-        "MyCompanyTickets",
-        "OpenTicketInResponses",
-        "PrintTicket",
-        "QuickTestSuite",
-        "RegressionSuite",
-        "RememberMe",
-        "ResetPassword",
-        "Responses",
-        "RunNow",
-        "SignIn",
-        "SignUp",
-        "TicketDrafts",
-        "TicketSearch",
-        "UnAuthDashBoard",
-        "ViewTicketDetails",
-        "WorkAreaWithPolygon"
-      ],
+      "duration": 0,
+      "tags": [],
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "1da42dc9ec46ebbee5c218501e220a77",
-      "suggestedFilename": "gct-20251204-184632.json",
+      "hash": "d751713988987e9331980363e24189ce",
+      "suggestedFilename": "gct-20251205-181758.json",
       "status": "active",
       "isDeleted": false
     },
@@ -4282,6 +4275,12 @@
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
       ]
+    }
+  ],
+  "renames": [
+    {
+      "from": "gct-20251205-180314.json",
+      "to": "gct-20251205-181758.json"
     }
   ]
 }
