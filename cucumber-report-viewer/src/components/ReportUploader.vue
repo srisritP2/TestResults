@@ -146,8 +146,6 @@
 </template>
 
 <script>
-import UploadService from '@/services/UploadService';
-
 // Enhanced Cucumber JSON validation and normalization utilities
 function detectCucumberFormat(json) {
   // Format 1: Standard array of features
@@ -203,8 +201,7 @@ export default {
       errorMessage: '',
       storageStatus: null,
       showStorageInfo: false,
-      showStorageManager: false,
-      $uploadService: UploadService
+      showStorageManager: false
     };
   },
   computed: {
@@ -274,33 +271,7 @@ export default {
             // Set report data in store for immediate viewing
             this.$store.commit('setReportData', reportData);
             
-            // Try to upload to server first
-            try {
-              const uploadResult = await this.$uploadService.uploadReport(id, reportData, name);
-              
-              if (uploadResult.success) {
-                // Server upload successful
-                this.showStorageStatus('server', `Report uploaded to server successfully! Available at: ${uploadResult.url}`);
-                
-                // Also save to localStorage as backup
-                this.saveToLocalStorage(id, reportData, name, date, 'server');
-                
-                this.$emit('report-uploaded', { 
-                  ...reportData, 
-                  _uploadedId: id, 
-                  _storageStrategy: 'server',
-                  _storageMessage: 'Report saved to server and will be available in the reports index.',
-                  _serverUrl: uploadResult.url
-                });
-                
-                this.selectedFile = null;
-                return;
-              }
-            } catch (serverError) {
-              console.warn('Server upload failed, falling back to localStorage:', serverError.message);
-            }
-            
-            // Fallback to localStorage if server upload fails
+            // Save to localStorage
             const reportSize = JSON.stringify(reportData).length;
             const maxSize = 5 * 1024 * 1024; // 5MB limit for localStorage
             
@@ -317,8 +288,9 @@ export default {
                 // localStorage quota exceeded, try compressed storage
                 try {
                   // Simple compression: remove whitespace and store essential data only
+                  const featuresArray = Array.isArray(reportData) ? reportData : reportData.features || [];
                   const compressedData = {
-                    features: reportData.features.map(f => ({
+                    features: featuresArray.map(f => ({
                       name: f.name,
                       uri: f.uri,
                       id: f.id,
