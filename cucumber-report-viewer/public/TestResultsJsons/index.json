@@ -1,5 +1,5 @@
 {
-  "generated": "2025-12-05T17:24:15.640Z",
+  "generated": "2025-12-05T17:29:44.218Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -274,6 +274,51 @@
     },
     {
       "id": "gct-20251204-234107",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-12-02T12:48:00.815Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 965.5322414,
+      "size": 1170852,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "ccc1d9f228ebac28c03e54f57159b39b",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20251205-222918",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-02T12:48:00.815Z",
       "features": 15,
@@ -3519,19 +3564,19 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 78,
-    "totalFeatures": 1186,
-    "totalScenarios": 4072,
-    "totalSteps": 51114,
-    "totalPassed": 50899,
+    "totalReports": 79,
+    "totalFeatures": 1201,
+    "totalScenarios": 4124,
+    "totalSteps": 51773,
+    "totalPassed": 51558,
     "totalFailed": 58,
     "totalSkipped": 157,
-    "totalDuration": 76307.59941619994,
-    "totalSize": 34304079,
-    "averageDuration": "978.30",
+    "totalDuration": 77273.13165759995,
+    "totalSize": 35474931,
+    "averageDuration": "978.14",
     "passRate": "99.58",
     "failRate": "0.11",
-    "skipRate": "0.31",
+    "skipRate": "0.30",
     "oldestReport": {
       "id": "gct-20250717-110624",
       "name": "GeoCall Automation Test Results Report",
@@ -4214,6 +4259,13 @@
     },
     {
       "file": "gct-20251205-221523.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20251205-222918.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
