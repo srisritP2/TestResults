@@ -1,26 +1,7 @@
 {
-  "generated": "2025-12-05T15:20:53.753Z",
+  "generated": "2025-12-05T15:46:43.449Z",
   "version": "2.1.0",
   "reports": [
-    {
-      "id": "gct-20251205-152050",
-      "name": "Automation Test Results",
-      "date": "2025-12-05T15:20:50.457Z",
-      "features": 1,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "duration": 0,
-      "size": 166,
-      "tags": [],
-      "environment": null,
-      "tool": null,
-      "hash": "e40dafeeea213be8148157775a269688",
-      "status": "active",
-      "isDeleted": false
-    },
     {
       "id": "gct-20251204-131632",
       "name": "GeoCall Automation Test Results Report",
@@ -3493,16 +3474,16 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 78,
-    "totalFeatures": 1172,
+    "totalReports": 77,
+    "totalFeatures": 1171,
     "totalScenarios": 4020,
     "totalSteps": 50455,
     "totalPassed": 50240,
     "totalFailed": 58,
     "totalSkipped": 157,
     "totalDuration": 75281.06737329996,
-    "totalSize": 34029844,
-    "averageDuration": "965.14",
+    "totalSize": 34029678,
+    "averageDuration": "977.68",
     "passRate": "99.57",
     "failRate": "0.11",
     "skipRate": "0.31",
@@ -3549,28 +3530,54 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250717-110624.json",
+      "suggestedFilename": "gct-20250717-163624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20251205-152050",
-      "name": "Automation Test Results",
-      "date": "2025-12-05T15:20:50.457Z",
-      "size": 166,
-      "features": 1,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
+      "id": "gct-20251204-131632",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-12-04T13:16:32.735Z",
+      "size": 1394935,
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
       "failed": 0,
       "skipped": 0,
-      "duration": 0,
-      "tags": [],
+      "duration": 991.025447,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "e40dafeeea213be8148157775a269688",
-      "suggestedFilename": "gct-20251205-152050.json",
+      "hash": "1da42dc9ec46ebbee5c218501e220a77",
+      "suggestedFilename": "gct-20251204-184632.json",
       "status": "active",
       "isDeleted": false
     },
@@ -4154,12 +4161,6 @@
       ]
     },
     {
-      "file": "gct-20251205-203928.json",
-      "errors": [
-        "Feature 0: Missing name"
-      ]
-    },
-    {
       "file": "package.json",
       "errors": [
         "Root element must be an array"
@@ -4177,12 +4178,6 @@
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "gct-20251205-203928.json",
-      "to": "gct-20251205-152050.json"
     }
   ]
 }
