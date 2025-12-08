@@ -333,6 +333,15 @@ export default {
     filteredReports() {
       let reports = [...this.reportsCollection];
 
+      // Filter out empty reports (no features, scenarios, or steps)
+      reports = reports.filter(report => {
+        const hasData = (report.features > 0 || report.scenarios > 0 || report.steps > 0);
+        if (!hasData) {
+          console.log(`Filtering out empty report: ${report.id}`);
+        }
+        return hasData;
+      });
+
       // Apply search filter
       if (this.searchQuery) {
         reports = ReportService.searchReports(reports, this.searchQuery);

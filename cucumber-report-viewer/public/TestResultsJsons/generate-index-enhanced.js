@@ -407,6 +407,12 @@ class CucumberIndexGenerator {
           // Extract metadata
           const metadata = this.extractMetadata(json, filename);
           
+          // Skip empty reports (no features, scenarios, or steps)
+          if (metadata.features === 0 || metadata.scenarios === 0 || metadata.steps === 0) {
+            this.log(`Skipping empty report: ${filename} (features: ${metadata.features}, scenarios: ${metadata.scenarios}, steps: ${metadata.steps})`);
+            continue;
+          }
+          
           // Add deletion status
           metadata.status = 'active';
           metadata.isDeleted = false;
