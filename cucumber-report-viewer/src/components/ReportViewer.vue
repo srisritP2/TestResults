@@ -1147,6 +1147,15 @@ export default {
             deletionType: result.deletionType
           });
 
+          // Dispatch window event for ReportsCollection to listen
+          window.dispatchEvent(new CustomEvent('reportDeleted', {
+            detail: {
+              reportId,
+              result,
+              deletionType: result.deletionType
+            }
+          }));
+
           // Navigate back to collection after a short delay
           setTimeout(() => {
             this.$router.push('/');

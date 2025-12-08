@@ -581,8 +581,17 @@ export default {
     handleReportDeleted(event) {
       const { reportId, result } = event.detail;
 
+      // Clear cache to ensure fresh data
+      ReportService.clearCache();
+
       // Remove from local collection if it exists
       this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
+
+      // Also remove from localStorage
+      let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+      index = index.filter(r => r.id !== reportId);
+      localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
+      localStorage.removeItem('uploaded-report-' + reportId);
 
       // Show success message
       this.showSuccessMessage(result.deletionType === 'soft'
