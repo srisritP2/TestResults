@@ -1,5 +1,5 @@
 {
-  "generated": "2025-12-05T18:35:29.926Z",
+  "generated": "2025-12-08T13:09:07.186Z",
   "version": "2.1.0",
   "reports": [
     {
@@ -44,44 +44,6 @@
       "environment": null,
       "tool": null,
       "hash": "352366b92e9e81748688b0d7f4d6a192",
-      "status": "active",
-      "isDeleted": false
-    },
-    {
-      "id": "gct-20251205-235820",
-      "name": "Automation Test Results",
-      "date": "2025-12-05T18:28:20.258Z",
-      "features": 0,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "duration": 0,
-      "size": 2,
-      "tags": [],
-      "environment": null,
-      "tool": null,
-      "hash": "d751713988987e9331980363e24189ce",
-      "status": "active",
-      "isDeleted": false
-    },
-    {
-      "id": "gct-20251205-234245",
-      "name": "Automation Test Results",
-      "date": "2025-12-05T18:12:45.337Z",
-      "features": 0,
-      "scenarios": 0,
-      "steps": 0,
-      "passed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "duration": 0,
-      "size": 2,
-      "tags": [],
-      "environment": null,
-      "tool": null,
-      "hash": "d751713988987e9331980363e24189ce",
       "status": "active",
       "isDeleted": false
     },
@@ -3647,7 +3609,7 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 82,
+    "totalReports": 80,
     "totalFeatures": 1216,
     "totalScenarios": 4176,
     "totalSteps": 52432,
@@ -3655,8 +3617,8 @@
     "totalFailed": 58,
     "totalSkipped": 157,
     "totalDuration": 78337.29574019993,
-    "totalSize": 35621287,
-    "averageDuration": "955.33",
+    "totalSize": 35621283,
+    "averageDuration": "979.22",
     "passRate": "99.59",
     "failRate": "0.11",
     "skipRate": "0.30",
@@ -4384,16 +4346,6 @@
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "gct-20251205-181758.json",
-      "to": "gct-20251205-235820.json"
-    },
-    {
-      "from": "gct-20251205-180314.json",
-      "to": "gct-20251205-234245.json"
     }
   ]
 }

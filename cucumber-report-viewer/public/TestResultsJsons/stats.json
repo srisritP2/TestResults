@@ -1,5 +1,5 @@
 {
-  "totalReports": 82,
+  "totalReports": 80,
   "totalFeatures": 1216,
   "totalScenarios": 4176,
   "totalSteps": 52432,
@@ -7,8 +7,8 @@
   "totalFailed": 58,
   "totalSkipped": 157,
   "totalDuration": 78337.29574019993,
-  "totalSize": 35621287,
-  "averageDuration": "955.33",
+  "totalSize": 35621283,
+  "averageDuration": "979.22",
   "passRate": "99.59",
   "failRate": "0.11",
   "skipRate": "0.30",
