@@ -113,7 +113,7 @@
 
         <!-- Enhanced Reports List -->
         <div v-else class="reports-grid">
-          <v-card v-for="report in filteredReports" :key="report.id" class="report-card"
+          <v-card v-for="report in displayedReports" :key="report.id" class="report-card"
             :class="{ 'report-failed': report.failed > 0 }" @click="navigateToReport(report)">
             <v-card-text class="report-content">
               <!-- Mobile-First Header Layout -->
@@ -228,6 +228,34 @@
             </v-card-text>
           </v-card>
         </div>
+
+        <!-- Load More Button with Glassmorphism -->
+        <div v-if="hasMoreReports" class="load-more-container">
+          <button 
+            @click="loadMore" 
+            :disabled="loadingMore"
+            class="load-more-btn"
+          >
+            <v-progress-circular 
+              v-if="loadingMore" 
+              indeterminate 
+              color="white" 
+              size="20"
+              width="2"
+            ></v-progress-circular>
+            <template v-else>
+              <v-icon size="20" class="mr-2">mdi-chevron-down</v-icon>
+              <span>Load More</span>
+              <span class="remaining-count">({{ allFilteredReports.length - displayedReportsCount }} remaining)</span>
+            </template>
+          </button>
+        </div>
+
+        <!-- End of List Indicator -->
+        <div v-else-if="!hasMoreReports && displayedReports.length > 0" class="end-of-list-indicator">
+          <v-icon size="24" color="grey-lighten-1">mdi-check-circle</v-icon>
+          <p class="mt-2">All reports loaded ({{ allFilteredReports.length }} total)</p>
+        </div>
       </v-card-text>
     </v-card>
 
@@ -271,6 +299,10 @@ export default {
       statusFilter: null,
       sortBy: 'date',
       deletionService: new DeletionService(),
+      // Infinite scroll / pagination
+      displayedReportsCount: 4, // Start with 4 reports
+      reportsPerPage: 4, // Load 4 more each time
+      loadingMore: false,
       statusOptions: [
         { title: 'All Passed', value: 'passed' },
         { title: 'Has Failures', value: 'failed' },
@@ -328,9 +360,25 @@ export default {
     window.removeEventListener('reportDeleted', this.handleReportDeleted);
     window.removeEventListener('reportRestored', this.handleReportRestored);
   },
+  
+  watch: {
+    // Reset displayed count when filters change
+    searchQuery() {
+      this.displayedReportsCount = this.reportsPerPage;
+    },
+    statusFilter() {
+      this.displayedReportsCount = this.reportsPerPage;
+    },
+    syncStatusFilter() {
+      this.displayedReportsCount = this.reportsPerPage;
+    },
+    sortBy() {
+      this.displayedReportsCount = this.reportsPerPage;
+    }
+  },
 
   computed: {
-    filteredReports() {
+    allFilteredReports() {
       let reports = [...this.reportsCollection];
 
       // Filter out empty reports (no features, scenarios, or steps)
@@ -363,9 +411,37 @@ export default {
       reports = ReportService.sortReports(reports, this.sortBy);
 
       return reports;
+    },
+    
+    // Display only a subset of reports for infinite scroll
+    displayedReports() {
+      return this.allFilteredReports.slice(0, this.displayedReportsCount);
+    },
+    
+    // Check if there are more reports to load
+    hasMoreReports() {
+      return this.displayedReportsCount < this.allFilteredReports.length;
+    },
+    
+    // For backward compatibility
+    filteredReports() {
+      return this.allFilteredReports;
     }
   },
   methods: {
+    // Load more reports
+    loadMore() {
+      if (this.loadingMore || !this.hasMoreReports) return;
+
+      this.loadingMore = true;
+      
+      // Simulate a small delay for smooth UX
+      setTimeout(() => {
+        this.displayedReportsCount += this.reportsPerPage;
+        this.loadingMore = false;
+        console.log(`Loaded more reports. Now showing: ${this.displayedReportsCount} of ${this.allFilteredReports.length}`);
+      }, 300);
+    },
     async fetchReports() {
       this.loading = true;
       this.reportsCollectionError = '';
@@ -406,6 +482,7 @@ export default {
 
     async refreshReports() {
       ReportService.clearCache();
+      this.displayedReportsCount = this.reportsPerPage; // Reset to initial count
       await this.fetchReports();
     },
 
@@ -2390,5 +2467,122 @@ The GitHub workflow will automatically update your GitHub Pages site!
 
 [data-theme="dark"] .collection-subtitle {
   color: var(--theme-text-secondary) !important;
+}
+</style>
+
+
+<style scoped>
+/* Load More Container */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  margin-top: 1rem;
+}
+
+/* Glassmorphism Load More Button */
+.load-more-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.8), rgba(139, 92, 246, 0.8));
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(99, 102, 241, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.load-more-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.load-more-btn:hover::before {
+  left: 100%;
+}
+
+.load-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px 0 rgba(99, 102, 241, 0.4);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.load-more-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px 0 rgba(99, 102, 241, 0.3);
+}
+
+.load-more-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.load-more-btn .remaining-count {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Dark theme adjustments */
+.theme--dark .load-more-btn {
+  background: linear-gradient(135deg, rgba(96, 165, 250, 0.7), rgba(139, 92, 246, 0.7));
+  box-shadow: 0 8px 32px 0 rgba(96, 165, 250, 0.3);
+}
+
+.theme--dark .load-more-btn:hover {
+  box-shadow: 0 12px 40px 0 rgba(96, 165, 250, 0.4);
+}
+
+/* End of List Indicator */
+.end-of-list-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.end-of-list-indicator p {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.875rem;
+  margin: 0;
+  margin-top: 0.5rem;
+}
+
+.theme--dark .end-of-list-indicator p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+  .load-more-btn {
+    padding: 0.875rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  .load-more-btn .remaining-count {
+    font-size: 0.8rem;
+  }
 }
 </style>
