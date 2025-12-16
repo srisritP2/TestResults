@@ -2,7 +2,7 @@
 const path = require("path");
 
 // Use root path for Netlify, subdirectory for GitHub Pages
-const publicPath = process.env.NETLIFY ? "/" : "/TestResults/";
+const publicPath = process.env.NETLIFY || process.env.CONTEXT === 'production' ? "/" : "/TestResults/";
 
 module.exports = {
   publicPath: publicPath,
