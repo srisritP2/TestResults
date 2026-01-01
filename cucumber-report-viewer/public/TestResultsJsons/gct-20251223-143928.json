@@ -1,0 +1,6160 @@
+[
+  {
+    "name": "Admin Client Settings Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Admin_ClientSettings.feature",
+    "id": "admin-client-settings-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Change the Default draw mode and Default draw type on Ticket Map",
+        "id": "admin-client-settings-page-||-test-scenarios;change-the-default-draw-mode-and-default-draw-type-on-ticket-map",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5052459600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 471371800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 516823200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 160143800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 167783600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3338390000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Client Settings",
+            "keyword": "Then ",
+            "result": {
+              "duration": 923189600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Search for the Default Ticket Draw Mode",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1805612700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change Ticket Draw Mode to the \"Work Area\"",
+            "keyword": "And ",
+            "result": {
+              "duration": 1613577300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Search for the Default Ticket Draw Type",
+            "keyword": "Then ",
+            "result": {
+              "duration": 479648500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change Ticket Draw Type to the \"Polygon\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1885377400,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Enabling the Default My Ticket settings to true",
+        "id": "admin-client-settings-page-||-test-scenarios;enabling-the-default-my-ticket-settings-to-true",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016987600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 118072600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 222401200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81484800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 119376900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3262089200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Client Settings",
+            "keyword": "Then ",
+            "result": {
+              "duration": 781850000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Search for the Default My Ticket of Ticket Search feature \"Default My Ticket\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 890004400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change the value to \"true\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1711560900,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "System Synch Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Admin_SystemSync.feature",
+    "id": "system-synch-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Verify to check user can access System Sync menus",
+        "id": "system-synch-page-||-test-scenarios;verify-to-check-user-can-access-system-sync-menus",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017752700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 259790500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 380984200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 116971300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 93264100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3166683000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on System Sync",
+            "keyword": "Then ",
+            "result": {
+              "duration": 328558500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the user able access the System Sync menus",
+            "keyword": "And ",
+            "result": {
+              "duration": 26418600,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify to check user can access System Sync Export and Import settings",
+        "id": "system-synch-page-||-test-scenarios;verify-to-check-user-can-access-system-sync-export-and-import-settings",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5013662400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 120535900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 219516900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 87154800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 76613400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3452585900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on System Sync",
+            "keyword": "Then ",
+            "result": {
+              "duration": 314803900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the user able access the Export settings and Import Settings",
+            "keyword": "And ",
+            "result": {
+              "duration": 148005900,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user can download the settings in System Sync",
+        "id": "system-synch-page-||-test-scenarios;validate-user-can-download-the-settings-in-system-sync",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5019679900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 116257500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 232734200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 85883600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79448700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3145027700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on System Sync",
+            "keyword": "Then ",
+            "result": {
+              "duration": 357124200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Export the System settings",
+            "keyword": "And ",
+            "result": {
+              "duration": 433618500,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Administration Notifications Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Administration_Notifications.feature",
+    "id": "administration-notifications-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": []
+      },
+      {
+        "name": "Verify user able to access Notifications and its features",
+        "id": "administration-notifications-page-||-test-scenarios;verify-user-able-to-access-notifications-and-its-features",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5023713700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 167910600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 635644900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 107539000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 124623700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3339548000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify whether the Notifications Menu available",
+            "keyword": "Then ",
+            "result": {
+              "duration": 25999800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Notifications Menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 309548700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check the features are available Add,Date range, Search etc",
+            "keyword": "Then ",
+            "result": {
+              "duration": 202760400,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "",
+        "type": "background",
+        "keyword": "Background",
+        "steps": []
+      },
+      {
+        "name": "Verify user able to add a New Notification",
+        "id": "administration-notifications-page-||-test-scenarios;verify-user-able-to-add-a-new-notification",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016513500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 117763800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 234183400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 92756900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77436500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3118283400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify whether the Notifications Menu available",
+            "keyword": "Then ",
+            "result": {
+              "duration": 18051500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Notifications Menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 111762000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the Add button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 316651700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Name \"Test Notification\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 176422900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Description \"This is test notification\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 103933600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the notification type",
+            "keyword": "Then ",
+            "result": {
+              "duration": 157278600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Priority Type",
+            "keyword": "And ",
+            "result": {
+              "duration": 152312200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the category \"High Note\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 71116100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select Released on",
+            "keyword": "And ",
+            "result": {
+              "duration": 164659100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select Expire on",
+            "keyword": "Then ",
+            "result": {
+              "duration": 143095700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Save button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 85969700,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Administration User Roles Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Administration_Roles.feature",
+    "id": "administration-user-roles-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate user can Edit the user role",
+        "id": "administration-user-roles-page-||-test-scenarios;validate-user-can-edit-the-user-role",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015985000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 152714300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 232873300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 85806300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 82194400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3151845600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Admin Roles",
+            "keyword": "And ",
+            "result": {
+              "duration": 5224326500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Edit the role and save",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2088250500,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Administration UI Model Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Administration_UIModel.feature",
+    "id": "administration-ui-model-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Verify User able to access the available UI Models",
+        "id": "administration-ui-model-page-||-test-scenarios;verify-user-able-to-access-the-available-ui-models",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018477300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 122954400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 244070900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 114355800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81629000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3105923900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on UI Model Settings",
+            "keyword": "And ",
+            "result": {
+              "duration": 351430100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user can access Dashboard, Home Owner, Sign Up, Ticket Add Models.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1590255700,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify user able to access the fields on Dashboard UI Model Page",
+        "id": "administration-ui-model-page-||-test-scenarios;verify-user-able-to-access-the-fields-on-dashboard-ui-model-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5020287600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 130429600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 227514000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 104496800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84947700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Administration menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3222658600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on UI Model Settings",
+            "keyword": "And ",
+            "result": {
+              "duration": 344497300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Dashboard Model",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3119447400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify user has access to Versions, Save model, move model item, delete model item and add version",
+            "keyword": "Then ",
+            "result": {
+              "duration": 158015400,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Administration User Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Administration_Users.feature",
+    "id": "administration-user-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Verify user able to access search,include deleted records and fetch user records",
+        "id": "administration-user-page-||-test-scenarios;verify-user-able-to-access-search-include-deleted-records-and-fetch-user-records",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5019338800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 129841800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 226400700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 90188100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 75152700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3818514900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user record accessible",
+            "keyword": "Then ",
+            "result": {
+              "duration": 619469600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check fields are accessible search input and include deleted records",
+            "keyword": "Then ",
+            "result": {
+              "duration": 29462400,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user can open the user record",
+        "id": "administration-user-page-||-test-scenarios;validate-user-can-open-the-user-record",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016324600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 133289200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 242034100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84441200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 74902800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3619849800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 665541600,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user can reset password",
+        "id": "administration-user-page-||-test-scenarios;validate-user-can-reset-password",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5009766100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 143351900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 226109600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 86016700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 75331700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3770084800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 625335900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the Reset Password",
+            "keyword": "And ",
+            "result": {
+              "duration": 419000800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter password in both reset password and verify password field",
+            "keyword": "Then ",
+            "result": {
+              "duration": 129665800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Submit button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 140607600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Acknowledgement message should be displayed such as Password changed Successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 351492300,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Update User's Excavator details",
+        "id": "administration-user-page-||-test-scenarios;update-user-s-excavator-details",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014291700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 131015400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 213344900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 86307100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84380700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3526686300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether get displayed with a record",
+            "keyword": "Then ",
+            "result": {
+              "duration": 555537600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 102221400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu of the respective user",
+            "keyword": "And ",
+            "result": {
+              "duration": 520205200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Edit button to update excavator details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 375947400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Update address as \"Belmont Church\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 869514400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator Save button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81807300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get displayed with confirm window",
+            "keyword": "When ",
+            "result": {
+              "duration": 26023100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Yes to update the details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 56778300,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Create a code functionality validation in User codes",
+        "id": "administration-user-page-||-test-scenarios;create-a-code-functionality-validation-in-user-codes",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015920400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 133860000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 220246100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81906000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77050100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3849236500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether get displayed with a record",
+            "keyword": "Then ",
+            "result": {
+              "duration": 595519700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79675500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto codes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 418988400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Create a code",
+            "keyword": "And ",
+            "result": {
+              "duration": 3251911400,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Delete a code and delete functionality validation in User codes",
+        "id": "administration-user-page-||-test-scenarios;delete-a-code-and-delete-functionality-validation-in-user-codes",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5010449300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 126073100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 229848700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 82152500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 113552200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"srisri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3536388000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether get displayed with a record",
+            "keyword": "Then ",
+            "result": {
+              "duration": 557419300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80669800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto codes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 422791300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Delete the code to validate functional flow",
+            "keyword": "Then ",
+            "result": {
+              "duration": 395769100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Yes to confirm the deletion",
+            "keyword": "Then ",
+            "result": {
+              "duration": 34334900,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Excavators Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Excavators.feature",
+    "id": "excavators-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate whether user able to add excavator",
+        "id": "excavators-page-||-test-scenarios;validate-whether-user-able-to-add-excavator",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018731900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 121506400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 278486500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80107900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 76009300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3183305200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Add Excavator button",
+            "keyword": "And ",
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"(//span[normalize-space()='Add Excavator'])[1]\"}\n  (Session info: chrome=143.0.7499.147)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: '4.32.0', revision: 'd17c8aa950'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.1'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [95a4ba51a0a660eaeb82b94f359fcc64, findElement {using=xpath, value=(//span[normalize-space()='Add Excavator'])[1]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.147, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: C:\\Users\\stummu\\AppData\\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:61488}, goog:processID: 55808, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:61488/devtoo..., se:cdpVersion: 143.0.7499.147, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 95a4ba51a0a660eaeb82b94f359fcc64\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)\r\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)\r\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)\r\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:565)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:315)\r\n\tat org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxyFactory$3(WebDriverDecorator.java:405)\r\n\tat net.bytebuddy.renamed.java.lang.Object$ByteBuddy$CIfACHNy.findElement(Unknown Source)\r\n\tat com.qa.pages.Excavator.clickOnAddExcavatorButton(Excavator.java:134)\r\n\tat StepDefinitions.ExcavatorPageSteps.click_on_add_excavator_button(ExcavatorPageSteps.java:39)\r\n\tat ✽.Click on Add Excavator button(file:///E:/Automation/IdeaProjects/qa-automation/src/test/resources/features/Excavators.feature:49)\r\n",
+              "duration": 10056205200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Phone number with \"9493034647\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Select excavator type as Excavator",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Enter Name with \"SriSri\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Enter Address \"Belmont University\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Enter City with \"Nashville\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Select state as AL",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Enter Zip code with \"37129\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Enter Contact Phone number as \"9493034647\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Contact as \"Sherwin\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Contact email \"srisri.tummu@progressivepartnering.com\"",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Click on copy contact information",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Click on Save button",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          }
+        ]
+      },
+      {
+        "name": "Delete a excavator record from the excavator page",
+        "id": "excavators-page-||-test-scenarios;delete-a-excavator-record-from-the-excavator-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5021859300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 212334200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 479646800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 131947800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 127118800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3395686300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Search for a record with named \"SriSri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 126462800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator Search button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 91281300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the first record to view complete details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 609007300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Delete button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 683518100,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user able to search the excavator and able to open excavator record",
+        "id": "excavators-page-||-test-scenarios;validate-user-able-to-search-the-excavator-and-able-to-open-excavator-record",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5013127600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 189430300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 294262000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 141984900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 115554200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3751684500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter details of excavator \"SriSri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 109467600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator Search button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 66810100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the first record to view complete details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 467193000,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user able to search and find the required assigned user details",
+        "id": "excavators-page-||-test-scenarios;validate-user-able-to-search-and-find-the-required-assigned-user-details",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015221100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 172573800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 220108900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 101138100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78523500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3215904100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Search for a record with named \"Terry\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 97393800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator Search button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 63111600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open the Excavator record details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 460291200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Assigned users and see user able to access the details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 759195900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on search and enter the user name \"admin\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 235448400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to view the details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 30065100,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate the User is able to assign excavator in Administration- Assign Excavator",
+        "id": "excavators-page-||-test-scenarios;validate-the-user-is-able-to-assign-excavator-in-administration--assign-excavator",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5010344600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 118527800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 233571500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 83025000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 76494500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Users and search for the user \"SriSri\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3596206500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether get displayed with a record",
+            "keyword": "Then ",
+            "result": {
+              "duration": 578217700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open user details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 85530600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu of the respective user",
+            "keyword": "And ",
+            "result": {
+              "duration": 495488400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Assign Excavator",
+            "keyword": "Then ",
+            "result": {
+              "duration": 121885700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the excavator record name as \"SriSri\"",
+            "keyword": "And ",
+            "result": {
+              "duration": 139883600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the search button to find it",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3074347900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the more options for the record",
+            "keyword": "And ",
+            "result": {
+              "duration": 3106696600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether it is already assigned if not then click on check box to assign",
+            "keyword": "Then ",
+            "result": {
+              "duration": 30563900,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify that user have access to Excavator in My Profile the User is able to assign excavator",
+        "id": "excavators-page-||-test-scenarios;verify-that-user-have-access-to-excavator-in-my-profile-the-user-is-able-to-assign-excavator",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017286200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 152171300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 233688500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78736800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 76682800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto My Profile",
+            "keyword": "And ",
+            "result": {
+              "duration": 5215900600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu of the respective user",
+            "keyword": "And ",
+            "result": {
+              "duration": 521682500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user get enabled with Assign Excavator option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 37510800,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate the User is able to assign excavator in My Profile- Assign Excavator",
+        "id": "excavators-page-||-test-scenarios;validate-the-user-is-able-to-assign-excavator-in-my-profile--assign-excavator",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5011770200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 130108800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 237197400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78972400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80522400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto My Profile",
+            "keyword": "And ",
+            "result": {
+              "duration": 5218316400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu of the respective user",
+            "keyword": "Then ",
+            "result": {
+              "duration": 536146300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Assign Excavator",
+            "keyword": "Then ",
+            "result": {
+              "duration": 148286600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the excavator record name as \"SriSri\"",
+            "keyword": "And ",
+            "result": {
+              "duration": 110233300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the search button to find it",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3091519900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the more options for the record",
+            "keyword": "And ",
+            "result": {
+              "duration": 3098356500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether it is already assigned if not then click on check box to assign",
+            "keyword": "Then ",
+            "result": {
+              "duration": 15807800,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate the User is able to assign excavator in My Profile- Add new caller details",
+        "id": "excavators-page-||-test-scenarios;validate-the-user-is-able-to-assign-excavator-in-my-profile--add-new-caller-details",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Excavators"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014961600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 120645500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 217923100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 87993600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80215900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto My Profile",
+            "keyword": "And ",
+            "result": {
+              "duration": 5193403400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Excavator menu of the respective user",
+            "keyword": "Then ",
+            "result": {
+              "duration": 516858700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Edit button to update details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 477090500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Update General details, phone to \"9492684647\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 811793400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Save button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 125944200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get displayed with confirm window",
+            "keyword": "When ",
+            "result": {
+              "duration": 22323700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Yes to update the details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 60598400,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Home Owner Ticket Feature || Test Scenarios",
+    "uri": "file:src/test/resources/features/HomeOwnerTicket.feature",
+    "id": "home-owner-ticket-feature-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate Home Owner Ticket page on Dash Board Page",
+        "id": "home-owner-ticket-feature-||-test-scenarios;validate-home-owner-ticket-page-on-dash-board-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@UnAuthDashBoard"
+          },
+          {
+            "name": "@HomeOwnerTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5010741500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate whether user get displayed with Home Owner Ticket Option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 34946200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User redirected to Create Home Owner Ticket Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 83310900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User get displayed with Welcome message and Next button on 1st page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1324080800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to submit the fields and get redirected to 2nd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2741672700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to click on Next button on the 2nd page to redirect to 3rd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 113440300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm the project location details on 4th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 112919800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to select county on 5th page and redirect to 6th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1192367400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter location and redirect to 6th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2535994900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter the closest intersecting street to the project location and redirect to 7th page by click on Next",
+            "keyword": "Then ",
+            "result": {
+              "duration": 529532800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter driving directions to the project location and redirect to 8th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1836669800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm to provide the type of project details for utility company",
+            "keyword": "Then ",
+            "result": {
+              "duration": 104050400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to provide estimated days to complete and marking provided or not on 10th page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1775361100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm project start date and redirect to 11th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 117264500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to any additional info or none and redirect to next page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 114875600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm details regarding usage of explosives and redirect final page to preview details.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 325367000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to preview all details and submit the ticket successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 613557300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get populated with a text that Ticket is submitted successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3191683700,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate UnAuth User able to draw polygon at work site using area tool with work area tool",
+        "id": "home-owner-ticket-feature-||-test-scenarios;validate-unauth-user-able-to-draw-polygon-at-work-site-using-area-tool-with-work-area-tool",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@UnAuthDashBoard"
+          },
+          {
+            "name": "@HomeOwnerTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014999800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate whether user get displayed with Home Owner Ticket Option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 28941600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User redirected to Create Home Owner Ticket Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 75685900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User get displayed with Welcome message and Next button on 1st page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1316045200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to submit the fields and get redirected to 2nd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2805998400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to click on Next button on the 2nd page to redirect to 3rd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 111704400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm the project location details on 4th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 111850500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to select county on 5th page and redirect to 6th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1233746400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter a work site location and check whether user get displayed with a suggestion",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1788847500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Work site location on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 233764200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Work area tool on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2243502700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using work area on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 8594037700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Scroll up and click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 10253604600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter the closest intersecting street to the project location and redirect to 7th page by click on Next",
+            "keyword": "Then ",
+            "result": {
+              "duration": 552755700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter driving directions to the project location and redirect to 8th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1959218800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm to provide the type of project details for utility company",
+            "keyword": "Then ",
+            "result": {
+              "duration": 120065100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to provide estimated days to complete and marking provided or not on 10th page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1839116800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm project start date and redirect to 11th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 125006400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to any additional info or none and redirect to next page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 116175400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm details regarding usage of explosives and redirect final page to preview details.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 328858200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to preview all details and submit the ticket successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 606989800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get populated with a text that Ticket is submitted successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3135637900,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate UnAuth User able to draw polygon at work site using area tool with Measurement tool",
+        "id": "home-owner-ticket-feature-||-test-scenarios;validate-unauth-user-able-to-draw-polygon-at-work-site-using-area-tool-with-measurement-tool",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@UnAuthDashBoard"
+          },
+          {
+            "name": "@HomeOwnerTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5008279500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate whether user get displayed with Home Owner Ticket Option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 32008800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User redirected to Create Home Owner Ticket Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 100130300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User get displayed with Welcome message and Next button on 1st page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1414726800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to submit the fields and get redirected to 2nd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2913882900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to click on Next button on the 2nd page to redirect to 3rd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 123533100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm the project location details on 4th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 115543000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to select county on 5th page and redirect to 6th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1234040200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter a work site location and check whether user get displayed with a suggestion",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1802553800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Work site location on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 248106500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Measurement tool on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 353138500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using Measurement on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5814580300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Scroll up and click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 10227872800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter the closest intersecting street to the project location and redirect to 7th page by click on Next",
+            "keyword": "Then ",
+            "result": {
+              "duration": 623323500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter driving directions to the project location and redirect to 8th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1999853800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm to provide the type of project details for utility company",
+            "keyword": "Then ",
+            "result": {
+              "duration": 106563300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to provide estimated days to complete and marking provided or not on 10th page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1953651800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm project start date and redirect to 11th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 122740000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to any additional info or none and redirect to next page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 107768300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm details regarding usage of explosives and redirect final page to preview details.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 315693900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to preview all details and submit the ticket successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 589657400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get populated with a text that Ticket is submitted successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3139412200,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate Home Owner Ticket page and create a Home owner ticket as Auth User",
+        "id": "home-owner-ticket-feature-||-test-scenarios;validate-home-owner-ticket-page-and-create-a-home-owner-ticket-as-auth-user",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@AuthDashBoard"
+          },
+          {
+            "name": "@HomeOwnerTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015692700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 123791200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 230385900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80840000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81610400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate whether user get displayed with Home Owner Ticket Option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 23046300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User redirected to Create Home Owner Ticket Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 66111200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User get displayed with Welcome message and Next button on 1st page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1313198700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to submit the fields and get redirected to 2nd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2978319700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to click on Next button on the 2nd page to redirect to 3rd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 110084400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm the project location details on 4th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 114652000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to select county on 5th page and redirect to 6th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1201345900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter location and redirect to 6th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2536936300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter the closest intersecting street to the project location and redirect to 7th page by click on Next",
+            "keyword": "Then ",
+            "result": {
+              "duration": 621758800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter driving directions to the project location and redirect to 8th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2001063400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm to provide the type of project details for utility company",
+            "keyword": "Then ",
+            "result": {
+              "duration": 116062900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to provide estimated days to complete and marking provided or not on 10th page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1902525000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm project start date and redirect to 11th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 138340700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to any additional info or none and redirect to next page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 143886600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm details regarding usage of explosives and redirect final page to preview details.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 341461800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to preview all details and submit the ticket successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 681879700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get populated with a text that Ticket is submitted successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3139123600,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate Auth User able to draw polygon at work site using area tool with work area tool",
+        "id": "home-owner-ticket-feature-||-test-scenarios;validate-auth-user-able-to-draw-polygon-at-work-site-using-area-tool-with-work-area-tool",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015054100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 185300400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 326276300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78450300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81337800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate whether user get displayed with Home Owner Ticket Option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 17998300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User redirected to Create Home Owner Ticket Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77551000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Validate User get displayed with Welcome message and Next button on 1st page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1777798100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to submit the fields and get redirected to 2nd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2735153300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to click on Next button on the 2nd page to redirect to 3rd page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 116517800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm the project location details on 4th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 108513900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to select county on 5th page and redirect to 6th page by click on Yes",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1250104200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter a work site location and check whether user get displayed with a suggestion",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1872381300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Work site location on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 255714300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Work area tool on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2232029400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using work area on Home Owner Ticket Map",
+            "keyword": "Then ",
+            "result": {
+              "duration": 8721165600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Scroll up and click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 10259652100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter the closest intersecting street to the project location and redirect to 7th page by click on Next",
+            "keyword": "Then ",
+            "result": {
+              "duration": 585323900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to enter driving directions to the project location and redirect to 8th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2092259600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm to provide the type of project details for utility company",
+            "keyword": "Then ",
+            "result": {
+              "duration": 115096700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to provide estimated days to complete and marking provided or not on 10th page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1949296600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm project start date and redirect to 11th page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 118499300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to any additional info or none and redirect to next page by click on Next button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 119400700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to confirm details regarding usage of explosives and redirect final page to preview details.",
+            "keyword": "Then ",
+            "result": {
+              "duration": 320079700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should be able to preview all details and submit the ticket successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 593442300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get populated with a text that Ticket is submitted successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3154534400,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mapping Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Mapping.feature",
+    "id": "mapping-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Verify to check user can access Mapping menus",
+        "id": "mapping-page-||-test-scenarios;verify-to-check-user-can-access-mapping-menus",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016519500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 119134100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 233244700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 82017500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 87124100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5077885000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the user able access the mapping menus",
+            "keyword": "And ",
+            "result": {
+              "duration": 707128600,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify to check user can access Mapping edit tools",
+        "id": "mapping-page-||-test-scenarios;verify-to-check-user-can-access-mapping-edit-tools",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5013363000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 173183500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 312011600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 99982500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 86554700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5065731000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on view map menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 191375300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify user can access the map editing and other tools",
+            "keyword": "And ",
+            "result": {
+              "duration": 1452766500,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify to check user can refresh the map and change the layers of the map",
+        "id": "mapping-page-||-test-scenarios;verify-to-check-user-can-refresh-the-map-and-change-the-layers-of-the-map",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5008521200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 133936200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 253114600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 83874200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77837700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5079369600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on view map menu",
+            "keyword": "Then ",
+            "result": {
+              "duration": 213878500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Refresh the map",
+            "keyword": "And ",
+            "result": {
+              "duration": 83109100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check user access reference points",
+            "keyword": "Then ",
+            "result": {
+              "duration": 90203800,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user can delete the Map Client Settings",
+        "id": "mapping-page-||-test-scenarios;validate-user-can-delete-the-map-client-settings",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017125600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 112406100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 208951500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78795300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77602700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5077553200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Map Client Settings",
+            "keyword": "Then ",
+            "result": {
+              "duration": 191669100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Delete a record",
+            "keyword": "Then ",
+            "result": {
+              "duration": 435014100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Yes to confirm the deletion",
+            "keyword": "Then ",
+            "result": {
+              "duration": 39150200,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify user can access the Map Editor Settings and the data",
+        "id": "mapping-page-||-test-scenarios;verify-user-can-access-the-map-editor-settings-and-the-data",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016610100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 118747100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 206262300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79579400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 72164700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5080867500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Map Editor Settings",
+            "keyword": "Then ",
+            "result": {
+              "duration": 258503600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the map editor settings records are available",
+            "keyword": "Then ",
+            "result": {
+              "duration": 26048100,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify the records are displayed in Vector Title settings",
+        "id": "mapping-page-||-test-scenarios;verify-the-records-are-displayed-in-vector-title-settings",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017942400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 107429700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 211438000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79816700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 97105400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Mapping",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5075599300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Vector Title Settings",
+            "keyword": "And ",
+            "result": {
+              "duration": 436623400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open View Sets",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80142700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the view set records are displayed",
+            "keyword": "Then ",
+            "result": {
+              "duration": 18801000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open Cache versions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 75860100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Verify the cache versions are displayed",
+            "keyword": "Then ",
+            "result": {
+              "duration": 554731000,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Register Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Register.feature",
+    "id": "register-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate Registering a user with existing user data and check validations are working properly",
+        "id": "register-page-||-test-scenarios;validate-registering-a-user-with-existing-user-data-and-check-validations-are-working-properly",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@SignUp"
+          },
+          {
+            "name": "@ExistingUserData"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014898000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Register button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 121587100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select find ticket,Enter ticket,Service area editor features",
+            "keyword": "Then ",
+            "result": {
+              "duration": 903159100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter User Information Email as \"sherwin04@mailinator.com\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 259370500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Do Confirm Email as \"sherwin04@mailinator.com\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 269401400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Password as \"Sherwin@123\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 175270300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Do Confirm Password as \"Sherwin@123\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 220181100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter First name as \"Johnson\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 144922900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Last Name as \"Steve\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 134510200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Address as \"Belmont University\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 313146900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter City as \"Nashville\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 168020600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter State as TN",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1271259900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Zip code as \"37129\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 194261500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter Phone number as \"9493034647\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 219125400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the company information such are Company Name as \"Johnson Utility Services Inc\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1397577400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Company type as Excavator",
+            "keyword": "And ",
+            "result": {
+              "duration": 1219402000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Confirm the Company information is same as user information",
+            "keyword": "Then ",
+            "result": {
+              "duration": 163614900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Confirm the Contact Information",
+            "keyword": "And ",
+            "result": {
+              "duration": 86876700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Submit button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 146996700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get displayed that User Already exists",
+            "keyword": "Then ",
+            "result": {
+              "duration": 29181100,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "My Responses Page || Responses Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Responses.feature",
+    "id": "my-responses-page-||-responses-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate user is able to open a ticket details in Responses page",
+        "id": "my-responses-page-||-responses-page-||-test-scenarios;validate-user-is-able-to-open-a-ticket-details-in-responses-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@AddResponse"
+          },
+          {
+            "name": "@OpenTicketInResponses"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018484600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 129395600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 237546400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80076400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80391200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on My Responses Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2079857300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether the Only Open Responses is enabled",
+            "keyword": "And ",
+            "result": {
+              "duration": 55016700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1031704700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Open the ticket to view details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 209325700,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Add response window validation in Responses page",
+        "id": "my-responses-page-||-responses-page-||-test-scenarios;add-response-window-validation-in-responses-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@Responses"
+          },
+          {
+            "name": "@AddResponseFlowValidation"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014946600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 152215100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 243129600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 80409400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 73659000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on My Responses Page",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1836595600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1217591100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Add a response to it by clicking on Add Response button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 93570300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the response action",
+            "keyword": "Then ",
+            "result": {
+              "duration": 705244300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Add comments \"Please add more driving instructions\"",
+            "keyword": "And ",
+            "result": {
+              "duration": 167623800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on save button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 72127500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Application should display the Response added successfully",
+            "keyword": "Then ",
+            "result": {
+              "duration": 634442900,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Sign In Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/SignInPage.feature",
+    "id": "sign-in-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate the remember me functionality",
+        "id": "sign-in-page-||-test-scenarios;validate-the-remember-me-functionality",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@SignIn"
+          },
+          {
+            "name": "@RememberMe"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017573900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 150912500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 215277000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 104770200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 71280400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto My Profile and User clicks on Sign Out",
+            "keyword": "Then ",
+            "result": {
+              "duration": 7444774300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether Remember me is enabled",
+            "keyword": "Then ",
+            "result": {
+              "duration": 115291200,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether the Reset Password link displays the Password reset window",
+        "id": "sign-in-page-||-test-scenarios;verify-whether-the-reset-password-link-displays-the-password-reset-window",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@SignIn"
+          },
+          {
+            "name": "@ResetPassword"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017283700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 129643400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 221983700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79463500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 110059800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the Reset Password link",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81297900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether the reset password window displayed to the user",
+            "keyword": "Then ",
+            "result": {
+              "duration": 23995500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether the Email field is enabled",
+            "keyword": "Then ",
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/gc-core-reset-password[1]/div[2]/div[2]/dx-text-box[1]/div[1]/div[1]/input[1]\"}\n  (Session info: chrome=143.0.7499.147)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: '4.32.0', revision: 'd17c8aa950'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.1'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [d30cd6f324f535e6f6c6a62511580466, findElement {using=xpath, value=/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/gc-core-reset-password[1]/div[2]/div[2]/dx-text-box[1]/div[1]/div[1]/input[1]}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.147, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: C:\\Users\\stummu\\AppData\\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:63145}, goog:processID: 62256, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:63145/devtoo..., se:cdpVersion: 143.0.7499.147, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: d30cd6f324f535e6f6c6a62511580466\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)\r\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)\r\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)\r\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:565)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:315)\r\n\tat org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxyFactory$3(WebDriverDecorator.java:405)\r\n\tat net.bytebuddy.renamed.java.lang.Object$ByteBuddy$lztz9295.findElement(Unknown Source)\r\n\tat com.qa.pages.Login.isEmailFieldEnabledOnResetPassword(Login.java:163)\r\n\tat StepDefinitions.LoginPageSteps.check_whether_the_email_field_is_enabled(LoginPageSteps.java:195)\r\n\tat ✽.Check whether the Email field is enabled(file:///E:/Automation/IdeaProjects/qa-automation/src/test/resources/features/SignInPage.feature:103)\r\n",
+              "duration": 12035007300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Reset button and Cancel button is displayed",
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate whether user able to submit reset password request",
+        "id": "sign-in-page-||-test-scenarios;validate-whether-user-able-to-submit-reset-password-request",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@SignIn"
+          },
+          {
+            "name": "@ResetPassword"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5019836100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 147199400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 211586800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84194800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 71926400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the Reset Password link",
+            "keyword": "Then ",
+            "result": {
+              "duration": 97008700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter a valid email as \"srisri.tummu@progressivepartnering.com\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 166509900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Reset button",
+            "keyword": "And ",
+            "result": {
+              "error_message": "org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\"//span[normalize-space()='Reset']\"}\n  (Session info: chrome=143.0.7499.147)\nFor documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#no-such-element-exception\nBuild info: version: '4.32.0', revision: 'd17c8aa950'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.1'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCommand: [9a0fd4c2df6e585841ed1bb8df9ef964, findElement {using=xpath, value=//span[normalize-space()='Reset']}]\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.147, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: C:\\Users\\stummu\\AppData\\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:64635}, goog:processID: 17232, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:64635/devtoo..., se:cdpVersion: 143.0.7499.147, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 9a0fd4c2df6e585841ed1bb8df9ef964\r\n\tat java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)\r\n\tat java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)\r\n\tat java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)\r\n\tat org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)\r\n\tat org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)\r\n\tat org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)\r\n\tat org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)\r\n\tat java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)\r\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:565)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.call(WebDriverDecorator.java:315)\r\n\tat org.openqa.selenium.support.decorators.DefaultDecorated.call(DefaultDecorated.java:48)\r\n\tat org.openqa.selenium.support.decorators.WebDriverDecorator.lambda$createProxyFactory$3(WebDriverDecorator.java:405)\r\n\tat net.bytebuddy.renamed.java.lang.Object$ByteBuddy$lWlv3Lju.findElement(Unknown Source)\r\n\tat com.qa.pages.Login.clickOnResetButton(Login.java:179)\r\n\tat StepDefinitions.LoginPageSteps.click_on_reset_button(LoginPageSteps.java:210)\r\n\tat ✽.Click on Reset button(file:///E:/Automation/IdeaProjects/qa-automation/src/test/resources/features/SignInPage.feature:127)\r\n",
+              "duration": 12040193400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user notified with acknowledgement on successful submission",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Create Ticket Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/Ticket.feature",
+    "id": "create-ticket-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate Dates are working as per the selection of ticket type or not",
+        "id": "create-ticket-page-||-test-scenarios;validate-dates-are-working-as-per-the-selection-of-ticket-type-or-not",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@AuthTicket"
+          },
+          {
+            "name": "@CreateTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018558600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 146355000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 238906900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81432100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 71753600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Ticket option in Menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3246487400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the work location \"1638 Dr D B Todd Jr Blvd\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2301935300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the respective work location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1597067000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "duration": 2130245400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Work Type and select Normal",
+            "keyword": "Then ",
+            "result": {
+              "duration": 282727600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check the date can be selected two days from today",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5031641400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Work Type and select Emergency",
+            "keyword": "Then ",
+            "result": {
+              "duration": 175132100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check the date can be selected from today or tomorrow",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5023359800,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether the user is able to create a ticket and redirected to acknowledgement page",
+        "id": "create-ticket-page-||-test-scenarios;verify-whether-the-user-is-able-to-create-a-ticket-and-redirected-to-acknowledgement-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@AuthTicket"
+          },
+          {
+            "name": "@CreateTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015072300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 116877800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 213524100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81190500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 120093500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Ticket option in Menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3463018500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the work location \"1638 Dr D B Todd Jr Blvd\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2313617500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the respective work location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1475078600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "duration": 2153919900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select work type as Adding a Waterline",
+            "keyword": "Then ",
+            "result": {
+              "duration": 204015000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Submit the ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5188731000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "See user redirected to acknowledgement page and there should be a message Submission Successful",
+            "keyword": "And ",
+            "result": {
+              "duration": 19204100,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether the user is able to view the ticket details which is created",
+        "id": "create-ticket-page-||-test-scenarios;verify-whether-the-user-is-able-to-view-the-ticket-details-which-is-created",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@AuthTicket"
+          },
+          {
+            "name": "@ViewTicketDetails"
+          },
+          {
+            "name": "@RunNow"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018687300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 140901700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 227911600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 91771000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77023300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Ticket option in Menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3328461500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the work location \"1638 Dr D B Todd Jr Blvd\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2327602000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the respective work location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1334305900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "duration": 2198316900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select work type as Adding a Waterline",
+            "keyword": "Then ",
+            "result": {
+              "duration": 257892600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Submit the ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5215545900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on View Details button on the acknowledgement to check with Ticket status or details",
+            "keyword": "And ",
+            "result": {
+              "duration": 327615700,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Validate user able to draw Polygon using work area tool at work site location",
+        "id": "create-ticket-page-||-test-scenarios;validate-user-able-to-draw-polygon-using-work-area-tool-at-work-site-location",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@CreateTicket"
+          },
+          {
+            "name": "@WorkAreaWithPolygon"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5016806200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 119465800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 225054500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84773100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 72848200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Ticket option in Menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3505648900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the work location \"1638 Dr D B Todd Jr Blvd\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2303586600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the populated work location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5183293500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Work site location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 169740100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Work area tool",
+            "keyword": "Then ",
+            "result": {
+              "duration": 339266200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using work area",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1536499800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change tool type to Pan",
+            "keyword": "Then ",
+            "result": {
+              "duration": 374275400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "duration": 2103879300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select work type as Adding a Waterline",
+            "keyword": "Then ",
+            "result": {
+              "duration": 187651200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Submit the ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5207310700,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ticket Drafts Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/TicketDrafts.feature",
+    "id": "ticket-drafts-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Validate user able to draw polygon and submit ticket from ticket draft",
+        "id": "ticket-drafts-page-||-test-scenarios;validate-user-able-to-draw-polygon-and-submit-ticket-from-ticket-draft",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@TicketDrafts"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5014435100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 114695200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 229509100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 82779000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 75873700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Ticket Drafts",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2004129400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the user name with \"admin\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 178067200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Search button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2150652800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on view button of first ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 696212200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the work location \"502 Bluebell Ave\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2286613000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on the populated work location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5233300100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Goto Work site location",
+            "keyword": "Then ",
+            "result": {
+              "duration": 161712800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Sketch tool",
+            "keyword": "Then ",
+            "result": {
+              "duration": 195303500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using Sketch",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1469861000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change tool type to Pan",
+            "keyword": "Then ",
+            "result": {
+              "duration": 251393900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Save the worksite draw",
+            "keyword": "Then ",
+            "result": {
+              "error_message": "org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //span[normalize-space()='Panels'] (tried for 5 second(s) with 500 milliseconds interval)\nBuild info: version: '4.32.0', revision: 'd17c8aa950'\nSystem info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '24.0.1'\nDriver info: net.bytebuddy.renamed.java.lang.Object$ByteBuddy$n6hjUptR\nCapabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 143.0.7499.147, chrome: {chromedriverVersion: 143.0.7499.169 (164b20aab62..., userDataDir: C:\\Users\\stummu\\AppData\\Loc...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:57476}, goog:processID: 60580, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:57476/devtoo..., se:cdpVersion: 143.0.7499.147, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}\nSession ID: 5530896f3ebf717684383b29fde3b092\r\n\tat org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)\r\n\tat org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)\r\n\tat com.qa.pages.CreateTicket.saveTheDrawing(CreateTicket.java:408)\r\n\tat StepDefinitions.TicketPageSteps.save_the_worksite_draw(TicketPageSteps.java:242)\r\n\tat ✽.Save the worksite draw(file:///E:/Automation/IdeaProjects/qa-automation/src/test/resources/features/TicketDrafts.feature:220)\r\n",
+              "duration": 10055227600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Select work type as Adding a Waterline",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          },
+          {
+            "name": "Submit the ticket",
+            "keyword": "Then ",
+            "result": {
+              "status": "passed",
+              "duration": 1000000000
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Ticket Search Page || Test Scenarios",
+    "uri": "file:src/test/resources/features/TicketSearch.feature",
+    "id": "ticket-search-page-||-test-scenarios",
+    "tags": [],
+    "elements": [
+      {
+        "name": "Verify user get displayed with My Company details and respective tickets",
+        "id": "ticket-search-page-||-test-scenarios;verify-user-get-displayed-with-my-company-details-and-respective-tickets",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@TicketSearch"
+          },
+          {
+            "name": "@MyCompanyTickets"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5011735900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 104956300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 214722900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 81268700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78209300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1257557700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on my company ticket",
+            "keyword": "And ",
+            "result": {
+              "duration": 148111600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on search button",
+            "keyword": "And ",
+            "result": {
+              "duration": 97040600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User should get displayed company name and respective tickets",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3022007400,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether user able to view ticket details by clicking on View details",
+        "id": "ticket-search-page-||-test-scenarios;verify-whether-user-able-to-view-ticket-details-by-clicking-on-view-details",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@TicketSearch"
+          },
+          {
+            "name": "@ViewTicketDetails"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5017402100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 146384400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 253044200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 96313600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 101147000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1913060100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket from list of ticket",
+            "keyword": "And ",
+            "result": {
+              "duration": 3342574900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on View details option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 247809300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user get displayed with the ticket details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 26055700,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether user get displayed with the individual ticket search with in the ticket search form and able to search respective ticket",
+        "id": "ticket-search-page-||-test-scenarios;verify-whether-user-get-displayed-with-the-individual-ticket-search-with-in-the-ticket-search-form-and-able-to-search-respective-ticket",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@TicketSearch"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5010937700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 153329700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 270370500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 86338400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 78131500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1783244000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user get displayed with Search with in the Search page at right side",
+            "keyword": "And ",
+            "result": {
+              "duration": 76525800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter a ticket number \"20250160001\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 167066800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether user get displayed with respective data",
+            "keyword": "Then ",
+            "result": {
+              "duration": 10007431000,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Verify whether the ticket details are displaying when user opens a ticket in Ticket Search page",
+        "id": "ticket-search-page-||-test-scenarios;verify-whether-the-ticket-details-are-displaying-when-user-opens-a-ticket-in-ticket-search-page",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          },
+          {
+            "name": "@RegressionSuite"
+          },
+          {
+            "name": "@EndToEndSuite"
+          },
+          {
+            "name": "@TicketSearch"
+          },
+          {
+            "name": "@PrintTicket"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5018847100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 130334900,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 226646700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79511700,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77099500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1999286200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket from list of ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 3006069000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Print option and User should get displayed with ticket details",
+            "keyword": "Then ",
+            "result": {
+              "duration": 77028600,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Open a ticket and copy as Normal and draw a polygon and submit it",
+        "id": "ticket-search-page-||-test-scenarios;open-a-ticket-and-copy-as-normal-and-draw-a-polygon-and-submit-it",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5010278200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 119966500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 244750800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 84185100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 74807000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 2184840100,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket from list of ticket",
+            "keyword": "And ",
+            "result": {
+              "duration": 3063810000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Create menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 79204600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Copy As and Click on Normal",
+            "keyword": "Then ",
+            "result": {
+              "duration": 295820300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Polygon using work area",
+            "keyword": "Then ",
+            "result": {
+              "duration": 8325792300,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change tool type to Pan",
+            "keyword": "Then ",
+            "result": {
+              "duration": 196790600,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Work area tool",
+            "keyword": "Then ",
+            "result": {
+              "duration": 218123200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a Line using work area",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5915254800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change tool type to Pan",
+            "keyword": "Then ",
+            "result": {
+              "duration": 166650500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select the Work area tool",
+            "keyword": "Then ",
+            "result": {
+              "duration": 202479200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Draw a circle using work area",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5959519200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Change tool type to Pan",
+            "keyword": "Then ",
+            "result": {
+              "duration": 163315500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Next button",
+            "keyword": "And ",
+            "result": {
+              "duration": 2099190200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Select work type as Adding a Waterline",
+            "keyword": "Then ",
+            "result": {
+              "duration": 202352500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Submit the ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5180299500,
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Updated a ticket as Emergency from Ticket Search",
+        "id": "ticket-search-page-||-test-scenarios;updated-a-ticket-as-emergency-from-ticket-search",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "tags": [
+          {
+            "name": "@QuickTestSuite"
+          }
+        ],
+        "steps": [
+          {
+            "name": "GCT application URL to launch",
+            "keyword": "Given ",
+            "result": {
+              "duration": 5015931200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User gets the GCT Home Page",
+            "keyword": "When ",
+            "result": {
+              "duration": 111355200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User Login to the application",
+            "keyword": "Then ",
+            "result": {
+              "duration": 207943400,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on I agree terms and conditions",
+            "keyword": "Then ",
+            "result": {
+              "duration": 85136800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "User click on Login button",
+            "keyword": "Then ",
+            "result": {
+              "duration": 76062200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on ticket search",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1317691800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on a ticket from list of ticket",
+            "keyword": "And ",
+            "result": {
+              "duration": 3517708000,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on Create menu option",
+            "keyword": "Then ",
+            "result": {
+              "duration": 89632200,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Click on update As and Click on Emergency",
+            "keyword": "Then ",
+            "result": {
+              "duration": 156356500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Enter the comments as \"Update the ticket as Emergency.\"",
+            "keyword": "Then ",
+            "result": {
+              "duration": 1030257800,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Save the ticket",
+            "keyword": "Then ",
+            "result": {
+              "duration": 5334878500,
+              "status": "passed"
+            }
+          },
+          {
+            "name": "Check whether ticket is created or not with type Emergency",
+            "keyword": "Then ",
+            "result": {
+              "duration": 22032800,
+              "status": "passed"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
