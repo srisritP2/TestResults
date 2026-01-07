@@ -81,7 +81,10 @@
               v-for="report in storedReports" 
               :key="report.id" 
               class="stored-report-item d-flex align-center justify-space-between pa-2 mb-1"
-              :class="{ 'session-only': report.storageStrategy === 'session' }"
+              :class="{ 
+                'session-only': report.storageStrategy === 'session',
+                'not-stored': !report.actuallyStored 
+              }"
             >
               <div class="flex-grow-1 clickable-area" @click="viewStoredReport(report.id)">
                 <div class="text-body-2 font-weight-medium">{{ report.name }}</div>
@@ -271,12 +274,13 @@ export default {
             // Set report data in store for immediate viewing
             this.$store.commit('setReportData', reportData);
             
-            // Save to localStorage
+            // Save to localStorage with improved error handling
             const reportSize = JSON.stringify(reportData).length;
             const maxSize = 5 * 1024 * 1024; // 5MB limit for localStorage
             
             let storageStrategy = 'session'; // default to session-only
             let storageMessage = 'Report uploaded successfully for this session.';
+            let actuallyStored = false;
             
             if (reportSize < maxSize) {
               try {
@@ -284,7 +288,10 @@ export default {
                 localStorage.setItem('uploaded-report-' + id, JSON.stringify(reportData));
                 storageStrategy = 'persistent';
                 storageMessage = 'Report saved successfully! It will persist across browser sessions.';
+                actuallyStored = true;
+                console.log(`✅ Saved full report ${id} to localStorage (${(reportSize / 1024).toFixed(1)} KB)`);
               } catch (e) {
+                console.warn('Could not save full report to localStorage:', e.message);
                 // localStorage quota exceeded, try compressed storage
                 try {
                   // Simple compression: remove whitespace and store essential data only
@@ -310,21 +317,29 @@ export default {
                       })) : []
                     }))
                   };
+                  const compressedSize = JSON.stringify(compressedData).length;
                   localStorage.setItem('uploaded-report-' + id, JSON.stringify(compressedData));
                   storageStrategy = 'compressed';
                   storageMessage = 'Report saved with compression. Some detailed information may be reduced to fit storage limits.';
+                  actuallyStored = true;
+                  console.log(`✅ Saved compressed report ${id} to localStorage (${(compressedSize / 1024).toFixed(1)} KB)`);
                 } catch (e2) {
                   // Even compressed storage failed, fall back to session-only
-                  console.warn('Could not save report to localStorage:', e2);
+                  console.warn('Could not save compressed report to localStorage:', e2.message);
                   storageStrategy = 'session';
+                  storageMessage = 'Report too large for localStorage. Available for this session only.';
+                  actuallyStored = false;
                 }
               }
             } else {
               storageMessage = 'Large report uploaded successfully (session only due to size).';
+              console.log(`⚠️ Report ${id} too large for localStorage (${(reportSize / 1024).toFixed(1)} KB > ${(maxSize / 1024).toFixed(1)} KB)`);
             }
             
-            // Save to localStorage index
-            this.saveToLocalStorage(id, reportData, name, date, storageStrategy);
+            // Only save to localStorage index if we actually stored the report or it's session-only
+            if (actuallyStored || storageStrategy === 'session') {
+              this.saveToLocalStorage(id, reportData, name, date, storageStrategy, actuallyStored);
+            }
             
             // Show storage status to user
             this.$emit('report-uploaded', { 
@@ -368,7 +383,7 @@ export default {
         default: return 'info';
       }
     },
-    saveToLocalStorage(id, reportData, name, date, storageStrategy) {
+    saveToLocalStorage(id, reportData, name, date, storageStrategy, actuallyStored = false) {
       try {
         const reportSize = JSON.stringify(reportData).length;
         
@@ -383,7 +398,8 @@ export default {
           date, 
           size: reportSize,
           storageStrategy,
-          persistent: storageStrategy !== 'session',
+          persistent: actuallyStored && storageStrategy !== 'session',
+          actuallyStored, // Track whether the report data is actually in localStorage
           // Add calculated statistics
           features: stats.features,
           scenarios: stats.scenarios,
@@ -398,7 +414,10 @@ export default {
         index.unshift(reportEntry);
         localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
         
-        console.log(`✅ Saved report ${id} to localStorage with stats:`, stats);
+        const statusMsg = actuallyStored ? 
+          `✅ Saved report ${id} to localStorage with stats` : 
+          `📝 Added report ${id} to index (session-only, not persisted)`;
+        console.log(statusMsg, stats);
       } catch (error) {
         console.warn('Failed to update localStorage index:', error);
       }
@@ -541,7 +560,7 @@ export default {
         case 'server': return 'Server';
         case 'persistent': return 'Saved';
         case 'compressed': return 'Compressed';
-        case 'session': return 'Session';
+        case 'session': return 'Session Only';
         default: return 'Unknown';
       }
     },
@@ -631,7 +650,39 @@ export default {
     },
     viewStoredReport(reportId) {
       try {
-        // Load the report data from localStorage
+        // Check if report is in index
+        const index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+        const reportEntry = index.find(r => r.id === reportId);
+        
+        if (!reportEntry) {
+          this.showStorageStatus('error', `Report "${reportId}" not found in index.`);
+          return;
+        }
+        
+        // If report is session-only and not actually stored, check Vuex store
+        if (!reportEntry.actuallyStored) {
+          console.log('📝 Report is session-only, checking Vuex store');
+          if (this.$store.state.reportData && this.$store.state.reportData._uploadedId === reportId) {
+            console.log('✅ Found session-only report in Vuex store');
+            // Navigate to the report view
+            this.$router.push({ 
+              name: 'Report', 
+              params: { id: reportId }, 
+              query: { t: Date.now() } 
+            });
+            return;
+          } else {
+            this.showStorageStatus('error', `Session-only report "${reportId}" is no longer available. It was not saved to localStorage and the session data has been lost.`);
+            
+            // Remove from index since it's not available
+            let updatedIndex = index.filter(report => report.id !== reportId);
+            localStorage.setItem('uploaded-reports-index', JSON.stringify(updatedIndex));
+            this.$forceUpdate();
+            return;
+          }
+        }
+        
+        // Try to load the report data from localStorage
         const reportData = localStorage.getItem('uploaded-report-' + reportId);
         
         if (reportData) {
@@ -647,12 +698,11 @@ export default {
           });
         } else {
           // Report not found in localStorage, show error
-          this.showStorageStatus('error', `Report "${reportId}" not found. It may have been deleted or expired.`);
+          this.showStorageStatus('error', `Report "${reportId}" not found in localStorage. It may have been deleted or expired.`);
           
           // Remove from index since it's not available
-          let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
-          index = index.filter(report => report.id !== reportId);
-          localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
+          let updatedIndex = index.filter(report => report.id !== reportId);
+          localStorage.setItem('uploaded-reports-index', JSON.stringify(updatedIndex));
           this.$forceUpdate();
         }
       } catch (e) {
@@ -680,6 +730,12 @@ export default {
 .stored-report-item.session-only {
   border-left: 4px solid #2196f3;
   background: linear-gradient(90deg, #e3f2fd 0%, #fafafa 20%);
+}
+
+.stored-report-item.not-stored {
+  border-left: 4px solid #ff9800;
+  background: linear-gradient(90deg, #fff3e0 0%, #fafafa 20%);
+  opacity: 0.8;
 }
 
 .storage-info {
@@ -999,6 +1055,12 @@ export default {
 [data-theme="dark"] .stored-report-item.session-only {
   border-left: 4px solid #60A5FA;
   background: linear-gradient(90deg, rgba(96, 165, 250, 0.1) 0%, var(--theme-surface-variant) 20%);
+}
+
+[data-theme="dark"] .stored-report-item.not-stored {
+  border-left: 4px solid #fb8c00;
+  background: linear-gradient(90deg, rgba(251, 140, 0, 0.1) 0%, var(--theme-surface-variant) 20%);
+  opacity: 0.8;
 }
 
 [data-theme="dark"] .text-body-2 {

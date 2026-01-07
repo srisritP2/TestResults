@@ -73,6 +73,28 @@ export default {
           console.error('❌ Error parsing localStorage data:', error);
         }
       }
+      
+      // Check if report is in index but not actually stored (session-only)
+      if (reportId) {
+        try {
+          const index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+          const reportEntry = index.find(r => r.id === reportId);
+          if (reportEntry && !reportEntry.actuallyStored) {
+            console.log('📝 Report found in index but not stored in localStorage (session-only)');
+            // For session-only reports, check if it's in Vuex store
+            if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
+              console.log('✅ Found session-only report in Vuex store');
+              if (Array.isArray(store.state.reportData)) return { features: store.state.reportData };
+              if (store.state.reportData && Array.isArray(store.state.reportData.features)) return store.state.reportData;
+            }
+            console.warn('❌ Session-only report not found in Vuex store - may have been lost');
+            return null;
+          }
+        } catch (error) {
+          console.warn('Error checking report index:', error);
+        }
+      }
+      
       // If the report was uploaded this session, use Vuex store
       if (store.state.reportData && store.state.reportData._uploadedId === reportId) {
         console.log('📦 Loading report from Vuex store');
