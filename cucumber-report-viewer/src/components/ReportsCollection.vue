@@ -1569,13 +1569,7 @@ The GitHub workflow will automatically update your GitHub Pages site!
               
               if (result.success) {
                 results.successful.push({ id: reportId, result });
-                
-                // Remove from local collection immediately
-                this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
-                
-                // Remove from localStorage
-                this.removeFromLocalStorage(reportId);
-                
+                // Note: deleteReportLocalOnly already removes from collection and localStorage
               } else {
                 results.failed.push({ id: reportId, error: result.error || 'Local deletion failed' });
               }
@@ -1669,6 +1663,12 @@ Continue with local-only deletion?`,
         const deletions = storedDeletions ? JSON.parse(storedDeletions) : [];
         deletions.push(deletionInfo);
         localStorage.setItem(deletionsKey, JSON.stringify(deletions));
+
+        // IMPORTANT: Remove from local collection immediately so it disappears from UI
+        this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
+        
+        // Also remove from localStorage (for uploaded reports)
+        this.removeFromLocalStorage(reportId);
 
         return {
           success: true,
