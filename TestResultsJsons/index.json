@@ -1,19 +1,19 @@
 {
-  "generated": "2026-01-01T16:24:53.567Z",
+  "generated": "2026-01-07T14:03:12.516Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20260101-215445",
+      "id": "gct-20251206-000054",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-01-01T16:24:45.492Z",
+      "date": "2026-01-01T16:24:45.509Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
-      "passed": 641,
-      "failed": 6,
-      "skipped": 12,
-      "duration": 1056.3566955,
-      "size": 120584,
+      "passed": 603,
+      "failed": 12,
+      "skipped": 44,
+      "duration": 1020.1640826,
+      "size": 145428,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -43,7 +43,7 @@
       ],
       "environment": null,
       "tool": null,
-      "hash": "187633b9c5db93211d0949c1eacc89af",
+      "hash": "4f586fe4e56bea1a3ddd6510996bd545",
       "status": "active",
       "isDeleted": false
     },
@@ -134,6 +134,51 @@
       "environment": null,
       "tool": null,
       "hash": "9c992abe9ecf7892ac850db908653794",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260101-215445",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-01-01T16:24:45.492Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 641,
+      "failed": 6,
+      "skipped": 12,
+      "duration": 1056.3566955,
+      "size": 120584,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "187633b9c5db93211d0949c1eacc89af",
       "status": "active",
       "isDeleted": false
     },
@@ -1214,51 +1259,6 @@
       "environment": null,
       "tool": null,
       "hash": "352366b92e9e81748688b0d7f4d6a192",
-      "status": "active",
-      "isDeleted": false
-    },
-    {
-      "id": "gct-20251206-000054",
-      "name": "GeoCall Automation Test Results Report",
-      "date": "2025-12-05T18:30:54.151Z",
-      "features": 15,
-      "scenarios": 52,
-      "steps": 659,
-      "passed": 603,
-      "failed": 12,
-      "skipped": 44,
-      "duration": 1020.1640826,
-      "size": 145428,
-      "tags": [
-        "AddResponse",
-        "AddResponseFlowValidation",
-        "AuthDashBoard",
-        "AuthTicket",
-        "CreateTicket",
-        "EndToEndSuite",
-        "Excavators",
-        "ExistingUserData",
-        "HomeOwnerTicket",
-        "MyCompanyTickets",
-        "OpenTicketInResponses",
-        "PrintTicket",
-        "QuickTestSuite",
-        "RegressionSuite",
-        "RememberMe",
-        "ResetPassword",
-        "Responses",
-        "RunNow",
-        "SignIn",
-        "SignUp",
-        "TicketDrafts",
-        "TicketSearch",
-        "UnAuthDashBoard",
-        "ViewTicketDetails",
-        "WorkAreaWithPolygon"
-      ],
-      "environment": null,
-      "tool": null,
-      "hash": "4f586fe4e56bea1a3ddd6510996bd545",
       "status": "active",
       "isDeleted": false
     },
@@ -4885,17 +4885,17 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20260101-215445",
+      "id": "gct-20251206-000054",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-01-01T16:24:45.492Z",
-      "size": 120584,
+      "date": "2026-01-01T16:24:45.509Z",
+      "size": 145428,
       "features": 15,
       "scenarios": 52,
       "steps": 659,
-      "passed": 641,
-      "failed": 6,
-      "skipped": 12,
-      "duration": 1056.3566955,
+      "passed": 603,
+      "failed": 12,
+      "skipped": 44,
+      "duration": 1020.1640826,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -4926,7 +4926,7 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "187633b9c5db93211d0949c1eacc89af",
+      "hash": "4f586fe4e56bea1a3ddd6510996bd545",
       "suggestedFilename": "gct-20260101-215445.json",
       "status": "active",
       "isDeleted": false
@@ -5539,6 +5539,13 @@
       ]
     },
     {
+      "file": "gct-20251206-000054.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
       "file": "gct-20251206-000518.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
@@ -5665,13 +5672,6 @@
       ]
     },
     {
-      "file": "gct-20251215-172943.json",
-      "errors": [
-        "Feature 2, Scenario 0: Missing name",
-        "Feature 2, Scenario 2: Missing name"
-      ]
-    },
-    {
       "file": "gct-20251215-174413.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
@@ -5714,7 +5714,14 @@
       ]
     },
     {
-      "file": "gct-20260101-215310.json",
+      "file": "gct-20260101-215426.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20260101-215445.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
@@ -5730,13 +5737,6 @@
       "file": "package.json",
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
-      ]
-    },
-    {
-      "file": "report-1764959454151.json",
-      "errors": [
-        "Feature 2, Scenario 0: Missing name",
-        "Feature 2, Scenario 2: Missing name"
       ]
     },
     {
@@ -5774,20 +5774,6 @@
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "gct-20251215-172943.json",
-      "to": "gct-20260101-215445.json"
-    },
-    {
-      "from": "gct-20260101-215310.json",
-      "to": "gct-20260101-215426.json"
-    },
-    {
-      "from": "report-1764959454151.json",
-      "to": "gct-20251206-000054.json"
     }
   ]
 }
