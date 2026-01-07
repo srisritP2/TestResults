@@ -13,6 +13,47 @@
           </div>
         </div>
         <div class="header-actions">
+          <!-- Bulk Delete Button -->
+          <v-btn 
+            v-if="selectedReports.size > 0"
+            :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
+            variant="outlined" 
+            color="error" 
+            @click="bulkDeleteReports" 
+            :loading="bulkDeleting"
+            class="action-btn bulk-delete-btn"
+            :title="selectedReports.size === 1 ? 'Delete 1 selected report' : `Delete ${selectedReports.size} selected reports`"
+          >
+            <v-icon :size="$vuetify.display.mobile ? 14 : 16" :class="$vuetify.display.mobile ? '' : 'mr-1'">
+              {{ bulkDeleting ? 'mdi-loading mdi-spin' : 'mdi-delete-multiple' }}
+            </v-icon>
+            <span v-if="!$vuetify.display.mobile">
+              Delete ({{ selectedReports.size }})
+            </span>
+          </v-btn>
+          
+          <!-- Selection Mode Toggle -->
+          <v-tooltip bottom>
+            <template #activator="{ props }">
+              <v-btn 
+                v-bind="props"
+                :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
+                :variant="bulkDeleteMode ? 'flat' : 'outlined'" 
+                :color="bulkDeleteMode ? 'primary' : 'secondary'" 
+                @click="toggleBulkDeleteMode"
+                class="action-btn"
+              >
+                <v-icon :size="$vuetify.display.mobile ? 14 : 16" :class="$vuetify.display.mobile ? '' : 'mr-1'">
+                  {{ bulkDeleteMode ? 'mdi-close' : 'mdi-checkbox-multiple-marked' }}
+                </v-icon>
+                <span v-if="!$vuetify.display.mobile">
+                  {{ bulkDeleteMode ? 'Cancel' : 'Select' }}
+                </span>
+              </v-btn>
+            </template>
+            <span>{{ bulkDeleteMode ? 'Exit selection mode (Esc)' : 'Enter selection mode to delete multiple reports' }}</span>
+          </v-tooltip>
+          
           <v-btn 
             :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
             variant="outlined" 
@@ -81,6 +122,51 @@
               class="filter-select"
             />
           </div>
+          
+          <!-- Bulk Selection Controls -->
+          <div v-if="bulkDeleteMode" class="bulk-selection-controls">
+            <div class="selection-info">
+              <v-checkbox
+                :model-value="isAllDisplayedSelected"
+                :indeterminate="isSomeSelected && !isAllDisplayedSelected"
+                @update:model-value="toggleSelectAll"
+                density="compact"
+                hide-details
+                class="select-all-checkbox"
+              >
+                <template #label>
+                  <span class="select-all-label">
+                    {{ getSelectAllLabel() }}
+                  </span>
+                </template>
+              </v-checkbox>
+            </div>
+            
+            <div class="selection-actions">
+              <v-btn
+                v-if="selectedReports.size > 0"
+                size="small"
+                variant="text"
+                color="secondary"
+                @click="clearSelection"
+                class="clear-selection-btn"
+              >
+                <v-icon size="16" class="mr-1">mdi-close</v-icon>
+                Clear Selection
+              </v-btn>
+            </div>
+          </div>
+          
+          <!-- Keyboard Shortcuts Help -->
+          <div v-if="bulkDeleteMode" class="keyboard-shortcuts-help">
+            <v-icon size="16" class="mr-2">mdi-keyboard</v-icon>
+            <span class="shortcuts-text">
+              <kbd>Ctrl+A</kbd> Select All • 
+              <kbd>Space</kbd>/<kbd>Enter</kbd> Toggle Selection • 
+              <kbd>Delete</kbd> Delete Selected • 
+              <kbd>Esc</kbd> Exit
+            </span>
+          </div>
         </v-card-text>
       </v-expand-transition>
 
@@ -114,7 +200,34 @@
         <!-- Enhanced Reports List -->
         <div v-else class="reports-grid">
           <v-card v-for="report in displayedReports" :key="report.id" class="report-card"
-            :class="{ 'report-failed': report.failed > 0 }" @click="navigateToReport(report)">
+            :class="{ 
+              'report-failed': report.failed > 0,
+              'report-selected': selectedReports.has(report.id),
+              'selection-mode': bulkDeleteMode
+            }" 
+            :data-report-id="report.id"
+            :tabindex="bulkDeleteMode ? 0 : -1"
+            @click="handleReportClick(report)"
+            @keydown.space.prevent="bulkDeleteMode && toggleReportSelection(report.id, !selectedReports.has(report.id))"
+            @keydown.enter.prevent="bulkDeleteMode && toggleReportSelection(report.id, !selectedReports.has(report.id))"
+            role="button"
+            :aria-label="bulkDeleteMode ? `${selectedReports.has(report.id) ? 'Deselect' : 'Select'} report ${report.name || report.id}` : `View report ${report.name || report.id}`"
+            :aria-pressed="bulkDeleteMode ? selectedReports.has(report.id) : undefined"
+          >
+            
+            <!-- Selection Checkbox (only visible in bulk delete mode) -->
+            <div v-if="bulkDeleteMode" class="report-selection-checkbox" @click.stop>
+              <v-checkbox
+                :model-value="selectedReports.has(report.id)"
+                @update:model-value="toggleReportSelection(report.id, $event)"
+                density="compact"
+                hide-details
+                color="primary"
+                :ripple="false"
+                class="selection-checkbox"
+              />
+            </div>
+            
             <v-card-text class="report-content">
               <!-- Mobile-First Header Layout -->
               <div class="report-header">
@@ -126,7 +239,7 @@
                     </v-icon>
                     <span class="date-info">{{ formatDate(report.date) }}</span>
                   </div>
-                  <div class="report-actions">
+                  <div class="report-actions" v-if="!bulkDeleteMode">
                     <v-btn :icon="isPublished(report) ? 'mdi-cloud-check' : 'mdi-cloud-upload'" size="small"
                       variant="text" :color="isPublished(report) ? 'success' : 'primary'"
                       @click.stop="togglePublishStatus(report)"
@@ -303,6 +416,10 @@ export default {
       displayedReportsCount: 4, // Start with 4 reports
       reportsPerPage: 4, // Load 4 more each time
       loadingMore: false,
+      // Bulk delete functionality
+      selectedReports: new Set(),
+      bulkDeleteMode: false,
+      bulkDeleting: false,
       statusOptions: [
         { title: 'All Passed', value: 'passed' },
         { title: 'Has Failures', value: 'failed' },
@@ -353,27 +470,47 @@ export default {
     // Listen for deletion events from other components
     window.addEventListener('reportDeleted', this.handleReportDeleted);
     window.addEventListener('reportRestored', this.handleReportRestored);
+    
+    // Add keyboard event listeners for accessibility
+    document.addEventListener('keydown', this.handleKeyDown);
   },
 
   beforeUnmount() {
     // Clean up event listeners
     window.removeEventListener('reportDeleted', this.handleReportDeleted);
     window.removeEventListener('reportRestored', this.handleReportRestored);
+    document.removeEventListener('keydown', this.handleKeyDown);
   },
   
   watch: {
     // Reset displayed count when filters change
     searchQuery() {
       this.displayedReportsCount = this.reportsPerPage;
+      // Clear selection when search changes
+      if (this.bulkDeleteMode) {
+        this.clearSelection();
+      }
     },
     statusFilter() {
       this.displayedReportsCount = this.reportsPerPage;
+      // Clear selection when filter changes
+      if (this.bulkDeleteMode) {
+        this.clearSelection();
+      }
     },
     syncStatusFilter() {
       this.displayedReportsCount = this.reportsPerPage;
+      // Clear selection when filter changes
+      if (this.bulkDeleteMode) {
+        this.clearSelection();
+      }
     },
     sortBy() {
       this.displayedReportsCount = this.reportsPerPage;
+      // Clear selection when sort changes
+      if (this.bulkDeleteMode) {
+        this.clearSelection();
+      }
     }
   },
 
@@ -426,6 +563,20 @@ export default {
     // For backward compatibility
     filteredReports() {
       return this.allFilteredReports;
+    },
+    
+    // Bulk selection computed properties
+    isAllDisplayedSelected() {
+      if (this.displayedReports.length === 0) return false;
+      return this.displayedReports.every(report => this.selectedReports.has(report.id));
+    },
+    
+    isSomeSelected() {
+      return this.selectedReports.size > 0;
+    },
+    
+    selectedReportsCount() {
+      return this.selectedReports.size;
     }
   },
   methods: {
@@ -1259,6 +1410,258 @@ The GitHub workflow will automatically update your GitHub Pages site!
       const { reportId } = event.detail;
       console.log(`♻️ Report ${reportId} restored - refreshing collection`);
       this.refreshReports();
+    },
+    
+    // Bulk Delete Methods
+    toggleBulkDeleteMode() {
+      this.bulkDeleteMode = !this.bulkDeleteMode;
+      if (!this.bulkDeleteMode) {
+        this.clearSelection();
+      }
+    },
+    
+    toggleReportSelection(reportId, selected) {
+      if (selected) {
+        this.selectedReports.add(reportId);
+      } else {
+        this.selectedReports.delete(reportId);
+      }
+      // Force reactivity
+      this.selectedReports = new Set(this.selectedReports);
+    },
+    
+    toggleSelectAll() {
+      if (this.isAllDisplayedSelected) {
+        // Deselect all displayed reports
+        this.displayedReports.forEach(report => {
+          this.selectedReports.delete(report.id);
+        });
+      } else {
+        // Select all displayed reports
+        this.displayedReports.forEach(report => {
+          this.selectedReports.add(report.id);
+        });
+      }
+      // Force reactivity
+      this.selectedReports = new Set(this.selectedReports);
+    },
+    
+    clearSelection() {
+      this.selectedReports.clear();
+      this.selectedReports = new Set();
+    },
+    
+    getSelectAllLabel() {
+      const displayedCount = this.displayedReports.length;
+      const selectedCount = this.selectedReports.size;
+      
+      if (selectedCount === 0) {
+        return `Select All (${displayedCount})`;
+      } else if (this.isAllDisplayedSelected) {
+        return `Deselect All (${selectedCount})`;
+      } else {
+        return `Select All (${selectedCount}/${displayedCount} selected)`;
+      }
+    },
+    
+    handleReportClick(report) {
+      if (this.bulkDeleteMode) {
+        // In bulk delete mode, clicking toggles selection
+        this.toggleReportSelection(report.id, !this.selectedReports.has(report.id));
+      } else {
+        // Normal mode, navigate to report
+        this.navigateToReport(report);
+      }
+    },
+    
+    async bulkDeleteReports() {
+      if (this.selectedReports.size === 0) {
+        this.showErrorMessage('No reports selected for deletion.');
+        return;
+      }
+
+      try {
+        // Show confirmation dialog
+        const confirmed = await this.showBulkDeleteConfirmation();
+        if (!confirmed) {
+          return;
+        }
+
+        this.bulkDeleting = true;
+        const selectedIds = Array.from(this.selectedReports);
+        const results = {
+          successful: [],
+          failed: [],
+          total: selectedIds.length
+        };
+
+        // Delete reports one by one
+        for (const reportId of selectedIds) {
+          try {
+            const report = this.reportsCollection.find(r => r.id === reportId);
+            if (!report) {
+              results.failed.push({ id: reportId, error: 'Report not found' });
+              continue;
+            }
+
+            // Use the comprehensive DeletionService
+            const result = await this.deletionService.deleteReport(reportId, {
+              confirm: false, // We already confirmed above
+              showFeedback: false // We'll handle feedback ourselves
+            });
+
+            if (result.success && !result.cancelled) {
+              results.successful.push({ id: reportId, result });
+              
+              // Remove from local collection immediately
+              this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
+              
+              // Remove from localStorage (for uploaded reports)
+              let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+              index = index.filter(r => r.id !== reportId);
+              localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
+              localStorage.removeItem('uploaded-report-' + reportId);
+              
+            } else {
+              results.failed.push({ id: reportId, error: result.error || 'Deletion failed' });
+            }
+          } catch (error) {
+            console.error(`Failed to delete report ${reportId}:`, error);
+            results.failed.push({ id: reportId, error: error.message });
+          }
+        }
+
+        // Clear selection
+        this.clearSelection();
+        
+        // Show results
+        this.showBulkDeleteResults(results);
+        
+        // Emit events for successful deletions
+        results.successful.forEach(({ id, result }) => {
+          this.$emit('report-deleted', {
+            report: { id },
+            result,
+            deletionType: result.deletionType
+          });
+        });
+
+        console.log(`✅ Bulk delete completed: ${results.successful.length} successful, ${results.failed.length} failed`);
+
+      } catch (error) {
+        console.error('Bulk delete operation failed:', error);
+        this.showErrorMessage(`Bulk delete failed: ${error.message}`);
+      } finally {
+        this.bulkDeleting = false;
+      }
+    },
+    
+    async showBulkDeleteConfirmation() {
+      return new Promise((resolve) => {
+        const selectedCount = this.selectedReports.size;
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        
+        // Get selected report names for display
+        const selectedReportNames = Array.from(this.selectedReports)
+          .map(id => {
+            const report = this.reportsCollection.find(r => r.id === id);
+            return report ? (report.name || report.id) : id;
+          })
+          .slice(0, 5); // Show first 5 names
+        
+        const moreCount = selectedCount - selectedReportNames.length;
+        const reportsList = selectedReportNames.join(', ') + (moreCount > 0 ? ` and ${moreCount} more` : '');
+
+        this.confirmationDialog = {
+          show: true,
+          title: isLocalhost ? `Delete ${selectedCount} Reports` : `Hide ${selectedCount} Reports`,
+          message: isLocalhost
+            ? `This will permanently delete ${selectedCount} report${selectedCount !== 1 ? 's' : ''} from the server.`
+            : `This will hide ${selectedCount} report${selectedCount !== 1 ? 's' : ''} from the collection. The files will remain until next deployment.`,
+          details: `Selected reports: ${reportsList}`,
+          type: 'delete',
+          confirmText: isLocalhost ? `Delete ${selectedCount} Reports` : `Hide ${selectedCount} Reports`,
+          confirmColor: 'error',
+          showEnvironmentInfo: true,
+          environment: isLocalhost ? 'localhost' : 'production',
+          onConfirm: () => {
+            this.confirmationDialog.show = false;
+            resolve(true);
+          },
+          onCancel: () => {
+            this.confirmationDialog.show = false;
+            resolve(false);
+          }
+        };
+      });
+    },
+    
+    showBulkDeleteResults(results) {
+      const { successful, failed, total } = results;
+      
+      if (failed.length === 0) {
+        // All successful
+        this.showSuccessMessage(
+          `Successfully deleted ${successful.length} report${successful.length !== 1 ? 's' : ''}!`
+        );
+      } else if (successful.length === 0) {
+        // All failed
+        this.showErrorMessage(
+          `Failed to delete all ${total} reports. Please try again or delete them individually.`
+        );
+      } else {
+        // Partial success
+        this.showErrorMessage(
+          `Partially completed: ${successful.length} deleted, ${failed.length} failed. ` +
+          `Failed reports: ${failed.map(f => f.id).join(', ')}`
+        );
+      }
+    },
+    
+    // Keyboard Accessibility Handler
+    handleKeyDown(event) {
+      // Only handle keyboard events when in bulk delete mode
+      if (!this.bulkDeleteMode) return;
+      
+      // Handle keyboard shortcuts
+      switch (event.key) {
+        case 'Escape':
+          // Exit bulk delete mode
+          this.toggleBulkDeleteMode();
+          event.preventDefault();
+          break;
+          
+        case 'a':
+        case 'A':
+          // Ctrl+A or Cmd+A to select all
+          if (event.ctrlKey || event.metaKey) {
+            this.toggleSelectAll();
+            event.preventDefault();
+          }
+          break;
+          
+        case 'Delete':
+        case 'Backspace':
+          // Delete key to delete selected reports
+          if (this.selectedReports.size > 0) {
+            this.bulkDeleteReports();
+            event.preventDefault();
+          }
+          break;
+          
+        case ' ':
+        case 'Enter':
+          // Space or Enter on focused report card
+          const focusedElement = document.activeElement;
+          if (focusedElement && focusedElement.classList.contains('report-card')) {
+            const reportId = focusedElement.getAttribute('data-report-id');
+            if (reportId) {
+              this.toggleReportSelection(reportId, !this.selectedReports.has(reportId));
+              event.preventDefault();
+            }
+          }
+          break;
+      }
     }
   },
 
@@ -1279,7 +1682,236 @@ The GitHub workflow will automatically update your GitHub Pages site!
 </script>
 
 <style scoped>
-/* Enhanced Reports Collection Styles */
+/* Bulk Delete Styles */
+.bulk-delete-btn {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.bulk-selection-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: rgba(25, 118, 210, 0.04);
+  border: 1px solid rgba(25, 118, 210, 0.12);
+  border-radius: 8px;
+}
+
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.select-all-checkbox {
+  margin: 0 !important;
+}
+
+.select-all-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1976d2;
+}
+
+.selection-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.clear-selection-btn {
+  font-size: 0.875rem !important;
+}
+
+/* Keyboard Shortcuts Help */
+.keyboard-shortcuts-help {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.shortcuts-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shortcuts-text kbd {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  font-family: monospace;
+  font-weight: 600;
+}
+
+[data-theme="dark"] .keyboard-shortcuts-help {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="dark"] .shortcuts-text kbd {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Report Card Selection Styles */
+.report-card.selection-mode {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.report-card.selection-mode:hover {
+  border-color: #1976d2 !important;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.15) !important;
+}
+
+.report-card.report-selected {
+  border-color: #1976d2 !important;
+  background: rgba(25, 118, 210, 0.04) !important;
+  box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2) !important;
+}
+
+.report-selection-checkbox {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(4px);
+}
+
+.selection-checkbox {
+  margin: 0 !important;
+}
+
+.selection-checkbox .v-input__control {
+  min-height: auto !important;
+}
+
+/* Dark Theme Bulk Delete Styles */
+[data-theme="dark"] .bulk-selection-controls {
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+[data-theme="dark"] .select-all-label {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .report-card.selection-mode:hover {
+  border-color: #60a5fa !important;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.2) !important;
+}
+
+[data-theme="dark"] .report-card.report-selected {
+  border-color: #60a5fa !important;
+  background: rgba(96, 165, 250, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(96, 165, 250, 0.25) !important;
+}
+
+[data-theme="dark"] .report-selection-checkbox {
+  background: rgba(30, 41, 59, 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Bulk Delete Styles */
+@media (max-width: 768px) {
+  .bulk-selection-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .selection-info {
+    width: 100%;
+  }
+  
+  .selection-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  
+  .report-selection-checkbox {
+    top: 4px;
+    right: 4px;
+    padding: 2px;
+  }
+  
+  .keyboard-shortcuts-help {
+    display: none; /* Hide keyboard shortcuts on mobile */
+  }
+}
+
+/* Accessibility Improvements */
+.report-card.selection-mode:focus-visible {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .report-card.selection-mode:focus-visible {
+  outline-color: #60a5fa;
+}
+
+/* Keyboard Navigation Styles */
+.report-card[tabindex]:focus {
+  outline: 2px solid #1976d2;
+  outline-offset: 2px;
+}
+
+[data-theme="dark"] .report-card[tabindex]:focus {
+  outline-color: #60a5fa;
+}
+
+/* Enhanced Header Actions Layout */
+.header-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Mobile Responsive Header Actions */
+@media (max-width: 600px) {
+  .header-actions {
+    gap: 4px;
+  }
+  
+  .bulk-delete-btn {
+    order: -1; /* Show delete button first on mobile */
+  }
+}
 .reports-collection-container {
   width: 100%;
   margin: 0 auto 2rem auto;
