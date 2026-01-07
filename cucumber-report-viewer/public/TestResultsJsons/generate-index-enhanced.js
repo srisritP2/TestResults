@@ -7,6 +7,7 @@
  * - Error handling and validation
  * - Multiple output formats
  * - Automatic file organization
+ * - Consistent UTC timezone handling for cross-environment compatibility
  */
 
 const fs = require('fs');
@@ -175,13 +176,10 @@ class CucumberIndexGenerator {
         const match = filename.match(/gct-(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})\.json$/);
         if (match) {
           const [, year, month, day, hour, minute, second] = match;
-          // Create date in local timezone first, then convert to UTC for consistency
-          const localDate = new Date(year, month - 1, day, hour, minute, second);
-          // Check if this looks like a UTC timestamp (common for automated reports)
-          // If the filename suggests it's already UTC, use it directly
+          // Always create UTC timestamp for consistency across environments
           const dateStr = `${year}-${month}-${day}T${hour}:${minute}:${second}.000Z`;
           metadata.date = dateStr;
-          this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (assumed UTC)`);
+          this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (UTC)`);
         }
       } else if (filename.startsWith('report-')) {
         // Extract from report-timestamp.json format
@@ -191,7 +189,7 @@ class CucumberIndexGenerator {
           if (timestamp && timestamp > 1000000000000) { // Valid timestamp
             // JavaScript timestamps are in milliseconds and already UTC
             metadata.date = new Date(timestamp).toISOString();
-            this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (from JS timestamp)`);
+            this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (UTC from JS timestamp)`);
           }
         }
       }
@@ -199,7 +197,17 @@ class CucumberIndexGenerator {
       // Fallback to file modification time if no timestamp found
       if (!metadata.date) {
         const stats = fs.statSync(path.join(this.reportsDir, filename));
+        // Always use UTC for consistency across environments
         metadata.date = stats.mtime.toISOString();
+        this.log(`Using file modification time as fallback: ${filename} -> ${metadata.date} (UTC)`);
+      }
+
+      // Ensure all dates are in UTC format for consistency
+      if (metadata.date && !metadata.date.endsWith('Z')) {
+        // If date doesn't end with Z, it might be in local timezone, convert to UTC
+        const dateObj = new Date(metadata.date);
+        metadata.date = dateObj.toISOString();
+        this.log(`Converted timestamp to UTC: ${filename} -> ${metadata.date}`);
       }
 
       // Generate suggested filename in short format: gct-YYYYMMDD-HHMMSS.json

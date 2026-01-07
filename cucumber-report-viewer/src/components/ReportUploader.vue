@@ -266,10 +266,13 @@ export default {
             if (fixedSteps > 0) {
               console.log(`🔧 Auto-fixed ${fixedSteps} skipped steps that had duration values`);
             }
-            // Generate a unique id for the report
-            const id = 'report-' + Date.now();
+            // Generate a unique id for the report with UTC timestamp
+            const now = new Date();
+            const id = 'report-' + now.getTime(); // Use getTime() for UTC milliseconds
             const name = this.selectedFile.name.replace(/\.json$/i, '');
-            const date = new Date().toISOString();
+            const date = now.toISOString(); // Always UTC format
+            
+            console.log(`📅 Generated UTC timestamp for report: ${date} (${now.getTime()})`);
             
             // Set report data in store for immediate viewing
             this.$store.commit('setReportData', reportData);
