@@ -547,6 +547,15 @@ export default {
     allFilteredReports() {
       let reports = [...this.reportsCollection];
 
+      // Filter out deleted reports first
+      reports = reports.filter(report => {
+        const isDeleted = this.isReportDeleted(report);
+        if (isDeleted) {
+          console.log(`Filtering out deleted report: ${report.id}`);
+        }
+        return !isDeleted;
+      });
+
       // Filter out empty reports (no features, scenarios, or steps)
       reports = reports.filter(report => {
         const hasData = (report.features > 0 || report.scenarios > 0 || report.steps > 0);
@@ -1882,20 +1891,6 @@ Without the server, deleted reports will reappear after page refresh.`,
           break;
       }
     }
-  },
-
-  async mounted() {
-    await this.fetchReports();
-
-    // Listen for deletion events to refresh the reports list
-    window.addEventListener('reportDeleted', this.handleReportDeleted);
-    window.addEventListener('reportRestored', this.handleReportRestored);
-  },
-
-  beforeUnmount() {
-    // Clean up event listeners
-    window.removeEventListener('reportDeleted', this.handleReportDeleted);
-    window.removeEventListener('reportRestored', this.handleReportRestored);
   }
 };
 </script>
