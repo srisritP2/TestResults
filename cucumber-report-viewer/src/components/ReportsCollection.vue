@@ -13,6 +13,29 @@
           </div>
         </div>
         <div class="header-actions">
+          <!-- Server Status Indicator -->
+          <v-tooltip bottom>
+            <template #activator="{ props }">
+              <v-btn 
+                v-bind="props"
+                :size="$vuetify.display.mobile ? 'x-small' : 'small'" 
+                :variant="serverStatus === 'online' ? 'flat' : 'outlined'" 
+                :color="serverStatus === 'online' ? 'success' : 'warning'" 
+                @click="checkAndShowServerStatus"
+                class="action-btn server-status-btn"
+                :loading="checkingServer"
+              >
+                <v-icon :size="$vuetify.display.mobile ? 14 : 16" :class="$vuetify.display.mobile ? '' : 'mr-1'">
+                  {{ serverStatus === 'online' ? 'mdi-server-network' : 'mdi-server-network-off' }}
+                </v-icon>
+                <span v-if="!$vuetify.display.mobile">
+                  {{ serverStatus === 'online' ? 'Server' : 'No Server' }}
+                </span>
+              </v-btn>
+            </template>
+            <span>{{ serverStatus === 'online' ? 'Backend server is running' : 'Backend server is offline - deletions will be temporary' }}</span>
+          </v-tooltip>
+          
           <!-- Bulk Delete Button -->
           <v-btn 
             v-if="selectedReports.size > 0"
@@ -420,6 +443,9 @@ export default {
       selectedReports: new Set(),
       bulkDeleteMode: false,
       bulkDeleting: false,
+      // Server status tracking
+      serverStatus: 'unknown', // 'online', 'offline', 'unknown'
+      checkingServer: false,
       statusOptions: [
         { title: 'All Passed', value: 'passed' },
         { title: 'Has Failures', value: 'failed' },
@@ -473,6 +499,9 @@ export default {
     
     // Add keyboard event listeners for accessibility
     document.addEventListener('keydown', this.handleKeyDown);
+    
+    // Check server status on mount
+    this.checkServerStatusSilently();
   },
 
   beforeUnmount() {
@@ -1481,6 +1510,17 @@ The GitHub workflow will automatically update your GitHub Pages site!
       }
 
       try {
+        // First, check if the server is running
+        const serverRunning = await this.checkServerStatus();
+        
+        if (!serverRunning) {
+          // Show server not running dialog
+          const shouldContinue = await this.showServerNotRunningDialog();
+          if (!shouldContinue) {
+            return;
+          }
+        }
+
         // Show confirmation dialog
         const confirmed = await this.showBulkDeleteConfirmation();
         if (!confirmed) {
@@ -1504,26 +1544,41 @@ The GitHub workflow will automatically update your GitHub Pages site!
               continue;
             }
 
-            // Use the comprehensive DeletionService
-            const result = await this.deletionService.deleteReport(reportId, {
-              confirm: false, // We already confirmed above
-              showFeedback: false // We'll handle feedback ourselves
-            });
+            if (serverRunning) {
+              // Use the comprehensive DeletionService with server
+              const result = await this.deletionService.deleteReport(reportId, {
+                confirm: false, // We already confirmed above
+                showFeedback: false // We'll handle feedback ourselves
+              });
 
-            if (result.success && !result.cancelled) {
-              results.successful.push({ id: reportId, result });
-              
-              // Remove from local collection immediately
-              this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
-              
-              // Remove from localStorage (for uploaded reports)
-              let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
-              index = index.filter(r => r.id !== reportId);
-              localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
-              localStorage.removeItem('uploaded-report-' + reportId);
-              
+              if (result.success && !result.cancelled) {
+                results.successful.push({ id: reportId, result });
+                
+                // Remove from local collection immediately
+                this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
+                
+                // Remove from localStorage (for uploaded reports)
+                this.removeFromLocalStorage(reportId);
+                
+              } else {
+                results.failed.push({ id: reportId, error: result.error || 'Deletion failed' });
+              }
             } else {
-              results.failed.push({ id: reportId, error: result.error || 'Deletion failed' });
+              // Server not running - use local-only deletion with manual index update
+              const result = await this.deleteReportLocalOnly(reportId);
+              
+              if (result.success) {
+                results.successful.push({ id: reportId, result });
+                
+                // Remove from local collection immediately
+                this.reportsCollection = this.reportsCollection.filter(r => r.id !== reportId);
+                
+                // Remove from localStorage
+                this.removeFromLocalStorage(reportId);
+                
+              } else {
+                results.failed.push({ id: reportId, error: result.error || 'Local deletion failed' });
+              }
             }
           } catch (error) {
             console.error(`Failed to delete report ${reportId}:`, error);
@@ -1535,7 +1590,7 @@ The GitHub workflow will automatically update your GitHub Pages site!
         this.clearSelection();
         
         // Show results
-        this.showBulkDeleteResults(results);
+        this.showBulkDeleteResults(results, serverRunning);
         
         // Emit events for successful deletions
         results.successful.forEach(({ id, result }) => {
@@ -1554,6 +1609,165 @@ The GitHub workflow will automatically update your GitHub Pages site!
       } finally {
         this.bulkDeleting = false;
       }
+    },
+    
+    async checkServerStatus() {
+      try {
+        const response = await fetch('http://localhost:3001/api/health', {
+          method: 'GET',
+          signal: AbortSignal.timeout(2000) // 2 second timeout
+        });
+        return response.ok;
+      } catch (error) {
+        console.log('Server not running:', error.message);
+        return false;
+      }
+    },
+    
+    async showServerNotRunningDialog() {
+      return new Promise((resolve) => {
+        this.confirmationDialog = {
+          show: true,
+          title: 'Backend Server Not Running',
+          message: 'The backend server is not running. Reports will be removed from the UI only and may reappear after refresh.',
+          details: `To permanently delete reports, please run:
+          
+1. Open a terminal in the cucumber-report-viewer folder
+2. Run: npm run server (or npm run dev for both frontend and backend)
+3. Then try deleting reports again
+
+Continue with local-only deletion?`,
+          type: 'warning',
+          confirmText: 'Continue Anyway',
+          confirmColor: 'warning',
+          showEnvironmentInfo: false,
+          onConfirm: () => {
+            this.confirmationDialog.show = false;
+            resolve(true);
+          },
+          onCancel: () => {
+            this.confirmationDialog.show = false;
+            resolve(false);
+          }
+        };
+      });
+    },
+    
+    async deleteReportLocalOnly(reportId) {
+      try {
+        // Mark as deleted in localStorage
+        const deletionInfo = {
+          reportId,
+          deletedAt: new Date().toISOString(),
+          deletionType: 'local-only',
+          environment: 'frontend-only',
+          needsServerUpdate: true
+        };
+
+        const deletionsKey = "deleted-reports";
+        const storedDeletions = localStorage.getItem(deletionsKey);
+        const deletions = storedDeletions ? JSON.parse(storedDeletions) : [];
+        deletions.push(deletionInfo);
+        localStorage.setItem(deletionsKey, JSON.stringify(deletions));
+
+        return {
+          success: true,
+          deletionType: 'local-only',
+          message: 'Report removed from local view (server update needed)'
+        };
+      } catch (error) {
+        console.error('Local-only deletion failed:', error);
+        return {
+          success: false,
+          error: error.message
+        };
+      }
+    },
+    
+    removeFromLocalStorage(reportId) {
+      try {
+        // Remove from uploaded reports index
+        let index = JSON.parse(localStorage.getItem('uploaded-reports-index') || '[]');
+        index = index.filter(r => r.id !== reportId);
+        localStorage.setItem('uploaded-reports-index', JSON.stringify(index));
+        
+        // Remove the actual report data
+        localStorage.removeItem('uploaded-report-' + reportId);
+        
+        console.log(`🗑️ Removed ${reportId} from localStorage`);
+      } catch (error) {
+        console.error('Error removing from localStorage:', error);
+      }
+    },
+    
+    async regenerateServerIndex() {
+      try {
+        const response = await fetch('http://localhost:3001/api/regenerate-index', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        
+        if (response.ok) {
+          console.log('✅ Server index regenerated');
+          return true;
+        } else {
+          console.error('❌ Failed to regenerate server index');
+          return false;
+        }
+      } catch (error) {
+        console.error('Error regenerating server index:', error);
+        return false;
+      }
+    },
+    
+    async checkAndShowServerStatus() {
+      this.checkingServer = true;
+      const isOnline = await this.checkServerStatus();
+      this.serverStatus = isOnline ? 'online' : 'offline';
+      this.checkingServer = false;
+      
+      if (isOnline) {
+        this.showSuccessMessage('Backend server is running! Deletions will be permanent.');
+      } else {
+        this.showServerInstructions();
+      }
+    },
+    
+    showServerInstructions() {
+      this.confirmationDialog = {
+        show: true,
+        title: 'Backend Server Not Running',
+        message: 'The backend server is required for permanent report deletion.',
+        details: `To start the backend server:
+
+1. Open a terminal in the cucumber-report-viewer folder
+2. Run one of these commands:
+   • npm run server (backend only)
+   • npm run dev (frontend + backend)
+   • npm start (backend only)
+
+3. Refresh this page and try deleting again
+
+Without the server, deleted reports will reappear after page refresh.`,
+        type: 'info',
+        confirmText: 'Got It',
+        confirmColor: 'primary',
+        showEnvironmentInfo: false,
+        onConfirm: () => {
+          this.confirmationDialog.show = false;
+        },
+        onCancel: () => {
+          this.confirmationDialog.show = false;
+        }
+      };
+    },
+    
+    async checkServerStatusSilently() {
+      const isOnline = await this.checkServerStatus();
+      this.serverStatus = isOnline ? 'online' : 'offline';
+      console.log(`🖥️ Server status: ${this.serverStatus}`);
     },
     
     async showBulkDeleteConfirmation() {
@@ -1596,14 +1810,16 @@ The GitHub workflow will automatically update your GitHub Pages site!
       });
     },
     
-    showBulkDeleteResults(results) {
+    showBulkDeleteResults(results, serverRunning = false) {
       const { successful, failed, total } = results;
       
       if (failed.length === 0) {
         // All successful
-        this.showSuccessMessage(
-          `Successfully deleted ${successful.length} report${successful.length !== 1 ? 's' : ''}!`
-        );
+        const message = serverRunning 
+          ? `Successfully deleted ${successful.length} report${successful.length !== 1 ? 's' : ''}!`
+          : `Removed ${successful.length} report${successful.length !== 1 ? 's' : ''} from view. Start the server (npm run server) for permanent deletion.`;
+        
+        this.showSuccessMessage(message);
       } else if (successful.length === 0) {
         // All failed
         this.showErrorMessage(
@@ -1611,9 +1827,12 @@ The GitHub workflow will automatically update your GitHub Pages site!
         );
       } else {
         // Partial success
+        const message = serverRunning
+          ? `Partially completed: ${successful.length} deleted, ${failed.length} failed.`
+          : `Partially completed: ${successful.length} removed from view, ${failed.length} failed. Start the server for permanent deletion.`;
+          
         this.showErrorMessage(
-          `Partially completed: ${successful.length} deleted, ${failed.length} failed. ` +
-          `Failed reports: ${failed.map(f => f.id).join(', ')}`
+          `${message} Failed reports: ${failed.map(f => f.id).join(', ')}`
         );
       }
     },
@@ -1902,6 +2121,21 @@ The GitHub workflow will automatically update your GitHub Pages site!
   transform: translateY(-1px);
 }
 
+.server-status-btn {
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Mobile Responsive Header Actions */
 @media (max-width: 600px) {
   .header-actions {
@@ -1910,6 +2144,10 @@ The GitHub workflow will automatically update your GitHub Pages site!
   
   .bulk-delete-btn {
     order: -1; /* Show delete button first on mobile */
+  }
+  
+  .server-status-btn {
+    order: -2; /* Show server status first on mobile */
   }
 }
 .reports-collection-container {
