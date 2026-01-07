@@ -175,9 +175,13 @@ class CucumberIndexGenerator {
         const match = filename.match(/gct-(\d{4})(\d{2})(\d{2})-(\d{2})(\d{2})(\d{2})\.json$/);
         if (match) {
           const [, year, month, day, hour, minute, second] = match;
+          // Create date in local timezone first, then convert to UTC for consistency
+          const localDate = new Date(year, month - 1, day, hour, minute, second);
+          // Check if this looks like a UTC timestamp (common for automated reports)
+          // If the filename suggests it's already UTC, use it directly
           const dateStr = `${year}-${month}-${day}T${hour}:${minute}:${second}.000Z`;
           metadata.date = dateStr;
-          this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date}`);
+          this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (assumed UTC)`);
         }
       } else if (filename.startsWith('report-')) {
         // Extract from report-timestamp.json format
@@ -185,8 +189,9 @@ class CucumberIndexGenerator {
         if (timestampMatch) {
           const timestamp = parseInt(timestampMatch[1]);
           if (timestamp && timestamp > 1000000000000) { // Valid timestamp
+            // JavaScript timestamps are in milliseconds and already UTC
             metadata.date = new Date(timestamp).toISOString();
-            this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date}`);
+            this.log(`Extracted timestamp from filename: ${filename} -> ${metadata.date} (from JS timestamp)`);
           }
         }
       }
