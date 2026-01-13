@@ -15,7 +15,7 @@
   "oldestReport": {
     "id": "gct-20250719-233624",
     "name": "GeoCall Automation Test Results Report",
-    "date": "2025-07-19T18:06:24.000Z",
+    "date": "2025-07-19T23:36:24.000Z",
     "size": 201167,
     "features": 15,
     "scenarios": 52,
@@ -62,7 +62,7 @@
   "newestReport": {
     "id": "gct-20260108-105944",
     "name": "GeoCall Automation Test Results Report",
-    "date": "2026-01-08T05:29:44.000Z",
+    "date": "2026-01-08T10:59:44.000Z",
     "size": 96354,
     "features": 15,
     "scenarios": 52,
