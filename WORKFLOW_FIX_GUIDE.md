@@ -1,115 +1,66 @@
 # GitHub Actions Workflow Fix Guide
 
-## Issues Identified
-The GitHub Actions workflows are failing due to:
-1. **Pages Build and Deployment** - Build or deployment errors
-2. **Merge Conflicts** - Conflicts between automated updates and manual pushes
-
-## Current Workflow Status
-✅ **Update Index Workflow** - Successfully running (new report added: gct-20260113-181359.json)
-❌ **Pages Deployment** - May be failing due to build issues
-
-## Solutions Applied
-
-### 1. Repository Sync
-- ✅ Pulled latest changes from remote
-- ✅ Resolved local/remote conflicts
-- ✅ Repository is now in sync
-
-### 2. Workflow Dependencies
-Both workflows are properly configured:
-- **deploy-app.yml**: Builds and deploys the Vue.js application
-- **update-index.yml**: Updates report index when new reports are added
-
-### 3. Build Validation
-The build validation script checks for:
-- ✅ Required files (index.html, manifest.json, icons)
-- ✅ CSS and JS bundles
-- ✅ Valid manifest.json structure
-
-## Recommended Actions
-
-### Immediate Fix
-1. **Trigger Manual Deployment**:
-   ```bash
-   # Go to GitHub repository
-   # Actions tab → Deploy Application to GitHub Pages
-   # Click "Run workflow" → "Run workflow"
-   ```
-
-2. **Check Build Logs**:
-   - Go to GitHub Actions tab
-   - Click on the failed workflow
-   - Check the build step logs for specific errors
-
-### Common Build Issues & Fixes
-
-#### Issue 1: Missing Dependencies
-```bash
-cd cucumber-report-viewer
-npm ci
-npm run build
+## Issue
+GitHub Actions workflows were failing with concurrent deployment errors:
+```
+deployError: Failed to create deployment (status: 400) with build version aba326192b4e3be3f956e0573e43439bfafb9a67. 
+Request ID 6BC1:1645AF:210C2EF:21A9BFA:69668FA6 
+Responded with: Deployment request failed for aba326192b4e3be3f956e0573e43439bfafb9a67 due to in progress deployment. 
+Please cancel 9c73311eea5da6a395d18fab558cb06ea0e2e6a1 first or wait for it to complete.
 ```
 
-#### Issue 2: Manifest.json Path Issues
-The manifest should have correct GitHub Pages paths:
-```json
-{
-  "start_url": "/TestResults/",
-  "scope": "/TestResults/"
-}
+## Root Cause
+Multiple deployments were trying to run simultaneously to GitHub Pages, causing conflicts. GitHub Pages only allows one deployment at a time.
+
+## Solution Applied
+
+### 1. Deploy App Workflow (`.github/workflows/deploy-app.yml`)
+Added concurrency configuration:
+
+```yaml
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "pages-${{ github.ref }}"
+  cancel-in-progress: true
 ```
 
-#### Issue 3: Asset Path Issues
-Vue.js build should use correct base URL for GitHub Pages.
+### 2. Update Index Workflow (`.github/workflows/update-index.yml`)
+Added concurrency configuration:
 
-### Workflow Conflict Prevention
+```yaml
+# Allow only one concurrent index update, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "update-index-${{ github.ref }}"
+  cancel-in-progress: true
+```
 
-#### Strategy 1: Separate Triggers
-- **deploy-app.yml**: Triggers on code changes (not report files)
-- **update-index.yml**: Triggers only on report file changes
+## How It Works
+- **Groups workflows by git reference**: Ensures only one deployment per branch runs at a time
+- **Automatically cancels in-progress runs**: When a new commit is pushed, the old deployment is cancelled
+- **Prevents queue buildup**: Latest code is always prioritized for deployment
+- **Separate concurrency groups**: Deploy and update-index workflows don't block each other
 
-#### Strategy 2: Concurrency Control
-Both workflows use proper concurrency settings to prevent conflicts.
-
-## Testing the Fix
-
-### 1. Manual Workflow Trigger
-1. Go to GitHub repository
-2. Actions → "Deploy Application to GitHub Pages"
-3. Click "Run workflow"
-4. Monitor the build process
-
-### 2. Verify Deployment
-1. Check GitHub Pages URL: https://srisritP2.github.io/TestResults/
-2. Verify the new report appears
-3. Test functionality
-
-### 3. Monitor Future Pushes
-Next time you push changes:
-1. Check Actions tab immediately
-2. Ensure both workflows complete successfully
-3. Verify no merge conflicts
-
-## Prevention for Future
-
-### Best Practices
-1. **Always pull before pushing**:
-   ```bash
-   git pull
-   git add .
-   git commit -m "your message"
-   git push
-   ```
-
-2. **Use workflow dispatch for testing**:
-   - Test deployments manually before pushing
-   - Use the "Run workflow" button for debugging
-
-3. **Monitor workflow status**:
-   - Check Actions tab after each push
-   - Address failures immediately
+## Verification Steps
+1. Push changes to trigger workflows
+2. Monitor GitHub Actions tab - should see:
+   - Old deployments automatically cancelled
+   - New deployments starting immediately
+   - No more "concurrent deployment" errors
+3. Check GitHub Pages URL to verify deployment succeeded
+4. Verify reports are displaying correctly
 
 ## Status
-🔄 **IN PROGRESS** - Repository synced, ready for manual workflow trigger
-🎯 **NEXT STEP** - Trigger manual deployment to resolve build issues
+✅ **FIXED** - Both workflows now have proper concurrency controls to prevent conflicts.
+
+## Additional Notes
+- The `cancel-in-progress: true` setting ensures the latest code is always deployed
+- This is the recommended approach for GitHub Pages deployments
+- Each workflow has its own concurrency group to avoid cross-workflow blocking
+- If you see the error again, it means an old deployment is still running - the new concurrency settings will automatically cancel it
+
+## Manual Intervention (if needed)
+If workflows are still stuck:
+1. Go to GitHub repository → Actions tab
+2. Find the stuck workflow run
+3. Click "Cancel workflow"
+4. Trigger a new deployment manually using "Run workflow" button
