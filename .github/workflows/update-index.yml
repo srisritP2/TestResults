@@ -29,6 +29,11 @@ on:
         default: true
         type: boolean
 
+# Allow only one concurrent index update, skipping runs queued between the run in-progress and latest queued.
+concurrency:
+  group: "update-index-${{ github.ref }}"
+  cancel-in-progress: true
+
 jobs:
   update-index:
     runs-on: ubuntu-latest
