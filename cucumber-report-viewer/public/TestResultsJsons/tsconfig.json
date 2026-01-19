@@ -1,0 +1,59 @@
+{
+  "reports": [
+    {
+      "id": "report-1768838904387",
+      "name": "CucumberTestReport",
+      "date": "2026-01-19T16:08:24.387Z",
+      "features": 16,
+      "scenarios": 59,
+      "steps": 688,
+      "passed": 688,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 969648,
+      "tags": [
+        "@QuickTestSuite",
+        "@EndToEndSuite",
+        "@RegressionSuite",
+        "@Excavators",
+        "@UnAuthDashBoard",
+        "@HomeOwnerTicket",
+        "@AuthDashBoard",
+        "@SignUp",
+        "@ExistingUserData",
+        "@AddResponse",
+        "@OpenTicketInResponses",
+        "@Responses",
+        "@AddResponseFlowValidation",
+        "@SignIn",
+        "@RememberMe",
+        "@ResetPassword",
+        "@AuthTicket",
+        "@CreateTicket",
+        "@ViewTicketDetails",
+        "@RunNow",
+        "@WorkAreaWithPolygon",
+        "@TicketDrafts",
+        "@TicketSearch",
+        "@MyCompanyTickets",
+        "@PrintTicket"
+      ],
+      "size": 206780,
+      "publishedAt": "2026-01-19T16:08:28.356Z",
+      "source": "published"
+    }
+  ],
+  "statistics": {
+    "totalReports": 1,
+    "totalScenarios": 59,
+    "totalSteps": 688,
+    "totalPassed": 688,
+    "totalFailed": 0,
+    "totalSkipped": 0,
+    "passRate": "100.00",
+    "failRate": "0.00",
+    "skipRate": "0.00"
+  },
+  "version": "1.0.0-published",
+  "lastUpdated": "2026-01-19T16:08:28.356Z"
+}
