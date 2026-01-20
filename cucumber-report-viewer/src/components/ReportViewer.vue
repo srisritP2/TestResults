@@ -108,8 +108,15 @@
           </v-tooltip>
         </div>
 
-        <!-- Right Actions - Refresh & Delete -->
+        <!-- Right Actions - Upload, Refresh & Delete -->
         <div class="right-actions">
+          <v-tooltip text="Upload to GitHub Pages" location="bottom">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" @click="uploadToGitHubPages" icon="mdi-cloud-upload" variant="text" size="large"
+                class="upload-btn" />
+            </template>
+          </v-tooltip>
+
           <v-tooltip text="Refresh Report Data" location="bottom">
             <template #activator="{ props }">
               <v-btn v-bind="props" @click="refreshReport" icon="mdi-refresh" variant="text" size="large"
@@ -1207,6 +1214,71 @@ export default {
       this.$router.go(0);
     },
 
+    async uploadToGitHubPages() {
+      try {
+        const reportId = this.$route.params.id;
+        if (!reportId) {
+          this.showErrorMessage('No report ID found');
+          return;
+        }
+
+        // Try to get report data from multiple sources
+        let reportData = null;
+        
+        // First, try localStorage
+        const localData = localStorage.getItem('uploaded-report-' + reportId);
+        if (localData) {
+          reportData = localData;
+          console.log('✅ Found report in localStorage');
+        } else {
+          // Try to fetch from server
+          const possiblePaths = [
+            `${process.env.BASE_URL || '/'}TestResultsJsons/${reportId}.json`,
+            `/TestResults/TestResultsJsons/${reportId}.json`,
+            `/TestResultsJsons/${reportId}.json`
+          ];
+
+          for (const path of possiblePaths) {
+            try {
+              const response = await fetch(path);
+              if (response.ok) {
+                reportData = await response.text();
+                console.log(`✅ Found report at: ${path}`);
+                break;
+              }
+            } catch (e) {
+              // Continue to next path
+            }
+          }
+        }
+
+        if (!reportData) {
+          this.showErrorMessage(`Could not find report file for ${reportId}`);
+          return;
+        }
+
+        // Create blob and download
+        const blob = new Blob([reportData], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `${reportId}.json`;
+        link.style.display = 'none';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+
+        this.showSuccessMessage(
+          `Downloaded ${reportId}.json! Copy this file to cucumber-report-viewer/public/TestResultsJsons/ and push to GitHub.`
+        );
+        console.log(`✅ Downloaded report for GitHub Pages: ${reportId}.json`);
+      } catch (error) {
+        console.error('Error uploading to GitHub Pages:', error);
+        this.showErrorMessage(`Failed to download report: ${error.message}`);
+      }
+    },
+
     showSuccessMessage(message) {
       this.snackbar = {
         show: true,
@@ -1388,6 +1460,20 @@ export default {
 
 .refresh-btn:active {
   transform: rotate(180deg) scale(0.95);
+}
+
+.upload-btn {
+  color: #3B82F6 !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.upload-btn:hover {
+  background: rgba(59, 130, 246, 0.1) !important;
+  transform: scale(1.1);
+}
+
+.upload-btn:active {
+  transform: scale(1.05);
 }
 
 .delete-btn {
@@ -1876,6 +1962,7 @@ export default {
   }
 
   .back-btn,
+  .upload-btn,
   .refresh-btn,
   .delete-btn {
     background: rgba(0, 0, 0, 0.3) !important;
@@ -1900,6 +1987,7 @@ export default {
   }
 
   .back-btn:hover,
+  .upload-btn:hover,
   .refresh-btn:hover,
   .delete-btn:hover {
     background: rgba(0, 0, 0, 0.4) !important;
@@ -2005,6 +2093,7 @@ export default {
   }
 
   .back-btn,
+  .upload-btn,
   .refresh-btn,
   .delete-btn {
     min-width: 40px !important;
@@ -2015,6 +2104,7 @@ export default {
   }
 
   .back-btn .v-icon,
+  .upload-btn .v-icon,
   .refresh-btn .v-icon,
   .delete-btn .v-icon {
     font-size: 18px !important;
