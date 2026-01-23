@@ -1270,7 +1270,7 @@ export default {
         URL.revokeObjectURL(url);
 
         this.showSuccessMessage(
-          `Downloaded ${reportId}.json! Copy this file to cucumber-report-viewer/public/TestResultsJsons/ and push to GitHub.`
+          `Downloaded ${reportId}.json! Copy this file to cucumber-report-viewer/public/ (any location) and push to GitHub. The workflow will automatically move it to the correct folder and update the index.`
         );
         console.log(`✅ Downloaded report for GitHub Pages: ${reportId}.json`);
       } catch (error) {

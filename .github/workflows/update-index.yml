@@ -8,6 +8,7 @@ on:
   push:
     paths:
       - "cucumber-report-viewer/public/TestResultsJsons/*.json"
+      - "cucumber-report-viewer/public/report-*.json"
       - "!cucumber-report-viewer/public/TestResultsJsons/index.json"
       - "!cucumber-report-viewer/public/TestResultsJsons/stats.json"
     branches: [main]
@@ -55,6 +56,28 @@ jobs:
         run: |
           cd cucumber-report-viewer/public/TestResultsJsons
           npm init -y 2>/dev/null || true
+
+      - name: Auto-move misplaced report files
+        run: |
+          echo "🔍 Checking for report files in wrong location..."
+          
+          # Check if there are any report-*.json files in the public directory
+          if ls cucumber-report-viewer/public/report-*.json 1> /dev/null 2>&1; then
+            echo "📁 Found report files in wrong location, moving them..."
+            
+            # Move all report-*.json files from public/ to public/TestResultsJsons/
+            for file in cucumber-report-viewer/public/report-*.json; do
+              if [ -f "$file" ]; then
+                filename=$(basename "$file")
+                echo "  Moving: $filename"
+                mv "$file" "cucumber-report-viewer/public/TestResultsJsons/"
+              fi
+            done
+            
+            echo "✅ All report files moved to correct location"
+          else
+            echo "✅ No misplaced report files found"
+          fi
 
       - name: Fix report formats
         run: |
