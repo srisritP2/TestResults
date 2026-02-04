@@ -1,9 +1,9 @@
 {
-  "generated": "2026-02-04T13:27:45.402Z",
+  "generated": "2026-02-04T13:29:05.792Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20260205-002714",
+      "id": "gct-20260204-185714",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-02-04T18:57:14.000Z",
       "features": 16,
@@ -48,7 +48,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260131-113354",
+      "id": "gct-20260204-132232",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-02-04T13:22:32.000Z",
+      "features": 16,
+      "scenarios": 59,
+      "steps": 688,
+      "passed": 678,
+      "failed": 3,
+      "skipped": 7,
+      "duration": 1088.9323419,
+      "size": 114682,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "109ed13cc76523ec86e17d9704928d72",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260131-060354",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-31T06:03:54.000Z",
       "features": 16,
@@ -93,7 +138,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260131-072426",
+      "id": "gct-20260131-015426",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-31T01:54:26.000Z",
       "features": 16,
@@ -138,7 +183,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260131-055016",
+      "id": "gct-20260131-002016",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-31T00:20:16.000Z",
       "features": 16,
@@ -183,7 +228,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260131-002016",
+      "id": "gct-20260130-185016",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-30T18:50:16.000Z",
       "features": 16,
@@ -228,7 +273,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260130-185016",
+      "id": "report-1769779216413",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-01-30T13:20:16.413Z",
+      "features": 16,
+      "scenarios": 59,
+      "steps": 688,
+      "passed": 678,
+      "failed": 3,
+      "skipped": 7,
+      "duration": 1088.4149106,
+      "size": 115795,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "c76198b39fca71f645a89b83fae1ed52",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260130-132016",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-30T13:20:16.000Z",
       "features": 16,
@@ -273,7 +363,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260129-070811",
+      "id": "gct-20260129-013811",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-29T01:38:11.000Z",
       "features": 16,
@@ -318,7 +408,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260129-013811",
+      "id": "gct-20260128-200811",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-28T20:08:11.000Z",
       "features": 16,
@@ -363,7 +453,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260128-200811",
+      "id": "report-1769611091122",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-01-28T14:38:11.122Z",
+      "features": 16,
+      "scenarios": 59,
+      "steps": 688,
+      "passed": 688,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 994.3529376,
+      "size": 206782,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "6a6c01db18ac956847b0a9c2ceb79696",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260128-143811",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-28T14:38:11.000Z",
       "features": 16,
@@ -408,7 +543,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260127-233146",
+      "id": "gct-20260127-180146",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-27T18:01:46.000Z",
       "features": 16,
@@ -453,7 +588,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260127-180146",
+      "id": "gct-20260127-123146",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-27T12:31:46.000Z",
       "features": 16,
@@ -498,7 +633,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260127-123146",
+      "id": "report-1769497306745",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-01-27T07:01:46.745Z",
+      "features": 16,
+      "scenarios": 59,
+      "steps": 688,
+      "passed": 685,
+      "failed": 1,
+      "skipped": 2,
+      "duration": 1030.5117875,
+      "size": 505647,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "cf9a53056c6012e502c01f7003707b1f",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260127-070146",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-27T07:01:46.000Z",
       "features": 16,
@@ -543,7 +723,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260124-153634",
+      "id": "gct-20260124-100634",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-24T10:06:34.000Z",
       "features": 16,
@@ -588,7 +768,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260121-064159",
+      "id": "gct-20260121-011159",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-21T01:11:59.000Z",
       "features": 16,
@@ -633,7 +813,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260117-105700",
+      "id": "gct-20260117-052700",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-17T05:27:00.000Z",
       "features": 16,
@@ -678,7 +858,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260114-104359",
+      "id": "gct-20260114-051359",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-14T05:13:59.000Z",
       "features": 16,
@@ -723,7 +903,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260110-065944",
+      "id": "gct-20260110-012944",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-10T01:29:44.000Z",
       "features": 15,
@@ -768,7 +948,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260109-172352",
+      "id": "gct-20260109-115352",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-09T11:53:52.000Z",
       "features": 15,
@@ -813,7 +993,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260106-062445",
+      "id": "gct-20260106-005445",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-06T00:54:45.000Z",
       "features": 15,
@@ -858,7 +1038,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260106-062426",
+      "id": "gct-20260106-005426",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-06T00:54:26.000Z",
       "features": 15,
@@ -903,7 +1083,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260106-010741",
+      "id": "gct-20260105-193741",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-05T19:37:41.000Z",
       "features": 15,
@@ -948,7 +1128,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20260105-192131",
+      "id": "gct-20260105-135131",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-01-05T13:51:31.000Z",
       "features": 15,
@@ -993,7 +1173,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251228-043736",
+      "id": "gct-20251227-230736",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-27T23:07:36.000Z",
       "features": 15,
@@ -1038,7 +1218,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251227-230931",
+      "id": "gct-20251227-173931",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-27T17:39:31.000Z",
       "features": 15,
@@ -1083,7 +1263,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251227-230928",
+      "id": "gct-20251227-173928",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-27T17:39:28.000Z",
       "features": 15,
@@ -1128,7 +1308,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251227-173515",
+      "id": "gct-20251227-120515",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-27T12:05:15.000Z",
       "features": 15,
@@ -1173,7 +1353,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251220-194909",
+      "id": "gct-20251220-141909",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-20T14:19:09.000Z",
       "features": 15,
@@ -1218,7 +1398,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251220-074200",
+      "id": "gct-20251220-021200",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-20T02:12:00.000Z",
       "features": 15,
@@ -1263,7 +1443,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251220-021413",
+      "id": "gct-20251219-204413",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-19T20:44:13.000Z",
       "features": 15,
@@ -1308,7 +1488,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251219-202943",
+      "id": "gct-20251219-145943",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-19T14:59:43.000Z",
       "features": 15,
@@ -1353,7 +1533,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251216-234741",
+      "id": "gct-20251216-181741",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-16T18:17:41.000Z",
       "features": 15,
@@ -1398,7 +1578,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251216-182047",
+      "id": "gct-20251216-125047",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-16T12:50:47.000Z",
       "features": 15,
@@ -1443,7 +1623,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251215-050049",
+      "id": "gct-20251214-233049",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-14T23:30:49.000Z",
       "features": 15,
@@ -1488,7 +1668,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251214-233717",
+      "id": "gct-20251214-180717",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-14T18:07:17.000Z",
       "features": 15,
@@ -1533,7 +1713,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251213-213438",
+      "id": "gct-20251213-160438",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-13T16:04:38.000Z",
       "features": 15,
@@ -1578,7 +1758,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251213-074645",
+      "id": "gct-20251213-021645",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-13T02:16:45.000Z",
       "features": 15,
@@ -1623,7 +1803,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251213-021645",
+      "id": "gct-20251212-204645",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T20:46:45.000Z",
       "features": 15,
@@ -1668,7 +1848,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251213-012714",
+      "id": "gct-20251212-195714",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T19:57:14.000Z",
       "features": 15,
@@ -1713,7 +1893,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251213-011604",
+      "id": "gct-20251212-194604",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T19:46:04.000Z",
       "features": 15,
@@ -1758,7 +1938,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251212-214153",
+      "id": "gct-20251212-161153",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T16:11:53.000Z",
       "features": 15,
@@ -1803,7 +1983,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251212-204645",
+      "id": "gct-20251212-151645",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T15:16:45.000Z",
       "features": 15,
@@ -1848,7 +2028,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251212-151645",
+      "id": "report-1765532805448",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-12-12T09:46:45.448Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 638,
+      "failed": 4,
+      "skipped": 17,
+      "duration": 980.7223067,
+      "size": 1576115,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "8567c479eea3b68312f06c5d19db47dd",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20251212-094645",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-12T09:46:45.000Z",
       "features": 15,
@@ -1893,7 +2118,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251211-072858",
+      "id": "gct-20251211-015858",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-11T01:58:58.000Z",
       "features": 15,
@@ -1938,7 +2163,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251211-015858",
+      "id": "gct-20251210-202858",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-10T20:28:58.000Z",
       "features": 15,
@@ -1983,7 +2208,52 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251210-202858",
+      "id": "report-1765378738417",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2025-12-10T14:58:58.417Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 636,
+      "failed": 3,
+      "skipped": 20,
+      "duration": 938.9244469,
+      "size": 1498891,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "497b2919b0ea70530aa4c0ee0eb3dd12",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20251210-145858",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-10T14:58:58.000Z",
       "features": 15,
@@ -2028,7 +2298,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251210-083518",
+      "id": "gct-20251210-030518",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-10T03:05:18.000Z",
       "features": 15,
@@ -2073,7 +2343,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251210-065918",
+      "id": "gct-20251210-012918",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-10T01:29:18.000Z",
       "features": 15,
@@ -2118,7 +2388,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251210-064523",
+      "id": "gct-20251210-011523",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-10T01:15:23.000Z",
       "features": 15,
@@ -2163,7 +2433,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251210-030054",
+      "id": "gct-20251209-213054",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-09T21:30:54.000Z",
       "features": 15,
@@ -2208,7 +2478,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251209-081107",
+      "id": "gct-20251209-024107",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-09T02:41:07.000Z",
       "features": 15,
@@ -2253,7 +2523,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251209-073611",
+      "id": "gct-20251209-020611",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-09T02:06:11.000Z",
       "features": 15,
@@ -2298,7 +2568,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251208-214632",
+      "id": "gct-20251208-161632",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-08T16:16:32.000Z",
       "features": 15,
@@ -2343,7 +2613,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251207-024800",
+      "id": "gct-20251206-211800",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-06T21:18:00.000Z",
       "features": 15,
@@ -2388,7 +2658,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251206-211800",
+      "id": "gct-20251206-154800",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-12-06T15:48:00.000Z",
       "features": 15,
@@ -2433,7 +2703,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251201-012217",
+      "id": "gct-20251130-195217",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-30T19:52:17.000Z",
       "features": 15,
@@ -2478,7 +2748,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251130-190812",
+      "id": "gct-20251130-133812",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-30T13:38:12.000Z",
       "features": 15,
@@ -2523,7 +2793,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251126-020910",
+      "id": "gct-20251125-203910",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-25T20:39:10.000Z",
       "features": 15,
@@ -2568,7 +2838,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251125-203910",
+      "id": "gct-20251125-150910",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-25T15:09:10.000Z",
       "features": 15,
@@ -2613,7 +2883,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251124-001401",
+      "id": "gct-20251123-184401",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-23T18:44:01.000Z",
       "features": 15,
@@ -2658,7 +2928,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251123-202913",
+      "id": "gct-20251123-145913",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-23T14:59:13.000Z",
       "features": 15,
@@ -2703,7 +2973,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251123-184401",
+      "id": "gct-20251123-131401",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-23T13:14:01.000Z",
       "features": 15,
@@ -2748,7 +3018,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251123-131401",
+      "id": "gct-20251123-074401",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-23T07:44:01.000Z",
       "features": 15,
@@ -2793,7 +3063,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251122-053000",
+      "id": "gct-20251122-000000",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-22T00:00:00.000Z",
       "features": 15,
@@ -2838,7 +3108,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251121-162331",
+      "id": "gct-20251121-105331",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-21T10:53:31.000Z",
       "features": 15,
@@ -2883,7 +3153,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251118-212436",
+      "id": "gct-20251118-155436",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-18T15:54:36.000Z",
       "features": 15,
@@ -2928,7 +3198,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251118-202406",
+      "id": "gct-20251118-145406",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-18T14:54:06.000Z",
       "features": 15,
@@ -2973,7 +3243,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251116-225312",
+      "id": "gct-20251116-172312",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-16T17:23:12.000Z",
       "features": 15,
@@ -3018,7 +3288,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251111-235542",
+      "id": "gct-20251111-182542",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-11T18:25:42.000Z",
       "features": 15,
@@ -3063,7 +3333,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251111-213002",
+      "id": "gct-20251111-160002",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-11T16:00:02.000Z",
       "features": 15,
@@ -3108,7 +3378,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251110-153006",
+      "id": "gct-20251110-100006",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-10T10:00:06.000Z",
       "features": 15,
@@ -3153,7 +3423,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251104-152505",
+      "id": "gct-20251104-095505",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-04T09:55:05.000Z",
       "features": 15,
@@ -3198,7 +3468,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251104-142928",
+      "id": "gct-20251104-085928",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-04T08:59:28.000Z",
       "features": 15,
@@ -3243,7 +3513,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251102-140925",
+      "id": "gct-20251102-083925",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-02T08:39:25.000Z",
       "features": 15,
@@ -3288,7 +3558,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251101-203425",
+      "id": "gct-20251101-150425",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-01T15:04:25.000Z",
       "features": 15,
@@ -3333,7 +3603,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251101-200441",
+      "id": "gct-20251101-143441",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-11-01T14:34:41.000Z",
       "features": 15,
@@ -3378,7 +3648,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251031-170811",
+      "id": "gct-20251031-113811",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-10-31T11:38:11.000Z",
       "features": 15,
@@ -3423,7 +3693,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251028-193219",
+      "id": "gct-20251028-140219",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-10-28T14:02:19.000Z",
       "features": 15,
@@ -3468,7 +3738,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251027-210301",
+      "id": "gct-20251027-153301",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-10-27T15:33:01.000Z",
       "features": 15,
@@ -3513,7 +3783,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20251027-015838",
+      "id": "gct-20251026-202838",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-10-26T20:28:38.000Z",
       "features": 15,
@@ -3558,7 +3828,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250929-185246",
+      "id": "gct-20250929-132246",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-29T13:22:46.000Z",
       "features": 16,
@@ -3603,7 +3873,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250928-174506",
+      "id": "gct-20250928-121506",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-28T12:15:06.000Z",
       "features": 16,
@@ -3648,7 +3918,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250908-214158",
+      "id": "gct-20250908-161158",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-08T16:11:58.000Z",
       "features": 16,
@@ -3693,7 +3963,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-175332",
+      "id": "gct-20250901-122332",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T12:23:32.000Z",
       "features": 16,
@@ -3738,7 +4008,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-172528",
+      "id": "gct-20250901-115528",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T11:55:28.000Z",
       "features": 16,
@@ -3783,7 +4053,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-164516",
+      "id": "gct-20250901-111516",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T11:15:16.000Z",
       "features": 16,
@@ -3828,7 +4098,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-152130",
+      "id": "gct-20250901-095130",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T09:51:30.000Z",
       "features": 16,
@@ -3873,7 +4143,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-144405",
+      "id": "gct-20250901-091405",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T09:14:05.000Z",
       "features": 16,
@@ -3918,7 +4188,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250901-142357",
+      "id": "gct-20250901-085357",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-09-01T08:53:57.000Z",
       "features": 16,
@@ -3963,7 +4233,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250830-220423",
+      "id": "gct-20250830-163423",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-08-30T16:34:23.000Z",
       "features": 16,
@@ -4008,7 +4278,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250829-183154",
+      "id": "gct-20250829-130154",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-08-29T13:01:54.000Z",
       "features": 16,
@@ -4053,7 +4323,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250803-205958",
+      "id": "gct-20250803-152958",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-08-03T15:29:58.000Z",
       "features": 15,
@@ -4098,7 +4368,7 @@
       "isDeleted": false
     },
     {
-      "id": "gct-20250721-193624",
+      "id": "gct-20250721-140624",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-07-21T14:06:24.000Z",
       "features": 15,
@@ -4149,21 +4419,21 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 92,
-    "totalFeatures": 1407,
-    "totalScenarios": 4907,
-    "totalSteps": 60513,
-    "totalPassed": 59787,
-    "totalFailed": 158,
-    "totalSkipped": 568,
-    "totalDuration": 90864.0592598999,
-    "totalSize": 39211491,
-    "averageDuration": "987.65",
-    "passRate": "98.80",
-    "failRate": "0.26",
-    "skipRate": "0.94",
+    "totalReports": 98,
+    "totalFeatures": 1501,
+    "totalScenarios": 5247,
+    "totalSteps": 64583,
+    "totalPassed": 63790,
+    "totalFailed": 172,
+    "totalSkipped": 621,
+    "totalDuration": 96985.91799109995,
+    "totalSize": 43229403,
+    "averageDuration": "989.65",
+    "passRate": "98.77",
+    "failRate": "0.27",
+    "skipRate": "0.96",
     "oldestReport": {
-      "id": "gct-20250721-193624",
+      "id": "gct-20250721-140624",
       "name": "GeoCall Automation Test Results Report",
       "date": "2025-07-21T14:06:24.000Z",
       "size": 201167,
@@ -4205,12 +4475,12 @@
       "tool": null,
       "version": null,
       "hash": "9070cfb6ae22d2083d44f48e2335d40c",
-      "suggestedFilename": "gct-20250721-193624.json",
+      "suggestedFilename": "gct-20250721-140624.json",
       "status": "active",
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20260205-002714",
+      "id": "gct-20260204-185714",
       "name": "GeoCall Automation Test Results Report",
       "date": "2026-02-04T18:57:14.000Z",
       "size": 114829,
@@ -4252,7 +4522,7 @@
       "tool": null,
       "version": null,
       "hash": "e7b75859f074a375ac3318daf96ea953",
-      "suggestedFilename": "gct-20260205-002714.json",
+      "suggestedFilename": "gct-20260204-185714.json",
       "status": "active",
       "isDeleted": false
     },
@@ -4936,6 +5206,13 @@
       ]
     },
     {
+      "file": "gct-20260204-132232.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
       "file": "gct-20260204-185714.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
@@ -4955,15 +5232,38 @@
       ]
     },
     {
-      "file": "report-1770211352295.json",
+      "file": "report-1765378738417.json",
       "errors": [
-        "Root element must be an array"
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
       ]
     },
     {
-      "file": "report-1770211352295.json",
+      "file": "report-1765532805448.json",
       "errors": [
-        "Invalid Cucumber JSON format: root should be an array"
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "report-1769497306745.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "report-1769611091122.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "report-1769779216413.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
       ]
     },
     {
@@ -4977,376 +5277,6 @@
       "errors": [
         "Invalid Cucumber JSON format: root should be an array"
       ]
-    }
-  ],
-  "renames": [
-    {
-      "from": "gct-20260204-185714.json",
-      "to": "gct-20260205-002714.json"
-    },
-    {
-      "from": "gct-20260131-060354.json",
-      "to": "gct-20260131-113354.json"
-    },
-    {
-      "from": "gct-20260131-015426.json",
-      "to": "gct-20260131-072426.json"
-    },
-    {
-      "from": "gct-20260131-002016.json",
-      "to": "gct-20260131-055016.json"
-    },
-    {
-      "from": "gct-20260130-185016.json",
-      "to": "gct-20260131-002016.json"
-    },
-    {
-      "from": "gct-20260130-132016.json",
-      "to": "gct-20260130-185016.json"
-    },
-    {
-      "from": "gct-20260129-013811.json",
-      "to": "gct-20260129-070811.json"
-    },
-    {
-      "from": "gct-20260128-200811.json",
-      "to": "gct-20260129-013811.json"
-    },
-    {
-      "from": "gct-20260128-143811.json",
-      "to": "gct-20260128-200811.json"
-    },
-    {
-      "from": "gct-20260127-180146.json",
-      "to": "gct-20260127-233146.json"
-    },
-    {
-      "from": "gct-20260127-123146.json",
-      "to": "gct-20260127-180146.json"
-    },
-    {
-      "from": "gct-20260127-070146.json",
-      "to": "gct-20260127-123146.json"
-    },
-    {
-      "from": "gct-20260124-100634.json",
-      "to": "gct-20260124-153634.json"
-    },
-    {
-      "from": "gct-20260121-011159.json",
-      "to": "gct-20260121-064159.json"
-    },
-    {
-      "from": "gct-20260117-052700.json",
-      "to": "gct-20260117-105700.json"
-    },
-    {
-      "from": "gct-20260114-051359.json",
-      "to": "gct-20260114-104359.json"
-    },
-    {
-      "from": "gct-20260110-012944.json",
-      "to": "gct-20260110-065944.json"
-    },
-    {
-      "from": "gct-20260109-115352.json",
-      "to": "gct-20260109-172352.json"
-    },
-    {
-      "from": "gct-20260106-005445.json",
-      "to": "gct-20260106-062445.json"
-    },
-    {
-      "from": "gct-20260106-005426.json",
-      "to": "gct-20260106-062426.json"
-    },
-    {
-      "from": "gct-20260105-193741.json",
-      "to": "gct-20260106-010741.json"
-    },
-    {
-      "from": "gct-20260105-135131.json",
-      "to": "gct-20260105-192131.json"
-    },
-    {
-      "from": "gct-20251227-230736.json",
-      "to": "gct-20251228-043736.json"
-    },
-    {
-      "from": "gct-20251227-173931.json",
-      "to": "gct-20251227-230931.json"
-    },
-    {
-      "from": "gct-20251227-173928.json",
-      "to": "gct-20251227-230928.json"
-    },
-    {
-      "from": "gct-20251227-120515.json",
-      "to": "gct-20251227-173515.json"
-    },
-    {
-      "from": "gct-20251220-141909.json",
-      "to": "gct-20251220-194909.json"
-    },
-    {
-      "from": "gct-20251220-021200.json",
-      "to": "gct-20251220-074200.json"
-    },
-    {
-      "from": "gct-20251219-204413.json",
-      "to": "gct-20251220-021413.json"
-    },
-    {
-      "from": "gct-20251219-145943.json",
-      "to": "gct-20251219-202943.json"
-    },
-    {
-      "from": "gct-20251216-181741.json",
-      "to": "gct-20251216-234741.json"
-    },
-    {
-      "from": "gct-20251216-125047.json",
-      "to": "gct-20251216-182047.json"
-    },
-    {
-      "from": "gct-20251214-233049.json",
-      "to": "gct-20251215-050049.json"
-    },
-    {
-      "from": "gct-20251214-180717.json",
-      "to": "gct-20251214-233717.json"
-    },
-    {
-      "from": "gct-20251213-160438.json",
-      "to": "gct-20251213-213438.json"
-    },
-    {
-      "from": "gct-20251213-021645.json",
-      "to": "gct-20251213-074645.json"
-    },
-    {
-      "from": "gct-20251212-204645.json",
-      "to": "gct-20251213-021645.json"
-    },
-    {
-      "from": "gct-20251212-195714.json",
-      "to": "gct-20251213-012714.json"
-    },
-    {
-      "from": "gct-20251212-194604.json",
-      "to": "gct-20251213-011604.json"
-    },
-    {
-      "from": "gct-20251212-161153.json",
-      "to": "gct-20251212-214153.json"
-    },
-    {
-      "from": "gct-20251212-151645.json",
-      "to": "gct-20251212-204645.json"
-    },
-    {
-      "from": "gct-20251212-094645.json",
-      "to": "gct-20251212-151645.json"
-    },
-    {
-      "from": "gct-20251211-015858.json",
-      "to": "gct-20251211-072858.json"
-    },
-    {
-      "from": "gct-20251210-202858.json",
-      "to": "gct-20251211-015858.json"
-    },
-    {
-      "from": "gct-20251210-145858.json",
-      "to": "gct-20251210-202858.json"
-    },
-    {
-      "from": "gct-20251210-030518.json",
-      "to": "gct-20251210-083518.json"
-    },
-    {
-      "from": "gct-20251210-012918.json",
-      "to": "gct-20251210-065918.json"
-    },
-    {
-      "from": "gct-20251210-011523.json",
-      "to": "gct-20251210-064523.json"
-    },
-    {
-      "from": "gct-20251209-213054.json",
-      "to": "gct-20251210-030054.json"
-    },
-    {
-      "from": "gct-20251209-024107.json",
-      "to": "gct-20251209-081107.json"
-    },
-    {
-      "from": "gct-20251209-020611.json",
-      "to": "gct-20251209-073611.json"
-    },
-    {
-      "from": "gct-20251208-161632.json",
-      "to": "gct-20251208-214632.json"
-    },
-    {
-      "from": "gct-20251206-211800.json",
-      "to": "gct-20251207-024800.json"
-    },
-    {
-      "from": "gct-20251206-154800.json",
-      "to": "gct-20251206-211800.json"
-    },
-    {
-      "from": "gct-20251130-195217.json",
-      "to": "gct-20251201-012217.json"
-    },
-    {
-      "from": "gct-20251130-133812.json",
-      "to": "gct-20251130-190812.json"
-    },
-    {
-      "from": "gct-20251125-203910.json",
-      "to": "gct-20251126-020910.json"
-    },
-    {
-      "from": "gct-20251125-150910.json",
-      "to": "gct-20251125-203910.json"
-    },
-    {
-      "from": "gct-20251123-184401.json",
-      "to": "gct-20251124-001401.json"
-    },
-    {
-      "from": "gct-20251123-145913.json",
-      "to": "gct-20251123-202913.json"
-    },
-    {
-      "from": "gct-20251123-131401.json",
-      "to": "gct-20251123-184401.json"
-    },
-    {
-      "from": "gct-20251123-074401.json",
-      "to": "gct-20251123-131401.json"
-    },
-    {
-      "from": "gct-20251122-000000.json",
-      "to": "gct-20251122-053000.json"
-    },
-    {
-      "from": "gct-20251121-105331.json",
-      "to": "gct-20251121-162331.json"
-    },
-    {
-      "from": "gct-20251118-155436.json",
-      "to": "gct-20251118-212436.json"
-    },
-    {
-      "from": "gct-20251118-145406.json",
-      "to": "gct-20251118-202406.json"
-    },
-    {
-      "from": "gct-20251116-172312.json",
-      "to": "gct-20251116-225312.json"
-    },
-    {
-      "from": "gct-20251111-182542.json",
-      "to": "gct-20251111-235542.json"
-    },
-    {
-      "from": "gct-20251111-160002.json",
-      "to": "gct-20251111-213002.json"
-    },
-    {
-      "from": "gct-20251110-100006.json",
-      "to": "gct-20251110-153006.json"
-    },
-    {
-      "from": "gct-20251104-095505.json",
-      "to": "gct-20251104-152505.json"
-    },
-    {
-      "from": "gct-20251104-085928.json",
-      "to": "gct-20251104-142928.json"
-    },
-    {
-      "from": "gct-20251102-083925.json",
-      "to": "gct-20251102-140925.json"
-    },
-    {
-      "from": "gct-20251101-150425.json",
-      "to": "gct-20251101-203425.json"
-    },
-    {
-      "from": "gct-20251101-143441.json",
-      "to": "gct-20251101-200441.json"
-    },
-    {
-      "from": "gct-20251031-113811.json",
-      "to": "gct-20251031-170811.json"
-    },
-    {
-      "from": "gct-20251028-140219.json",
-      "to": "gct-20251028-193219.json"
-    },
-    {
-      "from": "gct-20251027-153301.json",
-      "to": "gct-20251027-210301.json"
-    },
-    {
-      "from": "gct-20251026-202838.json",
-      "to": "gct-20251027-015838.json"
-    },
-    {
-      "from": "gct-20250929-132246.json",
-      "to": "gct-20250929-185246.json"
-    },
-    {
-      "from": "gct-20250928-121506.json",
-      "to": "gct-20250928-174506.json"
-    },
-    {
-      "from": "gct-20250908-161158.json",
-      "to": "gct-20250908-214158.json"
-    },
-    {
-      "from": "gct-20250901-122332.json",
-      "to": "gct-20250901-175332.json"
-    },
-    {
-      "from": "gct-20250901-115528.json",
-      "to": "gct-20250901-172528.json"
-    },
-    {
-      "from": "gct-20250901-111516.json",
-      "to": "gct-20250901-164516.json"
-    },
-    {
-      "from": "gct-20250901-095130.json",
-      "to": "gct-20250901-152130.json"
-    },
-    {
-      "from": "gct-20250901-091405.json",
-      "to": "gct-20250901-144405.json"
-    },
-    {
-      "from": "gct-20250901-085357.json",
-      "to": "gct-20250901-142357.json"
-    },
-    {
-      "from": "gct-20250830-163423.json",
-      "to": "gct-20250830-220423.json"
-    },
-    {
-      "from": "gct-20250829-130154.json",
-      "to": "gct-20250829-183154.json"
-    },
-    {
-      "from": "gct-20250803-152958.json",
-      "to": "gct-20250803-205958.json"
-    },
-    {
-      "from": "gct-20250721-140624.json",
-      "to": "gct-20250721-193624.json"
     }
   ]
 }
