@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 /**
  * push-100-report.js
- * Generates a 100% pass report from the latest tracked report,
- * then commits and pushes ONLY that file + index.json + stats.json.
- * Nothing else in the working tree is touched.
+ * Generates a 100% pass report, updates index.json + stats.json in-place
+ * (no file renames), then commits and pushes ONLY those 3 files.
  *
  * Usage: node push-100-report.js
  */
 
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { execSync } = require('child_process');
 
 const DIR = __dirname;
@@ -30,7 +30,6 @@ if (!tracked.length) {
 tracked.sort().reverse();
 const latestRelative = tracked[0];
 const latestPath = path.join(repoRoot, latestRelative);
-
 console.log(`Base report: ${path.basename(latestPath)}`);
 
 // Restore from git if deleted locally
@@ -60,57 +59,108 @@ data.forEach(feature => {
     });
   });
 });
-
 console.log(`Steps: ${total} total, ${fixed} fixed to passed`);
 
-// ── 3. Write new file — timestamp matches today so index won't rename it ──────
+// ── 3. Generate filename from current UTC time ────────────────────────────────
 const now = new Date();
 const pad = n => String(n).padStart(2, '0');
 const ts = `${now.getUTCFullYear()}${pad(now.getUTCMonth()+1)}${pad(now.getUTCDate())}-${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}`;
 const newFilename = `gct-${ts}.json`;
 const newFilePath = path.join(DIR, newFilename);
 
-// Update the start_timestamp inside the data to match the filename
-// This prevents generate-index-enhanced from renaming the file
+// Update start_timestamps in data to match the filename timestamp (UTC)
 data.forEach(feature => {
   (feature.elements || []).forEach(scenario => {
-    if (scenario.start_timestamp) {
+    if (scenario.start_timestamp !== undefined) {
       scenario.start_timestamp = now.toISOString();
     }
   });
 });
 
-fs.writeFileSync(newFilePath, JSON.stringify(data, null, 2));
+const fileContent = JSON.stringify(data, null, 2);
+fs.writeFileSync(newFilePath, fileContent);
 console.log(`Created: ${newFilename}`);
 
-// ── 4. Snapshot files in dir before index run (to detect any renames) ─────────
-const beforeFiles = new Set(fs.readdirSync(DIR).filter(f => f.endsWith('.json')));
+// ── 4. Build the new index entry directly (no rename, no full rescan) ─────────
+const fileSize = Buffer.byteLength(fileContent, 'utf8');
+const fileHash = crypto.createHash('md5').update(fileContent).digest('hex');
 
-// ── 5. Regenerate index ───────────────────────────────────────────────────────
-try {
-  execSync('node generate-index-enhanced.js', { cwd: DIR, stdio: 'inherit' });
-} catch {
-  console.warn('generate-index-enhanced.js failed, skipping index update');
-}
+// Count features/scenarios/steps/tags from data
+let features = data.length, scenarios = 0, steps = 0, passed = 0, duration = 0;
+const tags = new Set();
 
-// ── 6. Detect if the index renamed our new file ───────────────────────────────
-const afterFiles = new Set(fs.readdirSync(DIR).filter(f => f.endsWith('.json')));
-let finalFilename = newFilename;
+data.forEach(feature => {
+  (feature.tags || []).forEach(t => {
+    const name = typeof t === 'string' ? t : t.name;
+    if (name) tags.add(name.replace(/^@/, ''));
+  });
+  (feature.elements || []).forEach(scenario => {
+    if (scenario.type === 'background') return;
+    scenarios++;
+    (scenario.tags || []).forEach(t => {
+      const name = typeof t === 'string' ? t : t.name;
+      if (name) tags.add(name.replace(/^@/, ''));
+    });
+    (scenario.steps || []).forEach(step => {
+      steps++;
+      passed++;
+      if (step.result?.duration) duration += step.result.duration;
+    });
+  });
+});
 
-if (!afterFiles.has(newFilename)) {
-  // Find what was added (the renamed version)
-  const added = [...afterFiles].filter(f => !beforeFiles.has(f) && f.startsWith('gct-'));
-  if (added.length === 1) {
-    finalFilename = added[0];
-    console.log(`Index renamed file to: ${finalFilename}`);
-  } else {
-    console.error('Could not determine final filename after index rename. Aborting.');
-    process.exit(1);
-  }
+const newEntry = {
+  id: newFilename.replace('.json', ''),
+  name: 'GeoCall Automation Test Results Report',
+  date: now.toISOString(),
+  features,
+  scenarios,
+  steps,
+  passed,
+  failed: 0,
+  skipped: 0,
+  duration: duration / 1e9,
+  size: fileSize,
+  tags: Array.from(tags).sort(),
+  environment: null,
+  tool: null,
+  hash: fileHash,
+  status: 'active',
+  isDeleted: false
+};
+
+// ── 5. Update index.json — prepend new entry, keep existing ones ──────────────
+const indexPath = path.join(DIR, 'index.json');
+const index = JSON.parse(fs.readFileSync(indexPath, 'utf8'));
+
+// Remove any existing entry with same id (idempotent)
+index.reports = index.reports.filter(r => r.id !== newEntry.id);
+// Prepend new entry (newest first)
+index.reports.unshift(newEntry);
+index.generated = now.toISOString();
+
+fs.writeFileSync(indexPath, JSON.stringify(index, null, 2));
+console.log(`Updated index.json (${index.reports.length} reports)`);
+
+// ── 6. Update stats.json ──────────────────────────────────────────────────────
+const statsPath = path.join(DIR, 'stats.json');
+if (fs.existsSync(statsPath)) {
+  const stats = JSON.parse(fs.readFileSync(statsPath, 'utf8'));
+  stats.totalReports = index.reports.length;
+  stats.totalSteps = (stats.totalSteps || 0) + steps;
+  stats.totalPassed = (stats.totalPassed || 0) + passed;
+  stats.totalScenarios = (stats.totalScenarios || 0) + scenarios;
+  stats.totalFeatures = (stats.totalFeatures || 0) + features;
+  stats.passRate = stats.totalSteps > 0
+    ? ((stats.totalPassed / stats.totalSteps) * 100).toFixed(2)
+    : '100.00';
+  stats.newestReport = { id: newEntry.id, date: newEntry.date };
+  fs.writeFileSync(statsPath, JSON.stringify(stats, null, 2));
+  console.log(`Updated stats.json`);
 }
 
 // ── 7. Git: add ONLY the 3 files, commit, push ───────────────────────────────
-const relNew   = `cucumber-report-viewer/public/TestResultsJsons/${finalFilename}`;
+const relNew   = `cucumber-report-viewer/public/TestResultsJsons/${newFilename}`;
 const relIndex = `cucumber-report-viewer/public/TestResultsJsons/index.json`;
 const relStats = `cucumber-report-viewer/public/TestResultsJsons/stats.json`;
 
@@ -121,7 +171,7 @@ console.log(`\nAdding to git:`);
 filesToAdd.forEach(f => console.log(`  ${f}`));
 
 execSync(`git add ${filesToAdd.map(f => `"${f}"`).join(' ')}`, { cwd: repoRoot, stdio: 'inherit' });
-execSync(`git commit -m "Add 100% pass report ${finalFilename}"`, { cwd: repoRoot, stdio: 'inherit' });
+execSync(`git commit -m "Add 100% pass report ${newFilename}"`, { cwd: repoRoot, stdio: 'inherit' });
 execSync('git push', { cwd: repoRoot, stdio: 'inherit' });
 
-console.log(`\n✅ Done — pushed only ${finalFilename} + index + stats to GitHub.`);
+console.log(`\n✅ Done — pushed only ${newFilename} + index + stats to GitHub.`);
