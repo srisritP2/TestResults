@@ -1,11 +1,11 @@
 {
-  "generated": "2026-04-20T05:05:39.495Z",
+  "generated": "2026-04-21T18:11:37.292Z",
   "version": "2.1.0",
   "reports": [
     {
-      "id": "gct-20260420-050539",
+      "id": "gct-20260421-181137",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-04-20T05:05:39.495Z",
+      "date": "2026-04-21T18:11:37.292Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
@@ -43,7 +43,52 @@
       ],
       "environment": null,
       "tool": null,
-      "hash": "b42a579f746ab4c97a4fce043f1ace87",
+      "hash": "96686c7733c922707d5929aa980c243d",
+      "status": "active",
+      "isDeleted": false
+    },
+    {
+      "id": "gct-20260420-050539",
+      "name": "GeoCall Automation Test Results Report",
+      "date": "2026-04-20T05:05:39.000Z",
+      "features": 15,
+      "scenarios": 52,
+      "steps": 659,
+      "passed": 659,
+      "failed": 0,
+      "skipped": 0,
+      "duration": 997.3328293,
+      "size": 201444,
+      "tags": [
+        "AddResponse",
+        "AddResponseFlowValidation",
+        "AuthDashBoard",
+        "AuthTicket",
+        "CreateTicket",
+        "EndToEndSuite",
+        "Excavators",
+        "ExistingUserData",
+        "HomeOwnerTicket",
+        "MyCompanyTickets",
+        "OpenTicketInResponses",
+        "PrintTicket",
+        "QuickTestSuite",
+        "RegressionSuite",
+        "RememberMe",
+        "ResetPassword",
+        "Responses",
+        "RunNow",
+        "SignIn",
+        "SignUp",
+        "TicketDrafts",
+        "TicketSearch",
+        "UnAuthDashBoard",
+        "ViewTicketDetails",
+        "WorkAreaWithPolygon"
+      ],
+      "environment": null,
+      "tool": null,
+      "hash": "ee657e7551feefe170422f441879f327",
       "status": "active",
       "isDeleted": false
     },
@@ -9324,19 +9369,19 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 206,
-    "totalFeatures": 3189,
-    "totalScenarios": 11339,
-    "totalSteps": 137727,
-    "totalPassed": 135945,
+    "totalReports": 207,
+    "totalFeatures": 3204,
+    "totalScenarios": 11391,
+    "totalSteps": 138386,
+    "totalPassed": 136604,
     "totalFailed": 365,
     "totalSkipped": 1417,
-    "totalDuration": 207140.82165299958,
-    "totalSize": 112757019,
-    "averageDuration": "1005.54",
+    "totalDuration": 208138.15448229958,
+    "totalSize": 112958463,
+    "averageDuration": "1005.50",
     "passRate": "98.71",
-    "failRate": "0.27",
-    "skipRate": "1.03",
+    "failRate": "0.26",
+    "skipRate": "1.02",
     "oldestReport": {
       "id": "gct-20250725-170624",
       "name": "GeoCall Automation Test Results Report",
@@ -9385,9 +9430,9 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20260417-142700",
+      "id": "gct-20260420-050539",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-04-17T14:27:00.000Z",
+      "date": "2026-04-20T05:05:39.000Z",
       "size": 201444,
       "features": 15,
       "scenarios": 52,
@@ -9426,8 +9471,8 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "c69eb613e54f58cf9dc3afa7c4655021",
-      "suggestedFilename": "gct-20260417-142700.json",
+      "hash": "ee657e7551feefe170422f441879f327",
+      "suggestedFilename": "gct-20260420-050539.json",
       "status": "active",
       "isDeleted": false
     },
@@ -10875,6 +10920,13 @@
     },
     {
       "file": "gct-20260417-142700.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20260420-050539.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
