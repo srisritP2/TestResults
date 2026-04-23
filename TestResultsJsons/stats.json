@@ -1,17 +1,17 @@
 {
-  "totalReports": 209,
-  "totalFeatures": 3234,
-  "totalScenarios": 11495,
-  "totalSteps": 139704,
-  "totalPassed": 137922,
+  "totalReports": 210,
+  "totalFeatures": 3249,
+  "totalScenarios": 11547,
+  "totalSteps": 140363,
+  "totalPassed": 138581,
   "totalFailed": 365,
   "totalSkipped": 1417,
-  "totalDuration": 209135.48731159954,
-  "totalSize": 113159907,
-  "averageDuration": "1005.46",
-  "passRate": "98.72",
+  "totalDuration": 210132.82014089957,
+  "totalSize": 113361351,
+  "averageDuration": "1005.42",
+  "passRate": "98.73",
   "failRate": "0.26",
-  "skipRate": "1.02",
+  "skipRate": "1.01",
   "oldestReport": {
     "id": "gct-20250725-170624",
     "name": "GeoCall Automation Test Results Report",
@@ -60,8 +60,8 @@
     "isDeleted": false
   },
   "newestReport": {
-    "id": "gct-20260422-133436",
-    "date": "2026-04-22T13:34:36.772Z"
+    "id": "gct-20260423-135606",
+    "date": "2026-04-23T13:56:06.647Z"
   },
   "allTags": [
     "AddResponse",
