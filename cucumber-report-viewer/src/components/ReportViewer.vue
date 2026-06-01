@@ -124,6 +124,15 @@
             </template>
           </v-tooltip>
 
+          <v-tooltip :text="screenshotting ? 'Capturing...' : 'Screenshot — Copy to Clipboard'" location="bottom">
+            <template #activator="{ props }">
+              <v-btn v-bind="props" @click="takeScreenshot"
+                :icon="screenshotting ? 'mdi-loading mdi-spin' : 'mdi-camera'"
+                variant="text" size="large" class="screenshot-btn"
+                :disabled="screenshotting" :loading="screenshotting" />
+            </template>
+          </v-tooltip>
+
           <v-tooltip :text="deleting ? 'Deleting Report...' : 'Delete Report'" location="bottom">
             <template #activator="{ props }">
               <v-btn v-bind="props" @click="deleteCurrentReport"
@@ -514,6 +523,7 @@ export default {
       },
       filtersExpanded: false,
       deleting: false,
+      screenshotting: false,
       deletionService: new DeletionService(),
       // Confirmation dialog state
       confirmationDialog: {
@@ -784,6 +794,64 @@ export default {
           console.error('Failed to copy error message:', err);
         });
       }
+    },
+
+    // ── Screenshot to Clipboard ───────────────────────────────────────────────
+    async takeScreenshot() {
+      this.screenshotting = true;
+      try {
+        // Load html2canvas from CDN on first use
+        if (!window.html2canvas) {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script.onload = resolve;
+            script.onerror = () => reject(new Error('Failed to load html2canvas'));
+            document.head.appendChild(script);
+          });
+        }
+
+        // Capture the main report content area
+        const target = this.$el.querySelector('.report-content') || this.$el;
+        const canvas = await window.html2canvas(target, {
+          useCORS: true,
+          allowTaint: true,
+          backgroundColor: document.documentElement.getAttribute('data-theme') === 'dark' ? '#1a1a2e' : '#ffffff',
+          scale: window.devicePixelRatio || 1,
+          logging: false
+        });
+
+        // Copy to clipboard as PNG
+        canvas.toBlob(async (blob) => {
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ 'image/png': blob })
+            ]);
+            this.showSnackbar('Screenshot copied to clipboard!', 'success');
+          } catch (err) {
+            // Clipboard API blocked — fall back to download
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `report-screenshot-${Date.now()}.png`;
+            a.click();
+            URL.revokeObjectURL(url);
+            this.showSnackbar('Clipboard blocked — screenshot downloaded instead', 'info');
+          }
+          this.screenshotting = false;
+        }, 'image/png');
+
+      } catch (err) {
+        console.error('Screenshot failed:', err);
+        this.showSnackbar('Screenshot failed: ' + err.message, 'error');
+        this.screenshotting = false;
+      }
+    },
+
+    showSnackbar(message, color = 'info') {
+      this.snackbar.message = message;
+      this.snackbar.color = color;
+      this.snackbar.show = true;
     },
 
     // Screenshot Handling Methods
