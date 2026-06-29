@@ -1,15 +1,15 @@
 {
-  "totalReports": 239,
-  "totalFeatures": 3684,
-  "totalScenarios": 13055,
-  "totalSteps": 159474,
-  "totalPassed": 157692,
+  "totalReports": 240,
+  "totalFeatures": 3699,
+  "totalScenarios": 13107,
+  "totalSteps": 160133,
+  "totalPassed": 158351,
   "totalFailed": 365,
   "totalSkipped": 1417,
-  "totalDuration": 239055.47219059945,
-  "totalSize": 119203227,
-  "averageDuration": "1004.43",
-  "passRate": "98.88",
+  "totalDuration": 240052.80501989945,
+  "totalSize": 119404671,
+  "averageDuration": "1004.41",
+  "passRate": "98.89",
   "failRate": "0.23",
   "skipRate": "0.89",
   "oldestReport": {
@@ -60,8 +60,8 @@
     "isDeleted": false
   },
   "newestReport": {
-    "id": "gct-20260626-144115",
-    "date": "2026-06-26T14:41:15.159Z"
+    "id": "gct-20260629-135650",
+    "date": "2026-06-29T13:56:50.087Z"
   },
   "allTags": [
     "AddResponse",
