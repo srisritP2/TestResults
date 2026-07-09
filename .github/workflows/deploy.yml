@@ -1,8 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy to GitHub Pages (DISABLED - superseded by deploy-app.yml)
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      _disabled:
+        description: 'This workflow is disabled. Use deploy-app.yml instead.'
+        required: false
 
 permissions:
   contents: write
