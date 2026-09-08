@@ -1,11 +1,11 @@
 {
-  "generated": "2026-09-08T17:44:19.078Z",
+  "generated": "2026-09-08T17:44:45.192Z",
   "version": "2.1.0",
   "reports": [
     {
       "id": "gct-20260908-174419",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-09-08T17:44:19.078Z",
+      "date": "2026-09-08T17:44:19.000Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
@@ -13,7 +13,7 @@
       "failed": 0,
       "skipped": 0,
       "duration": 997.3328293,
-      "size": 354819,
+      "size": 201444,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -43,7 +43,7 @@
       ],
       "environment": null,
       "tool": null,
-      "hash": "642c541d1ec017d0e10eb61f9584c9ab",
+      "hash": "1b6c86bb48752e09aefdd0cadb39df96",
       "status": "active",
       "isDeleted": false
     },
@@ -12249,17 +12249,17 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 271,
-    "totalFeatures": 4164,
-    "totalScenarios": 14719,
-    "totalSteps": 180562,
-    "totalPassed": 178780,
+    "totalReports": 272,
+    "totalFeatures": 4179,
+    "totalScenarios": 14771,
+    "totalSteps": 181221,
+    "totalPassed": 179439,
     "totalFailed": 365,
     "totalSkipped": 1417,
-    "totalDuration": 271967.4555574994,
-    "totalSize": 125850879,
-    "averageDuration": "1003.57",
-    "passRate": "99.01",
+    "totalDuration": 272964.7883867994,
+    "totalSize": 126052323,
+    "averageDuration": "1003.55",
+    "passRate": "99.02",
     "failRate": "0.20",
     "skipRate": "0.78",
     "oldestReport": {
@@ -12310,9 +12310,9 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20260904-073749",
+      "id": "gct-20260908-174419",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-09-04T07:37:49.000Z",
+      "date": "2026-09-08T17:44:19.000Z",
       "size": 201444,
       "features": 15,
       "scenarios": 52,
@@ -12351,8 +12351,8 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "bf212c71eaddeee9fb193cf3d503fe1c",
-      "suggestedFilename": "gct-20260904-073749.json",
+      "hash": "1b6c86bb48752e09aefdd0cadb39df96",
+      "suggestedFilename": "gct-20260908-174419.json",
       "status": "active",
       "isDeleted": false
     },
@@ -14255,6 +14255,13 @@
     },
     {
       "file": "gct-20260904-073749.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20260908-174419.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
