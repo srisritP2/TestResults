@@ -11,7 +11,7 @@
   "averageDuration": "1003.26",
   "passRate": "99.07",
   "failRate": "0.19",
-  "skipRate": "0.75",
+  "skipRate": "0.74",
   "oldestReport": {
     "id": "gct-20250725-170624",
     "name": "GeoCall Automation Test Results Report",
