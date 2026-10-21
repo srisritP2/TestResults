@@ -1,9 +1,9 @@
 {
-  "totalReports": 287,
-  "totalFeatures": 4404,
-  "totalScenarios": 15551,
-  "totalSteps": 191106,
-  "totalPassed": 189324,
+  "totalReports": 288,
+  "totalFeatures": 4419,
+  "totalScenarios": 15603,
+  "totalSteps": 191765,
+  "totalPassed": 189983,
   "totalFailed": 365,
   "totalSkipped": 1417,
   "totalDuration": 285930.11516769935,
@@ -60,8 +60,8 @@
     "isDeleted": false
   },
   "newestReport": {
-    "id": "gct-20261021-125404",
-    "date": "2026-10-21T12:54:04.999Z"
+    "id": "gct-20261021-125439",
+    "date": "2026-10-21T12:54:39.574Z"
   },
   "allTags": [
     "AddResponse",
