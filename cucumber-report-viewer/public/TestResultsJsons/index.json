@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-21T12:54:39.574Z",
+  "generated": "2026-10-21T12:55:15.721Z",
   "version": "2.1.0",
   "reports": [
     {
       "id": "gct-20261021-125439",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-10-21T12:54:39.574Z",
+      "date": "2026-10-21T12:54:39.000Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
@@ -13,7 +13,7 @@
       "failed": 0,
       "skipped": 0,
       "duration": 997.3328293,
-      "size": 354819,
+      "size": 201444,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -43,14 +43,14 @@
       ],
       "environment": null,
       "tool": null,
-      "hash": "a4085c1bed1a29bf609f45fc5ffb7ff2",
+      "hash": "e7287cdf89630bb6f9e408dc3d7dac9e",
       "status": "active",
       "isDeleted": false
     },
     {
       "id": "gct-20261021-125404",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-10-21T12:54:04.999Z",
+      "date": "2026-10-21T12:54:04.000Z",
       "features": 15,
       "scenarios": 52,
       "steps": 659,
@@ -58,7 +58,7 @@
       "failed": 0,
       "skipped": 0,
       "duration": 997.3328293,
-      "size": 354819,
+      "size": 201444,
       "tags": [
         "AddResponse",
         "AddResponseFlowValidation",
@@ -88,7 +88,7 @@
       ],
       "environment": null,
       "tool": null,
-      "hash": "7a04ed2fd2ab6e3439d76f148e92bc0e",
+      "hash": "ce2a4c5d20d1772bc7f5324ba2758cc4",
       "status": "active",
       "isDeleted": false
     },
@@ -12969,17 +12969,17 @@
     "lastDeletionAt": null
   },
   "statistics": {
-    "totalReports": 286,
-    "totalFeatures": 4389,
-    "totalScenarios": 15499,
-    "totalSteps": 190447,
-    "totalPassed": 188665,
+    "totalReports": 288,
+    "totalFeatures": 4419,
+    "totalScenarios": 15603,
+    "totalSteps": 191765,
+    "totalPassed": 189983,
     "totalFailed": 365,
     "totalSkipped": 1417,
-    "totalDuration": 286927.44799699937,
-    "totalSize": 128872539,
-    "averageDuration": "1003.24",
-    "passRate": "99.06",
+    "totalDuration": 288922.11365559936,
+    "totalSize": 129275427,
+    "averageDuration": "1003.20",
+    "passRate": "99.07",
     "failRate": "0.19",
     "skipRate": "0.74",
     "oldestReport": {
@@ -13030,9 +13030,9 @@
       "isDeleted": false
     },
     "newestReport": {
-      "id": "gct-20261014-110316",
+      "id": "gct-20261021-125439",
       "name": "GeoCall Automation Test Results Report",
-      "date": "2026-10-14T11:03:16.000Z",
+      "date": "2026-10-21T12:54:39.000Z",
       "size": 201444,
       "features": 15,
       "scenarios": 52,
@@ -13071,8 +13071,8 @@
       "environment": null,
       "tool": null,
       "version": null,
-      "hash": "b6794625079e75f84c626831b66f0a66",
-      "suggestedFilename": "gct-20261014-110316.json",
+      "hash": "e7287cdf89630bb6f9e408dc3d7dac9e",
+      "suggestedFilename": "gct-20261021-125439.json",
       "status": "active",
       "isDeleted": false
     },
@@ -15080,6 +15080,20 @@
     },
     {
       "file": "gct-20261014-110316.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20261021-125404.json",
+      "errors": [
+        "Feature 2, Scenario 0: Missing name",
+        "Feature 2, Scenario 2: Missing name"
+      ]
+    },
+    {
+      "file": "gct-20261021-125439.json",
       "errors": [
         "Feature 2, Scenario 0: Missing name",
         "Feature 2, Scenario 2: Missing name"
